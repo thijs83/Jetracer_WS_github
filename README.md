@@ -1,5 +1,5 @@
 # Jetracer_WS_github
- This is the universal jetracer workspace. Every jetracer shuold sync with this repository. Any new student work should be in a new package in the src file, i.e. in Jetracer_WS_github/src. Use sensible names like BEP_Q1Q3_2022 for example.
+ This is the universal jetracer workspace. Every jetracer should sync with this repository periodically. Any new student work should be in a new package in the src file, i.e. in Jetracer_WS_github/src. Use sensible names like BEP_Q1Q3_2022 for example. Any changes should be periodically pushed.
 
 
 How to set up repository and push changes:

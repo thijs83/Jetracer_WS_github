@@ -12,7 +12,17 @@ to clone see this:
 https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository
 
 
-How to sync from terminal since there is no GitHubDesktop for ubuntu, see this link. But note that you can navigate in the folder and just do "git push" without further specifications and it will work.
+How to sync from terminal since there is no GitHubDesktop for ubuntu, see this link. But note that you can navigate in the folder and just do "git push" without further specifications and it will work. But first you must fetch and pull. So always in the main folder (Jetracer_WS_github) from terminal do the following:
 
-To push to a repo see this link:
+To synch with online repo
+git fetch
+git pull
+
+To push changes
+git add .
+git commit -m "Write a short summary of changes here"
+git push 
+
+
+To push to a repo you can also see this link:
 https://docs.github.com/en/repositories/working-with-files/managing-files/adding-a-file-to-a-repository#adding-a-file-to-a-repository-using-the-command-line

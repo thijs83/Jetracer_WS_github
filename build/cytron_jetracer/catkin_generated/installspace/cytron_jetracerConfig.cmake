@@ -67,14 +67,14 @@ set(cytron_jetracer_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
 if("FALSE" STREQUAL "TRUE")
-  set(cytron_jetracer_SOURCE_PREFIX /home/jetson/Jetracer_WS/src/cytron_jetracer)
-  set(cytron_jetracer_DEVEL_PREFIX /home/jetson/Jetracer_WS/devel/.private/cytron_jetracer)
+  set(cytron_jetracer_SOURCE_PREFIX /home/jetson/Jetracer_WS_github/src/cytron_jetracer)
+  set(cytron_jetracer_DEVEL_PREFIX /home/jetson/Jetracer_WS_github/devel)
   set(cytron_jetracer_INSTALL_PREFIX "")
   set(cytron_jetracer_PREFIX ${cytron_jetracer_DEVEL_PREFIX})
 else()
   set(cytron_jetracer_SOURCE_PREFIX "")
   set(cytron_jetracer_DEVEL_PREFIX "")
-  set(cytron_jetracer_INSTALL_PREFIX /home/jetson/Jetracer_WS/install)
+  set(cytron_jetracer_INSTALL_PREFIX /home/jetson/Jetracer_WS_github/install)
   set(cytron_jetracer_PREFIX ${cytron_jetracer_INSTALL_PREFIX})
 endif()
 
@@ -154,7 +154,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /home/jetson/Jetracer_WS/install/lib;/home/jetson/Jetracer_WS/devel/lib;/home/jetson/catkin_ws/devel/lib;/opt/ros/melodic/lib)
+    foreach(path /home/jetson/Jetracer_WS_github/install/lib;/opt/ros/melodic/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)

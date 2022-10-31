@@ -1,6 +1,0 @@
-devel_space: /home/jetson/Jetracer_WS/devel
-install: false
-install_space: /home/jetson/Jetracer_WS/install
-profile: default
-source_space: /home/jetson/Jetracer_WS/src
-workspace: /home/jetson/Jetracer_WS

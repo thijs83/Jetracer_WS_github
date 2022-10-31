@@ -1,1 +1,8 @@
-/home/jetson/Jetracer_WS/devel/.private/cytron_jetracer/lib/pkgconfig/cytron_jetracer.pc
+prefix=/home/jetson/Jetracer_WS_github/devel
+
+Name: cytron_jetracer
+Description: Description of cytron_jetracer
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: rospy std_msgs

@@ -1,0 +1,2 @@
+apriltag_ros:auto_jetracer:custom_msgs_optitrack:cytron_jetracer:lidar_ros:riccardo_chiesa_pkg
+-DCATKIN_DEVEL_PREFIX=/home/jetson/Jetracer_WS_github/devel -DCMAKE_INSTALL_PREFIX=/home/jetson/Jetracer_WS_github/install -G Unix Makefiles

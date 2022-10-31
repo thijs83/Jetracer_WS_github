@@ -1,4 +1,4 @@
-prefix=/home/jetson/Jetracer_WS/install
+prefix=/home/jetson/Jetracer_WS_github/install
 
 Name: cytron_jetracer
 Description: Description of cytron_jetracer

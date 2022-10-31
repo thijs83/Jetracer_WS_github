@@ -1,1 +1,7 @@
-/home/jetson/Jetracer_WS/devel/.private/custom_msgs_optitrack/share/common-lisp/ros/custom_msgs_optitrack/msg/_package.lisp
+(cl:defpackage custom_msgs_optitrack-msg
+  (:use )
+  (:export
+   "<CUSTOM_OPTI_POSE_STAMPED_MSG>"
+   "CUSTOM_OPTI_POSE_STAMPED_MSG"
+  ))
+

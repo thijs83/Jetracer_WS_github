@@ -1,1 +1,1 @@
-/home/jetson/Jetracer_WS/devel/.private/custom_msgs_optitrack/lib/python2.7/dist-packages/custom_msgs_optitrack/msg/__init__.py
+from ._custom_opti_pose_stamped_msg import *

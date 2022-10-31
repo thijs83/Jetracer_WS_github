@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<launch>
+
+  <node name="racecar_with_safety_1" pkg="cytron_jetracer" type="racecar_with_safety_1.py"
+    output="screen"/>
+
+  <node name="Demo_teleop_gamepad_1_with_safety" pkg="cytron_jetracer" type="Demo_teleop_gamepad_1_with_safety.py"
+    output="screen"/>
+
+</launch>

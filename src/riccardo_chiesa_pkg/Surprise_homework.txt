@@ -1,0 +1,9 @@
+It's your lucky day! Surprise homework for you!
+
+Develop the code to collect step response data relative to both throttle and steering. The step responses should be measured relative to a given operating condition, the latter will be used to linearize the system dynamics around it. I suggest linearizing around: throttle such that v = 1 m/s, steering = 0. The test will eventually be performed only relying on on-board sensors since the space in the DCSC lab is too small. 
+
+Step 1: Design the joystic script.
+	We need a way to provide the step responses. You can modify the script: Demo_teleop_gamepad_1_with_safety in cytron_jetracer/scripts.
+
+Step 2: Save the data. 
+	This can be done with the script "record_input_and_sensor_data" in cytron_jetracer/scripts. But I would recommend creating a dedicated folder for this dataset in this package. 

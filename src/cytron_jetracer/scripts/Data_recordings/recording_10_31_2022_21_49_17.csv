@@ -1,0 +1,2 @@
+safety_value,throttle,steering,current,voltage,IMU[0],IMU[1],IMU[2],velocity,elapsed time,republished time
+0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.000993014,-0.152796745

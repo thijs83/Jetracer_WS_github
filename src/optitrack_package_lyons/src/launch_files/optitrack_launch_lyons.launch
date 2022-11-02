@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<launch>
+
+  <node name="Safety_from_keyboard" pkg="optitrack_package_lyons" type="safety_spacebar.py"
+    output="screen"/>
+
+  <node name="Opti_4_robots" pkg="optitrack_package_lyons" type="opti_minimal_4_robots.py"
+    output="screen"/>
+
+</launch>

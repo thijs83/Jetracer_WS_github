@@ -187,16 +187,17 @@ unsigned long period = dt * pow(10,6);       // conversion from seconds to micro
 
 
 // Variables for converting detections to velocities
-double conversion = 0.041291804;   // Conversion from gear and from wheel rotation to wheel motion
-unsigned long IR_conversion_period = pow(10,9) / 20;   // For integer division storage multiplied by 10^9
+//double conversion = 0.041291804;   // Conversion from gear and from wheel rotation to wheel motion
+//unsigned long IR_conversion_period = pow(10,9) / 20;   // For integer division storage multiplied by 10^9
+double conversion_n_to_m = 0.002063;   // Conversion from gear and from wheel rotation to wheel motion
 
 // Variables for storing the velocities
 double IR_vel = 0;
 unsigned long period_vel = 0;
 unsigned long filter_vel = 0;
 
-double detections_2_velocity_factor = 2 * 3.141593 / 20 * dt * conversion; // this is 2pi/n_partitions on wheel * gear ratio * Radius of wheel [m] so it converts detections to m/s
-
+//double detections_2_velocity_factor = 2 * 3.141593 / 20 * dt * conversion; // this is 2pi/n_partitions on wheel * gear ratio * Radius of wheel [m] so it converts detections to m/s
+double detections_2_velocity_factor = conversion_n_to_m / dt;
 
 // string publishing related global variables
 String current_str;

@@ -171,16 +171,16 @@ static int8_t demo_board_connected;        //!< Set to 1 if the board is connect
 // Constant below determines how much % of new velocity is used to update the filtered old velocity
 // High value (100) means the new velocity measurement is the filtered velocity, thus no filtering is done
 // Low value (1) means it takes a long time for new measurements to change the filtered velocity
-unsigned long filter_weight = 50;
+//unsigned long filter_weight = 50;
 
 // Creating global variables for the detection pins, these need to be volatile
 volatile unsigned long i_IR = 0; 
-volatile unsigned long IR_LastTimeWeMeasured = micros();
-volatile unsigned long IR_SumPeriods = 0;
+//volatile unsigned long IR_LastTimeWeMeasured = micros();
+//volatile unsigned long IR_SumPeriods = 0;
 
 // Variables for storing the incremented detection values, so they are not changed during calculations
-unsigned long IR_store = 0;
-unsigned long IR_SumPeriods_store = 0;
+//unsigned long IR_store = 0;
+//unsigned long IR_SumPeriods_store = 0;
 
 // Variables for timing the loop period
 unsigned long period = dt * pow(10,6);       // conversion from seconds to microseconds
@@ -195,7 +195,7 @@ double IR_vel = 0;
 unsigned long period_vel = 0;
 unsigned long filter_vel = 0;
 
-double detections_2_velocity_factor = 2 * 3.141593 / 20 * dt * conversion; // this is 2pi/n_partitions on wheel * gear ratio * Radius of wheel [m] so it converts detections to m/s
+double detections_2_velocity_factor = 2 * 3.141593 / 20 / dt * conversion; // this is 2pi/n_partitions on wheel / dt * gear ratio * Radius of wheel [m] so it converts detections to m/s
 
 
 // string publishing related global variables

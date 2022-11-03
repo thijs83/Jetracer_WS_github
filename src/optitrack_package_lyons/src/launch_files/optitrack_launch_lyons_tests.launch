@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<launch>
+
+  <node name="optitrack_launch_file_node" pkg="optitrack_package_lyons" type="publish_opti_state_test.py"
+    output="screen"/>
+
+</launch>

@@ -42,13 +42,13 @@ def receive_rigidbody_frame(id, position, rotation):
 
 
 
-optitrack_publisher_1 = rospy.Publisher('Optitrack_data_topic_1', PoseStamped, queue_size=1)
-optitrack_publisher_2 = rospy.Publisher('Optitrack_data_topic_2', PoseStamped, queue_size=1)
-optitrack_publisher_3 = rospy.Publisher('Optitrack_data_topic_3', PoseStamped, queue_size=1)
-optitrack_publisher_4 = rospy.Publisher('Optitrack_data_topic_4', PoseStamped, queue_size=1)
-optitrack_publisher_5 = rospy.Publisher('Optitrack_data_topic_5', PoseStamped, queue_size=1)
-optitrack_publisher_6 = rospy.Publisher('Optitrack_data_topic_6', PoseStamped, queue_size=1)
-optitrack_publisher_7 = rospy.Publisher('Optitrack_data_topic_7', PoseStamped, queue_size=1)
+optitrack_publisher_1 = rospy.Publisher('Optitrack_data_topic_1', custom_opti_pose_stamped_msg, queue_size=1)
+optitrack_publisher_2 = rospy.Publisher('Optitrack_data_topic_2', custom_opti_pose_stamped_msg, queue_size=1)
+optitrack_publisher_3 = rospy.Publisher('Optitrack_data_topic_3', custom_opti_pose_stamped_msg, queue_size=1)
+optitrack_publisher_4 = rospy.Publisher('Optitrack_data_topic_4', custom_opti_pose_stamped_msg, queue_size=1)
+optitrack_publisher_5 = rospy.Publisher('Optitrack_data_topic_5', custom_opti_pose_stamped_msg, queue_size=1)
+optitrack_publisher_6 = rospy.Publisher('Optitrack_data_topic_6', custom_opti_pose_stamped_msg, queue_size=1)
+optitrack_publisher_7 = rospy.Publisher('Optitrack_data_topic_7', custom_opti_pose_stamped_msg, queue_size=1)
 rospy.init_node('Optitrack_publisher_node', anonymous=False)
 
 

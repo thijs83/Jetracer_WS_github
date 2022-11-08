@@ -48,7 +48,7 @@ class record_input_and_sensor_data:
 		date_time = datetime.datetime.now()
 		date_time_str = date_time.strftime("%m_%d_%Y_%H_%M_%S")
 		#date_time = date_time.strftime("%H_%M_%S")
-		subfolder = '/Data_recordings/'
+		subfolder = '/Data_esperimenti_risoluzione/'
 		current_dir = os.path.realpath(os.path.dirname(__file__))
 		file_name = current_dir + subfolder + 'recording_'+ date_time_str + '.csv'
 		print(file_name)

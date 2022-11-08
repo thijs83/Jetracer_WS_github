@@ -15,7 +15,7 @@ def teleop_gamepad():
 	print ('Initialized Joystick : %s' % j.get_name())
 	print('remove safety by pressing R1 button')
 
-	car_number = 1
+	car_number = 3
 	ref_dist = 0.5
 	Kp_dist = 0.1
 	#Setup topics publishing and nodes
@@ -54,21 +54,26 @@ def teleop_gamepad():
 			if event.type == pygame.JOYBUTTONDOWN:
 				if j.get_button(4) == 1:
 					ref_dist = ref_dist + 0.05
-					print("reference distance set to:", ref_dist)
+					#print("reference distance set to:", ref_dist)
+					print("ciao")
 					pub_ref_dist.publish(ref_dist)
 				if j.get_button(0) == 1:
 					ref_dist = ref_dist - 0.05
-					print("reference distance set to:", ref_dist)
+					#print("reference distance set to:", ref_dist)
+					print("buongiorno")
 					pub_ref_dist.publish(ref_dist)
 				if j.get_button(1) == 1:
 					Kp_dist = Kp_dist + 0.05
-					print("reference distance set to:", Kp_dist)
+					#print("reference distance set to:", Kp_dist)
+					print("buonasera")
 					pub_Kp_dist.publish(Kp_dist)
 				if j.get_button(3) == 1:
 					Kp_dist = Kp_dist - 0.05
-					print("Kp_dist set to:", Kp_dist)
-					pub_Kp_dist.publish(Kp_dist)										
-					
+					#print("Kp_dist set to:", Kp_dist)
+					print("buonanotte")
+					pub_Kp_dist.publish(Kp_dist)								
+									
+						
 					
 					
 									

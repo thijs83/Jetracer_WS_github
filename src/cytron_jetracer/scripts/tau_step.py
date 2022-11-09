@@ -16,7 +16,7 @@ def teleop_gamepad():
 	    
 	car_number = 3
 	ref_tau = 0.10
-	incr = 0.02
+	incr = 0.01
 	throttle = ref_tau
 	# Set up topics publishing and nodes
 	pub_throttle = rospy.Publisher('throttle_' + str(car_number), Float32, queue_size=8)
@@ -36,6 +36,7 @@ def teleop_gamepad():
 		pub_throttle.publish(throttle)
 		rospy.loginfo(throttle)
 		pub_steering.publish(steering)
+		rospy,loginfo(steering)
 		
 
 

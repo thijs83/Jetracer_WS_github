@@ -59,7 +59,7 @@ class record_input_and_sensor_data:
 		date_time = datetime.datetime.now()
 		date_time_str = date_time.strftime("%m_%d_%Y_%H_%M_%S")
 		#date_time = date_time.strftime("%H_%M_%S")
-		subfolder = '/DATA_OptiTrack_02_11_22/'
+		subfolder = '/Data_encoder_optitrack/'
 		current_dir = os.path.realpath(os.path.dirname(__file__))
 		file_name = current_dir + subfolder + 'recording_'+ date_time_str + '.csv'
 		print(file_name)

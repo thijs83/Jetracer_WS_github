@@ -5,17 +5,14 @@ import pygame
 import time
 from std_msgs.msg import Float32
 
-
+#Initialize pygame and gamepad
+pygame.init()
+j = pygame.joystick.Joystick(0)
+j.init()
+print('Initialized Joystick ; %s' % j.get_name())
 
 def teleop_gamepad():
 
-	#Initialize pygame and gamepad
-	pygame.init()
-	j = pygame.joystick.Joystick(0)
-	j.init()
-	print('Initialized Joystick ; %s' % j.get_name())
-
-	    
 	car_number = 3
 	ref_tau = 0.10
 	incr = 0.01
@@ -38,39 +35,29 @@ def teleop_gamepad():
 		pub_throttle.publish(throttle)
 		rospy.loginfo(throttle)
 		pub_steering.publish(steering)
-		rospy,loginfo(steering)
-		
+		rospy.loginfo(steering)
 
-
-			
-		for event in pygame.event.get():
-		    if event.type == pygame.JOYBUTTONDOWN:
-		        if j.get_button(4) == 1: # button Y
-		            throttle = throttle + incr
-		            print('tau_ref = ', throttle)
-		            #pub_throttle.publish(throttle)
-		        if j.get_button(0) == 1: # button A
-		            throttle = throttle - incr
-		            print('tau_ref = ', throttle)
-		            #pub_throttle.publish(throttle)
-		        if j.get_button(1) == 1: # button B
-		            throttle = ref_tau
-		            print('tau_ref = ', throttle)
-		            #pub_throttle.publish(throttle)
-
-									
-						
-		#safety value publishing
 		if j.get_button(7) == 1:
-		    print('safety off')
-		    pub_safety_value.publish(1)
+			print('safety off')
+			pub_safety_value.publish(1)
 		else:
-		    pub_safety_value.publish(0)			
+			pub_safety_value.publish(0)
 			
-									
-
-
-
+		for event in pygame.event.get(): # User did something.
+			if event.type == pygame.JOYBUTTONDOWN: # button Y
+				if j.get_button(4) == 1:
+					throttle = throttle + incr
+					print('tau_ref = ', throttle)
+				if j.get_button(0) == 1: # button A
+					throttle = throttle - incr
+					print('tau_ref = ', throttle)
+				if j.get_button(1) == 1: # button B
+					throttle = ref_tau
+					print('tau_ref = ', throttle)
+		if throttle > 1:
+			throttle = 1
+		if throttle < 0:
+			throttle = 0
 
 		rate.sleep()
 

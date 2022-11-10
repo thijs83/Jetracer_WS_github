@@ -38,7 +38,7 @@ class racecar:
 
 	#Safety callback function
 	def callback_safety(self, safety_val_incoming):
-		self.safety_value = safety_val_incoming.data;
+		self.safety_value = safety_val_incoming.data
 	
 	#Steering control callback function
 	def callback_steering(self, steer):

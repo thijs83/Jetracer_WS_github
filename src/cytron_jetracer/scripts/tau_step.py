@@ -5,18 +5,20 @@ import pygame
 import time
 from std_msgs.msg import Float32
 
-#Initialize pygame and gamepad
-pygame.init()
-j = pygame.joystick.Joystick(0)
-j.init()
-print('Initialized Joystick ; %s' % j.get_name())
+
 
 def teleop_gamepad():
+
+	#Initialize pygame and gamepad
+	pygame.init()
+	j = pygame.joystick.Joystick(0)
+	j.init()
+	print('Initialized Joystick ; %s' % j.get_name())
 
 	    
 	car_number = 3
 	ref_tau = 0.10
-	incr = 0.02
+	incr = 0.01
 	throttle = ref_tau
 	# Set up topics publishing and nodes
 	pub_throttle = rospy.Publisher('throttle_' + str(car_number), Float32, queue_size=8)

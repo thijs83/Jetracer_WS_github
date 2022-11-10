@@ -38,6 +38,7 @@ def teleop_gamepad():
 		pub_throttle.publish(throttle)
 		rospy.loginfo(throttle)
 		pub_steering.publish(steering)
+		rospy,loginfo(steering)
 		
 
 

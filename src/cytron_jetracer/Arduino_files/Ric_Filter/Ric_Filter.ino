@@ -387,7 +387,7 @@ void Pulse_Event_IR()
   
   theta_i = i_IR*3.141593/20 ;
   
-  time_i = micros() ;
+  time_i = micros() / pow(10,6) ;
 
   theta.Fill(0) ;
   theta(0,0) = theta_pre_pre ;

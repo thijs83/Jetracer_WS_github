@@ -76,7 +76,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 // define frequency of data output
-double dt = 0.075;
+double dt = 0.1;
 unsigned long time_now = 0; // updated later inside loop
 
 
@@ -188,7 +188,7 @@ unsigned long period = dt * pow(10,6);       // conversion from seconds to micro
 
 // Variables for converting detections to velocities
 //double conversion = 0.041291804;   // Conversion from gear and from wheel rotation to wheel motion
-//unsigned long IR_conversion_period = pow(10,9) / 20;   // For integer division storage multiplied by 10^9
+//unsigned long IR_conversion_period = pow(10,9) * conversion / 20;   // For integer division storage multiplied by 10^9
 double conversion_n_to_m = 0.002063;   // Conversion from gear and from wheel rotation to wheel motion -> 2pi/(ndetections_per_revolution(20)) * Tau_differential(11/39)*R_wheel(0.0233)
 
 // Variables for storing the velocities

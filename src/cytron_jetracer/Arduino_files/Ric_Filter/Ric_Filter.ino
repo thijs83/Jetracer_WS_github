@@ -196,11 +196,17 @@ double IR_vel = 0;
 double detections_2_velocity_factor = conversion_n_to_m / dt;
 
 // Variables to initialize the filter
-volatile float theta_pre_pre = 0
-volatile float theta_pre = 0
-volatile float time_pre_pre = 0
-volatile float time_pre = 0
-int N = 2 // degree of the fitting polynomial
+volatile float theta_pre_pre = 0 ;
+volatile float theta_pre = 0 ;
+volatile float time_pre_pre = 0 ;
+volatile float time_pre = 0 ;
+int N = 2 ; // degree of the fitting polynomial
+float theta_i ;
+float time_i ;
+float vel ;
+BLA::Matrix <3> abc ;
+BLA::Matrix<3, 3> A;
+BLA::Matrix<3> theta;
 
 // string publishing related global variables
 String current_str;
@@ -258,8 +264,9 @@ void setup()
    // print_prompt();
   }
   //----------------------------
-  BLA::Matrix<3, 3> A;
-  BLA::Matrix<3> theta;
+
+
+  
 
   // v.Fill(0);
   // v(2,0) = 0
@@ -295,10 +302,11 @@ void loop()
   IR_vel = detections_2_velocity_factor * float(i_IR);
   // Conver to string in order to send the velocities over serial connection
 
-  //vel = abc(1)*time_i*2 + abc(2)*time_i
+  vel = 2*abc(0)*time_i + abc(1) ;
   
     
-  vel_str = String(IR_vel);
+  //vel_str = String(IR_vel);
+  vel_str = String(vel);
   
   // reset counter to 0 (it is incremented by the interrupt pin)
   i_IR = 0;
@@ -377,27 +385,27 @@ void Pulse_Event_IR()
 {  
   i_IR++; //so just increment the number of detections
   
-  theta_i = i_IR*3.141593/20
+  theta_i = i_IR*3.141593/20 ;
   
-  time_i = micros()
+  time_i = micros() ;
 
-  theta.Fill(0)
-  theta(0,0) = theta_pre_pre
-  theta(1,0) = theta_pre
-  theta(2,0) = theta_i
+  theta.Fill(0) ;
+  theta(0,0) = theta_pre_pre ;
+  theta(1,0) = theta_pre ;
+  theta(2,0) = theta_i ;
   
   A = { pow(time_pre_pre,2), time_pre_pre, 1,
         pow(time_pre,2),     time_pre,     1,
-        pow(time_i,2),       time_i,       1 }
+        pow(time_i,2),       time_i,       1 } ;
         
-  BLA::Matrix inv_A = A
-  bool is_nonsingular = Invert(A_inv)
-  BLA::Matrix <3> abc = inv_A * theta
+  BLA::Matrix <3, 3> inv_A = A ;
+  bool is_nonsingular = Invert(inv_A) ;
+  abc = inv_A * theta ;
   
-  theta_pre_pre = theta_pre
-  theta_pre = theta_i
-  time_pre_pre = time_pre
-  time_pre = time_i
+  theta_pre_pre = theta_pre;
+  theta_pre = theta_i;
+  time_pre_pre = time_pre;
+  time_pre = time_i;
   
   
   

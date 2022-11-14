@@ -11,12 +11,7 @@
 // Settings that can be changed
 
 // Changing the constant below determines the time between velocity measurements
-double dt = 0.05;
-// Constant below determines how much % of new velocity is used to update the filtered old velocity
-// High value (100) means the new velocity measurement is the filtered velocity, thus no filtering is done
-// Low value (1) means it takes a long time for new measurements to change the filtered velocity
-unsigned long filter_weight = 50;
-
+const double dt = 0.05;
 
 /////////////////////////////////////
 // Variables for the program
@@ -36,14 +31,15 @@ unsigned long M_store = 0;
 unsigned long IR_SumPeriods_store = 0;
 unsigned long M_SumPeriods_store = 0;
 
+
 // Variables for timing the loop period
-unsigned long period = dt * pow(10,6);       // conversion from seconds to microseconds
+const unsigned long period = dt * pow(10,6);       // conversion from seconds to microseconds
 unsigned long time_now = 0;
 
 // Variables for converting detections to velocities
-double conversion = 0.041291804;   // Conversion from gear and from wheel rotation to wheel motion
-unsigned long IR_conversion_period = pow(10,9) / 20;   // For integer division storage multiplied by 10^9
-unsigned long M_conversion_period = pow(10,9) / 8;     // For integer division storage multiplied by 10^9
+const double conversion = 0.041291804;   // Conversion from gear and from wheel rotation to wheel motion
+const unsigned long IR_conversion_period = pow(10,9) * conversion / 20;   // For integer division storage multiplied by 10^9
+const unsigned long M_conversion_period = pow(10,9) * conversion / 8;     // For integer division storage multiplied by 10^9
 
 // Variables for storing the velocities
 unsigned long IR_vel_period = 0;
@@ -61,7 +57,7 @@ void setup()  // Start of setup:
   // Create an input pullup for the hall sensor
   pinMode(3, INPUT_PULLUP);
   pinMode(4, OUTPUT);
-  digitalWrite(4, HIGH);
+  digitalWrite(4,HIGH);
   // Attach an interrupt function to pin 2 for the IR sensor, call this function when the state changes on the pin
   attachInterrupt(digitalPinToInterrupt(2), Pulse_Event_IR, CHANGE);  
   // Attach an interrupt function to pin 3 for the M sensor, call this function when the state changes on the pin
@@ -77,20 +73,21 @@ void loop() {
   time_now = micros();
 
   // Store the incremented detection variables for futher calculations
-  IR_store = i_IR;
+  IR_store = IR_SumPeriods/i_IR;
   i_IR = 0;
-  IR_SumPeriods_store = IR_SumPeriods;
   IR_SumPeriods = 0;
-  M_store = i_M;
+  M_store = M_SumPeriods/i_M;
   i_M = 0;
-  M_SumPeriods_store = M_SumPeriods;
   M_SumPeriods = 0;
 
-  // Convert incremented detections to velocities
-  IR_vel_period = IR_conversion_period / (IR_SumPeriods_store / IR_store);  // Velocity is multiplied by 1000
-  M_vel_period = M_conversion_period / (M_SumPeriods_store / M_store);      // Velocity is multiplied by 1000
+  
 
-  period_vel = (IR_vel_period + M_vel_period) / 2;   
+  // Convert incremented detections to velocities
+  IR_vel_period = IR_conversion_period / IR_store;  // Velocity is multiplied by 1000
+  M_vel_period = M_conversion_period / M_store;      // Velocity is multiplied by 1000
+
+  period_vel = (IR_vel_period + M_vel_period) / 2;
+   
 
   // Send the velocities over serial connection
   Serial.println(period_vel);

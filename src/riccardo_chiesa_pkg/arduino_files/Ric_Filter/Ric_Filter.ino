@@ -76,7 +76,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 // define frequency of data output
-double dt = 0.075;
+double dt = 0.1;
 unsigned long time_now = 0; // updated later inside loop
 
 

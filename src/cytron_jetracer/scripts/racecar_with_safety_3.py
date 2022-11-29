@@ -20,6 +20,7 @@ class racecar:
 		self.car.steering_offset = steering_offset
 		self.car.throttle_gain = throttle_gain
 
+
 		# set inputs to 0 when starting up
 		self.car.steering = 0.0
 		self.car.throttle = 0.0
@@ -62,7 +63,7 @@ class racecar:
 if __name__ == '__main__':
 	car_number = 3
 	steering_gain = -0.4
-	steering_offset = 0
+	steering_offset = 0.0008
 	throttle_gain = 1
 	racecar(car_number, steering_gain, steering_offset, throttle_gain)
 

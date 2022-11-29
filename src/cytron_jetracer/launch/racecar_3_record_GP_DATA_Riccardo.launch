@@ -7,7 +7,7 @@
   <node name="sensor_publishing" pkg="cytron_jetracer" type="publish_sensors_Battery_IMU_Encoder.py"
     output="screen"/>
 
-  <node name="gamepad" pkg="cytron_jetracer" type="tau_step.py"
+  <node name="gamepad" pkg="cytron_jetracer" type="steer_step.py"
     output="screen"/>
 
 </launch>

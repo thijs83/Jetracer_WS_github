@@ -14,9 +14,10 @@ print('Initialized Joystick ; %s' % j.get_name())
 def teleop_gamepad():
 
 	car_number = 3
-	ref_tau = 0.10
-	incr = 0.01
-	throttle = ref_tau
+	#ref_tau = 0.10
+	incr = 0.005
+	throttle_pub = 0
+	scale = 0.1
 	# Set up topics publishing and nodes
 	pub_throttle = rospy.Publisher('throttle_' + str(car_number), Float32, queue_size=8)
 	pub_steering = rospy.Publisher('steering_' + str(car_number), Float32, queue_size=8)
@@ -29,11 +30,11 @@ def teleop_gamepad():
 	while not rospy.is_shutdown():
 		pygame.event.pump()
 
-		steering = 0
-		throttle = throttle
+		steering = j.get_axis(2) #Right thumbstick X
+		throttle = -j.get_axis(1) #Left thumbstick X
 
-		pub_throttle.publish(throttle)
-		rospy.loginfo(throttle)
+		pub_throttle.publish(scale*throttle)
+		rospy.loginfo(scale)
 		pub_steering.publish(steering)
 		rospy.loginfo(steering)
 
@@ -46,18 +47,25 @@ def teleop_gamepad():
 		for event in pygame.event.get(): # User did something.
 			if event.type == pygame.JOYBUTTONDOWN: # button Y
 				if j.get_button(4) == 1:
-					throttle = throttle + incr
-					print('tau_ref = ', throttle)
+					scale = scale + incr
+					#throttle_pub = throttle*scale
+					print('tau_ref = ', scale)
 				if j.get_button(0) == 1: # button A
-					throttle = throttle - incr
-					print('tau_ref = ', throttle)
+					scale = scale - incr
+					#throttle_pub = throttle*scale
+					print('tau_ref = ', scale)
 				if j.get_button(1) == 1: # button B
-					throttle = ref_tau
-					print('tau_ref = ', throttle)
-		if throttle > 1:
-			throttle = 1
-		if throttle < 0:
-			throttle = 0
+					scale = 0
+					#throttle_pub = scale*throttle
+					print('tau_ref = ', scale)
+				if j.get_button(3) == 1: # button X
+					scale = 1
+					#throttle_pub = scale*throttle
+					print('tau_ref = ', scale)
+		if throttle_pub > 1:
+			throttle_pub = 1
+		if throttle_pub < 0:
+			throttle_pub = 0
 
 		rate.sleep()
 

@@ -171,16 +171,17 @@ static int8_t demo_board_connected;        //!< Set to 1 if the board is connect
 // Constant below determines how much % of new velocity is used to update the filtered old velocity
 // High value (100) means the new velocity measurement is the filtered velocity, thus no filtering is done
 // Low value (1) means it takes a long time for new measurements to change the filtered velocity
-unsigned long filter_weight = 50;
+// unsigned long filter_weight = 50;
 
 // Creating global variables for the detection pins, these need to be volatile
-volatile unsigned long i_IR = 0; 
-volatile unsigned long IR_LastTimeWeMeasured = micros();
-volatile unsigned long IR_SumPeriods = 0;
+//volatile unsigned long i_IR = 0; 
+volatile int i_IR = 0;
+//volatile unsigned long IR_LastTimeWeMeasured = micros();
+//volatile unsigned long IR_SumPeriods = 0;
 
 // Variables for storing the incremented detection values, so they are not changed during calculations
-unsigned long IR_store = 0;
-unsigned long IR_SumPeriods_store = 0;
+//unsigned long IR_store = 0;
+//unsigned long IR_SumPeriods_store = 0;
 
 // Variables for timing the loop period
 unsigned long period = dt * pow(10,6);       // conversion from seconds to microseconds
@@ -189,7 +190,8 @@ unsigned long period = dt * pow(10,6);       // conversion from seconds to micro
 // Variables for converting detections to velocities
 //double conversion = 0.041291804;   // Conversion from gear and from wheel rotation to wheel motion
 //unsigned long IR_conversion_period = pow(10,9) * conversion / 20;   // For integer division storage multiplied by 10^9
-double conversion_n_to_m = 0.002063;   // Conversion from gear and from wheel rotation to wheel motion -> 2pi/(ndetections_per_revolution(20)) * Tau_differential(11/39)*R_wheel(0.0233)
+//double conversion_n_to_m = 0.002063;   //[For IR sensor] Conversion from gear and from wheel rotation to wheel motion -> 2pi/(ndetections_per_revolution(20)) * Tau_differential(11/39)*R_wheel(0.0233)
+double conversion_n_to_m = 0.005158;   //[For Magnet sensor] 2pi/(ndetections_per_revolution(8)) * Tau_differential(11/39)*R_wheel(0.0233)
 
 // Variables for storing the velocities
 double IR_vel = 0;
@@ -220,6 +222,7 @@ void setup()
   pinMode(4, OUTPUT);
   digitalWrite(4, HIGH);
   // IR sensor
+  pinMode(2, INPUT_PULLUP);
   pinMode(7, OUTPUT);     //for power
   digitalWrite(7, HIGH);
   attachInterrupt(digitalPinToInterrupt(2), Pulse_Event_IR, CHANGE); // setting interrupt pin to perform operations really quick on trigger event
@@ -283,6 +286,7 @@ void loop()
 
   // Convert incremented detections to velocities
   IR_vel = detections_2_velocity_factor * float(i_IR);
+  
   // Conver to string in order to send the velocities over serial connection
   vel_str = String(IR_vel);
   
@@ -362,4 +366,5 @@ void loop()
 void Pulse_Event_IR()
 {  
   i_IR++; //so just increment the number of detections
+  //Serial.println(String(i_IR)+"   voltage" + String(digitalRead(2)));
 }

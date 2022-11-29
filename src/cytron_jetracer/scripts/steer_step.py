@@ -16,10 +16,11 @@ def teleop_gamepad():
 
 
 	car_number = 3
-	ref_tau	 = 0.13  # Set the value able to steer the car at v = 1 m/s
+	ref_tau = 0  # Set the value able to steer the car at v = 1 m/s
 	ref_steer = 0
 	steering = ref_steer
 	incr = 0.25
+	scale = 0
 	#Setup topics publishing and nodes
 	pub_throttle = rospy.Publisher('throttle_' + str(car_number), Float32, queue_size=8)
 	pub_steering = rospy.Publisher('steering_' + str(car_number), Float32, queue_size=8)
@@ -34,13 +35,15 @@ def teleop_gamepad():
 
 		#Obtain gamepad values
 		throttle = ref_tau
-		steering = steering
+		steering = j.get_axis(2) #Right thumbstick X
 
 		#Pubblish gamepad values
 		pub_throttle.publish(throttle)  #reduce the throttle to keep velocity rasonable
 		rospy.loginfo(throttle)
-		pub_steering.publish(steering)
-		rospy.loginfo(steering)
+		pub_steering.publish(steering*scale)
+		rospy.loginfo(steering*scale)
+
+		rospy.loginfo(scale)
 
 		#safety value publishing
 		if j.get_button(7) == 1:
@@ -52,14 +55,18 @@ def teleop_gamepad():
 		for event in pygame.event.get(): # User did something.
 			if event.type == pygame.JOYBUTTONDOWN: # button Y
 				if j.get_button(4) == 1:
-					steering = steering + incr
-					print('steer_ref = ', steering)
+					scale = scale + incr
+					print('steer_ref = ', scale)
 				if j.get_button(0) == 1: # button A
-					steering = steering - incr
-					print('steer_ref = ', steering)
+					scale = scale - incr
+					print('steer_ref = ', scale)
 				if j.get_button(1) == 1: # button B
-					steering = ref_steer
-					print('steer_ref = ', steering)
+					scale = 0
+					print('steer_ref = ', scale)
+				if j.get_button(3) == 1: # button X
+					ref_tau = 0.135
+					#throttle_pub = scale*throttle
+					print('tau_ref = ', ref_tau)
 		if steering > 1:
 			steering = 1
 		if steering < -1:

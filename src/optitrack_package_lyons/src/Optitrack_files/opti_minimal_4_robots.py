@@ -61,6 +61,6 @@ if __name__ == '__main__':
         streaming_client.newFrameListener = receive_new_frame
         streaming_client.rigidBodyListener = receive_rigidbody_frame
         streaming_client.run()
-        print('running the python file opti_minimal 4 cars --> will publish each car on a different topic called: Optitrack_data_topic_1')
+        print('running the python file opti_minimal 4 cars --> will publish each car on a different topic called: Optitrack_data_topic_NUMBER')
     except rospy.ROSInterruptException:
         pass

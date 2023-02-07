@@ -464,6 +464,12 @@ nodelet_DIR:PATH=/opt/ros/melodic/share/nodelet/cmake
 //The directory containing a CMake configuration file for nodelet_topic_tools.
 nodelet_topic_tools_DIR:PATH=/opt/ros/melodic/share/nodelet_topic_tools/cmake
 
+//Value Computed by CMake
+optitrack_package_lyons_BINARY_DIR:STATIC=/home/jetson/Jetracer_WS_github/build/optitrack_package_lyons
+
+//Value Computed by CMake
+optitrack_package_lyons_SOURCE_DIR:STATIC=/home/jetson/Jetracer_WS_github/src/optitrack_package_lyons
+
 //The directory containing a CMake configuration file for pcl_conversions.
 pcl_conversions_DIR:PATH=/opt/ros/melodic/share/pcl_conversions/cmake
 
@@ -472,6 +478,12 @@ pcl_msgs_DIR:PATH=/opt/ros/melodic/share/pcl_msgs/cmake
 
 //The directory containing a CMake configuration file for pcl_ros.
 pcl_ros_DIR:PATH=/opt/ros/melodic/share/pcl_ros/cmake
+
+//Value Computed by CMake
+platooning_pkg_IROS_2023_BINARY_DIR:STATIC=/home/jetson/Jetracer_WS_github/build/platooning_pkg_IROS_2023
+
+//Value Computed by CMake
+platooning_pkg_IROS_2023_SOURCE_DIR:STATIC=/home/jetson/Jetracer_WS_github/src/platooning_pkg_IROS_2023
 
 //The directory containing a CMake configuration file for pluginlib.
 pluginlib_DIR:PATH=/opt/ros/melodic/share/pluginlib/cmake
@@ -676,7 +688,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=10
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=12
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

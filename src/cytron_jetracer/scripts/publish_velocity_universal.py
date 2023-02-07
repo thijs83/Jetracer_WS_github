@@ -6,6 +6,7 @@ from std_msgs.msg import Bool
 from serial_read import Readline
 import time
 import serial
+import os
 
 
 class PubVelocity:
@@ -14,7 +15,7 @@ class PubVelocity:
 		#Setup node and topics subscription
 		print("setup ros topics and node")
 		#Car number
-		car_number = 3
+		car_number = os.environ["car_number"]
 
 		rospy.init_node('publish_velocity_'+str(car_number), anonymous=True)
 		pub_vel = rospy.Publisher("velocity_" + str(car_number), Float32, queue_size=1)

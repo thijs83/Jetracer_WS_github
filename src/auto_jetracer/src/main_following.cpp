@@ -12,6 +12,7 @@
 #include <std_msgs/Int32MultiArray.h>
 #include <std_msgs/Float32.h>
 #include <string.h>
+#include <iostream>
 
 #include <pcl/common/centroid.h>
 #include <pcl/common/geometry.h>
@@ -84,7 +85,8 @@ class LidarFollow
 		{
 			
 			// Create a ROS subscriber for the input point cloud
-			sub = nh.subscribe("point_cloud2", 1, &LidarFollow::cloud_cb, this);
+			// std::getenv("car_number_str") //"point_cloud2"
+			sub = nh.subscribe("point_cloud2", 1, &LidarFollow::cloud_cb, this); 
 			
 			// Create a ROS subscriber for the apriltag position
 			sub_tags = nh.subscribe("tag_detections2", 1, &LidarFollow::apriltag_cb, this);
@@ -98,7 +100,7 @@ class LidarFollow
 				pub_point2 = nh.advertise<geometry_msgs::PointStamped>("cluster_point2",1);
 				pub_cluster = nh.advertise<sensor_msgs::PointCloud2>("cluster2",1);
 			}
-			pub_distance = nh.advertise<std_msgs::Float32>("distance2",1);
+			pub_distance = nh.advertise<std_msgs::Float32>("distance_1",1);
 			// publisher for cluster point cloud
 			
 

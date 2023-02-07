@@ -1,5 +1,7 @@
 <launch>
-  <node name="ydlidar_lidar_publisher2"  pkg="lidar_ros"  type="lidar_ros_node" output="screen" respawn="false" >
+  <arg name="car_numb" value="$(env car_number_str)" />
+
+  <node name="$(eval 'ydlidar_lidar_publisher' + arg('car_numb'))"  pkg="lidar_ros"  type="lidar_ros_node" output="screen" respawn="false" > 
     <!-- string property -->
     <param name="port"         			type="string" value="/dev/ydlidar"/>  
     <param name="frame_id"     			type="string" value="map"/>  <!-- was laser_frame-->
@@ -32,7 +34,7 @@
     <param name="range_max"    			type="double" value="10.0" />
     <!-- frequency is invalid, External PWM control speed -->
     <param name="frequency"    			type="double" value="10.0"/>
-  </node>
-  <node pkg="tf" type="static_transform_publisher" name="base_link_to_laser2"
+  </node> 
+  <node pkg="tf" type="static_transform_publisher" name="$(eval 'base_link_to_laser' + arg('car_numb'))"
     args="0.0 0.0 0.0 0.0 0.0 0.0 /base_footprint /laser_frame 40" />
 </launch>

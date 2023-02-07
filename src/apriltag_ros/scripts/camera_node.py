@@ -6,6 +6,8 @@ import numpy as np
 import rospy
 from cv_bridge import CvBridge
 from sensor_msgs.msg import Image, CameraInfo
+import os
+
  
 
 
@@ -41,9 +43,11 @@ camSet='nvarguscamerasrc !  video/x-raw(memory:NVMM), width=3264, height=1848, f
 
 cam=cv2.VideoCapture(camSet, cv2.CAP_GSTREAMER)
 
-rospy.init_node('camera', anonymous=False)
-image_pub = rospy.Publisher("/camera_rect2/image_rect", Image, queue_size=1)
-info_pub = rospy.Publisher("/camera_rect2/camera_info", CameraInfo, queue_size=1)
+car_number = os.environ["car_number"]
+
+rospy.init_node('camera' + str(car_number), anonymous=False)
+image_pub = rospy.Publisher("/camera_rect_"+ str(car_number) + "/image_rect", Image, queue_size=1)
+info_pub = rospy.Publisher("/camera_rect_"+ str(car_number) + "/camera_info", CameraInfo, queue_size=1)
 bridge = CvBridge()
 rate = rospy.Rate(capture_fps)
 

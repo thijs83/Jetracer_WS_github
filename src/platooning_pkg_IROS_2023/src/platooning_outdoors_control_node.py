@@ -26,6 +26,7 @@ class Platooning_controller_class:
 		self.kp = -1.0
 		self.kd = -2.0
 		self.h = -1.0
+		self.d_safety = 0.5
 
 		# initialize state variables
 		# [v v_rel x_rel]
@@ -48,8 +49,10 @@ class Platooning_controller_class:
 		self.rate = rospy.Rate(1 / self.dt)
 		while not rospy.is_shutdown():
 			#compute linear controller contorl action
+			# state = [v v_rel x_rel]
 
-			u_lin = self.kd * self.state[1] + self.kp*self.state[2] + self.h*(self.state[0] - self.V_target)
+			u_lin = self.kd * self.state[1] + self.kp*(-self.state[2]+self.d_safety) + self.h*(self.state[0] - self.V_target)
+			print('u_lin = ', u_lin)
 			tau = self.acc_2_throttle(u_lin)
 			self.publish_throttle(tau)
 
@@ -97,7 +100,7 @@ class Platooning_controller_class:
 		t = now.secs + now.nsecs/10**9
 		dt = t-self.t_prev
 		self.t_prev = t
-		self.state[1] = (msg.data-self.state[2])/dt
+		self.state[1] = -(msg.data-self.state[2])/dt
 		self.state[2] = msg.data
 		#compute x_rel and v_rel
 

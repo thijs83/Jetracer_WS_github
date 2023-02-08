@@ -22,8 +22,8 @@ def teleop_gamepad():
 	#Setup topics publishing and nodes
 	pub_throttle = rospy.Publisher('throttle_' + str(car_number), Float32, queue_size=8)
 	pub_steering = rospy.Publisher('steering_' + str(car_number), Float32, queue_size=8)
-	pub_ref_dist = rospy.Publisher('ref_dist', Float32, queue_size=8)
-	pub_Kp_dist = rospy.Publisher('Kp_dist', Float32, queue_size=8)
+	pub_ref_dist = rospy.Publisher('ref_dist_gamepad', Float32, queue_size=8)
+	pub_Kp_dist = rospy.Publisher('Kp_dist_gamepad', Float32, queue_size=8)
 	# also publishing safety value
 	pub_safety_value = rospy.Publisher('safety_value', Float32, queue_size=8)
 
@@ -42,7 +42,7 @@ def teleop_gamepad():
 
 		#Pubblish gamepad values
 		pub_throttle.publish(throttle * 0.14)  #reduce the throttle to keep velocity rasonable
-		pub_steering.publish(steering)
+		pub_steering.publish(steering* 0.33) 	#reduce the steering to keep going straight-ish
 
 		#safety value publishing
 		if j.get_button(7) == 1:
@@ -55,23 +55,23 @@ def teleop_gamepad():
 			if event.type == pygame.JOYBUTTONDOWN:
 				if j.get_button(4) == 1:
 					ref_dist = ref_dist + 0.05
-					#print("reference distance set to:", ref_dist)
-					print("ciao")
+					print("reference distance set to:", ref_dist)
+					#print("ciao")
 					pub_ref_dist.publish(ref_dist)
 				if j.get_button(0) == 1:
 					ref_dist = ref_dist - 0.05
-					#print("reference distance set to:", ref_dist)
-					print("buongiorno")
+					print("reference distance set to:", ref_dist)
+					#print("buongiorno")
 					pub_ref_dist.publish(ref_dist)
 				if j.get_button(1) == 1:
 					Kp_dist = Kp_dist + 0.05
-					#print("reference distance set to:", Kp_dist)
-					print("buonasera")
+					print("reference distance set to:", Kp_dist)
+					#print("buonasera")
 					pub_Kp_dist.publish(Kp_dist)
 				if j.get_button(3) == 1:
 					Kp_dist = Kp_dist - 0.05
-					#print("Kp_dist set to:", Kp_dist)
-					print("buonanotte")
+					print("Kp_dist set to:", Kp_dist)
+					#print("buonanotte")
 					pub_Kp_dist.publish(Kp_dist)								
 									
 						

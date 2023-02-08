@@ -50,16 +50,38 @@ void ContinuousDetector::onInit ()
 
   std::string transport_hint;
   pnh.param<std::string>("transport_hint", transport_hint, "raw");
+ // setting up topic name
+  const char* car_number_str = std::getenv("car_number_str");
+
+  const char* camera_rect = "camera_rect";
+  const char* image_rect = "/image_rect";
+  char image_rect_topic_name[100];   // array to hold the result.
+  strcpy(image_rect_topic_name,camera_rect); // copy string one into the result.
+  strcat(image_rect_topic_name,car_number_str); // append string two to the result.
+  strcat(image_rect_topic_name,image_rect); // append string two to the result.
 
   camera_image_subscriber_ =
-      it_->subscribeCamera("image_rect", 1,
+      it_->subscribeCamera(image_rect_topic_name, 1,
                           &ContinuousDetector::imageCallback, this,
                           image_transport::TransportHints(transport_hint));
+
+
+ // setting up topic name
+  const char* tag_detections = "tag_detections";
+  char tag_detections_topic_name[100];   // array to hold the result.
+  strcpy(tag_detections_topic_name,tag_detections); // copy string one into the result.
+  strcat(tag_detections_topic_name,car_number_str); // append string two to the result.
+
+  const char* tag_detections_image = "tag_detections_image";
+  char tag_detections_image_topic_name[100];   // array to hold the result.
+  strcpy(tag_detections_image_topic_name,tag_detections_image); // copy string one into the result.
+  strcat(tag_detections_image_topic_name,car_number_str); // append string two to the result.
+
   tag_detections_publisher_ =
-      nh.advertise<AprilTagDetectionArray>("tag_detections2", 1);
+      nh.advertise<AprilTagDetectionArray>(tag_detections_topic_name, 1);
   if (draw_tag_detections_image_)
   {
-    tag_detections_image_publisher_ = it_->advertise("tag_detections_image2", 1);
+    tag_detections_image_publisher_ = it_->advertise(tag_detections_image_topic_name, 1);
   }
 }
 

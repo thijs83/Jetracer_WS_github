@@ -34,8 +34,8 @@ def q_set():
 q = q_set()
 capture_fps = 28/1
 
-crop_y = 0
-crop_height = 300
+crop_y = 100
+crop_height = 400
  
 # Gstreamer code for improvded Raspberry Pi Camera Quality
 camSet='nvarguscamerasrc !  video/x-raw(memory:NVMM), width=3264, height=1848, format=NV12, framerate=28/1 ! nvvidconv flip-method=2 ! video/x-raw, width='+str(q.width)+', height='+str(q.height)+', format=I420 ! videobalance contrast=1.5 brightness=-0.25 ! appsink max-buffers=1 drop=true'
@@ -64,6 +64,9 @@ while not rospy.is_shutdown():
     img_rect = cv2.undistort(img, K, D)
     img_crop = img_rect[crop_y : crop_y+crop_height, :]
     
+    # Display the video feed
+    #cv2.imshow('frame', img_crop)
+
     image_pub.publish(bridge.cv2_to_imgmsg(img_crop, encoding="8UC1"))   
     info_pub.publish(q)
     

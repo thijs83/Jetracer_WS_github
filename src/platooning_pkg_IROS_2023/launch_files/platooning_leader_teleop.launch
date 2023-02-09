@@ -15,4 +15,10 @@
 		name="$(eval 'platooning_leader_node' + arg('car_numb'))" >
 	</node>
 
+	<node
+		pkg="cytron_jetracer"
+		type="publish_velocity_universal.py"
+		name="$(eval 'velocity_publisher' + arg('car_numb'))" >
+	</node>
+
 </launch>

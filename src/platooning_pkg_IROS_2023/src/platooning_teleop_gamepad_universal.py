@@ -7,87 +7,94 @@ import os
 from std_msgs.msg import Float32, Float32MultiArray
 
 
+class teleop_gamepad:
+	def __init__(self):
+		#Initialize pygame and gamepad
+		pygame.init()
+		j = pygame.joystick.Joystick(0)
+		j.init()
+		print ('Initialized Joystick : %s' % j.get_name())
+		print('remove safety by pressing R1 button')
 
-def teleop_gamepad():
-	#Initialize pygame and gamepad
-	pygame.init()
-	j = pygame.joystick.Joystick(0)
-	j.init()
-	print ('Initialized Joystick : %s' % j.get_name())
-	print('remove safety by pressing R1 button')
+		car_number = os.environ["car_number"]
+		ref_dist = 0.5
+		Kp_dist = 0.1
 
-	car_number = os.environ["car_number"]
-	ref_dist = 0.5
-	Kp_dist = 0.1
+		self.h = -1.0
+		self.V_target = 1.0
 
-	self.h = -1.0
+		#Setup topics publishing and nodes
+		self.throttle_publisher = rospy.Publisher('throttle_' + str(car_number), Float32, queue_size=8)
+		pub_steering = rospy.Publisher('steering_' + str(car_number), Float32, queue_size=8)
+		pub_ref_dist = rospy.Publisher('ref_dist_gamepad', Float32, queue_size=8)
+		pub_Kp_dist = rospy.Publisher('Kp_dist_gamepad', Float32, queue_size=8)
 
-	#Setup topics publishing and nodes
-	self.throttle_publisher = rospy.Publisher('throttle_' + str(car_number), Float32, queue_size=8)
-	pub_steering = rospy.Publisher('steering_' + str(car_number), Float32, queue_size=8)
-	pub_ref_dist = rospy.Publisher('ref_dist_gamepad', Float32, queue_size=8)
-	pub_Kp_dist = rospy.Publisher('Kp_dist_gamepad', Float32, queue_size=8)
+		self.gains_subscriber = rospy.Subscriber('linear_controller_gains', Float32MultiArray, self.gains_callback)
+		self.v_encoder_subscriber = rospy.Subscriber('velocity_' + str(car_number), Float32, self.sub_vel_callback)
+		self.v_target_subscriber = rospy.Subscriber('platoon_speed', Float32, self.v_target_callback)
+		# initialize encoder reading
+		self.velocity = 0
 
-	self.gains_subscriber = rospy.Subscriber('linear_controller_gains', Float32MultiArray, self.gains_callback)
-	self.v_encoder_subscriber = rospy.Subscriber('velocity_' + str(car_number), Float32, self.sub_vel_callback)
-	self.v_target_subscriber = rospy.Subscriber('platoon_speed', Float32, self.v_target_callback)
-	# initialize encoder reading
-	self.velocity = 0
+		# also publishing safety value
+		pub_safety_value = rospy.Publisher('safety_value', Float32, queue_size=8)
 
-	# also publishing safety value
-	pub_safety_value = rospy.Publisher('safety_value', Float32, queue_size=8)
+		rospy.init_node('teleop_gamepad' + str(car_number), anonymous=True)
+		self.rate = rospy.Rate(10) # 10hz
 
-	rospy.init_node('teleop_gamepad' + str(car_number), anonymous=True)
-	rate = rospy.Rate(10) # 10hz
+		while not rospy.is_shutdown():
+			pygame.event.pump()
 
-	while not rospy.is_shutdown():
-		pygame.event.pump()
+			#Obtain gamepad values
+			throttle_joystick = -j.get_axis(1) #Left thumbstick Y
+			steering = j.get_axis(2) #Right thumbstick X
+			#print("Throttle_3:", throttle)
+			#print("Steering_3:", steering)
 
-		#Obtain gamepad values
-		throttle = -j.get_axis(1) #Left thumbstick Y
-		steering = j.get_axis(2) #Right thumbstick X
-		#print("Throttle_3:", throttle)
-		#print("Steering_3:", steering)
-
-		u_lin = self.h*(self.velocity - self.V_target)
-		print('u_lin = ', u_lin)
-		tau = self.acc_2_throttle(u_lin)
-		self.publish_throttle(tau)
-		
-
-		#Pubblish gamepad values
-		pub_throttle.publish(throttle * 0.14)  #reduce the throttle to keep velocity rasonable
-		pub_steering.publish(steering* 0.33) 	#reduce the steering to keep going straight-ish
-
-		#safety value publishing
-		if j.get_button(7) == 1:
-			print('safety off')
-			pub_safety_value.publish(1)
-		else:
-			pub_safety_value.publish(0)
+			u_lin = self.h*(self.velocity - self.V_target)
+			print('u_lin = ', u_lin)
+			tau = self.acc_2_throttle(u_lin)
+			self.publish_throttle(tau * throttle_joystick) # so you can turn on and off from velocity following from joystick
 			
-		for event in pygame.event.get(): # User did something.
-			if event.type == pygame.JOYBUTTONDOWN:
-				if j.get_button(4) == 1:
-					ref_dist = ref_dist + 0.05
-					print("reference distance set to:", ref_dist)
-					#print("ciao")
-					pub_ref_dist.publish(ref_dist)
-				if j.get_button(0) == 1:
-					ref_dist = ref_dist - 0.05
-					print("reference distance set to:", ref_dist)
-					#print("buongiorno")
-					pub_ref_dist.publish(ref_dist)
-				if j.get_button(1) == 1:
-					Kp_dist = Kp_dist + 0.05
-					print("reference distance set to:", Kp_dist)
-					#print("buonasera")
-					pub_Kp_dist.publish(Kp_dist)
-				if j.get_button(3) == 1:
-					Kp_dist = Kp_dist - 0.05
-					print("Kp_dist set to:", Kp_dist)
-					#print("buonanotte")
-					pub_Kp_dist.publish(Kp_dist)
+
+			#Pubblish gamepad values
+			#pub_throttle.publish(throttle * 0.14)  #reduce the throttle to keep velocity rasonable
+			pub_steering.publish(steering* 0.33) 	#reduce the steering to keep going straight-ish
+
+			#safety value publishing
+			if j.get_button(7) == 1:
+				print('safety off')
+				pub_safety_value.publish(1)
+			else:
+				pub_safety_value.publish(0)
+				
+			for event in pygame.event.get(): # User did something.
+				if event.type == pygame.JOYBUTTONDOWN:
+					if j.get_button(4) == 1:
+						ref_dist = ref_dist + 0.05
+						print("reference distance set to:", ref_dist)
+						#print("ciao")
+						pub_ref_dist.publish(ref_dist)
+					if j.get_button(0) == 1:
+						ref_dist = ref_dist - 0.05
+						print("reference distance set to:", ref_dist)
+						#print("buongiorno")
+						pub_ref_dist.publish(ref_dist)
+					if j.get_button(1) == 1:
+						Kp_dist = Kp_dist + 0.05
+						print("reference distance set to:", Kp_dist)
+						#print("buonasera")
+						pub_Kp_dist.publish(Kp_dist)
+					if j.get_button(3) == 1:
+						Kp_dist = Kp_dist - 0.05
+						print("Kp_dist set to:", Kp_dist)
+						#print("buonanotte")
+						pub_Kp_dist.publish(Kp_dist)
+
+			self.rate.sleep()
+
+
+
+
 
 
 	def v_target_callback(self,v_target_msg):
@@ -123,7 +130,7 @@ def teleop_gamepad():
 		throttle_val = Float32(tau)
 
 		# for data storage purpouses
-		self.throttle = throttle_val.data
+		#self.throttle = throttle_val.data
 
 		#publish inputs
 		self.throttle_publisher.publish(throttle_val)						
@@ -131,11 +138,6 @@ def teleop_gamepad():
 					
 					
 									
-
-
-
-
-		rate.sleep()
 
 if __name__ == '__main__':
     try:

@@ -48,11 +48,11 @@ class Platooning_controller_class:
 		self.steering_publisher = rospy.Publisher('steering_' + str(car_number), Float32, queue_size=1)
 		self.safety_value_subscriber = rospy.Subscriber('safety_value', Float32, self.safety_value_subscriber_callback)
 		self.gains_subscriber = rospy.Subscriber('linear_controller_gains', Float32MultiArray, self.gains_callback)
-		self.safety_value_subscriber = rospy.Subscriber('platoon_speed', Float32, self.v_target_callback)
+		self.v_target_subscriber = rospy.Subscriber('platoon_speed', Float32, self.v_target_callback)
 		self.safety_distance = rospy.Subscriber('d_safety', Float32, self.d_safety_callback)
 
 		#self.occupancy_xyr_4_subscriber = rospy.Subscriber('occupancy_xyr_4', Float32MultiArray, self.occupancy_xyr_4_subscriber_callback)
-		self.v_encoder_subscriber = rospy.Publisher('velocity_' + str(car_number), Float32, queue_size=1)
+		self.v_encoder_subscriber = rospy.Subscriber('velocity_' + str(car_number), Float32, self.sub_vel_callback)
 		self.x_rel_subscriber = rospy.Subscriber('distance_' + str(car_number), Float32, self.distance_subscriber_callback) #subscribe to lidar and camera data output
 
 		rospy.Subscriber("tag_point_shifted_"+str(self.car_number), PointStamped, self.callback_tag_point, queue_size=1)

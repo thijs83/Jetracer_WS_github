@@ -26,7 +26,7 @@ class Platooning_controller_class:
 		self.dt = 0.1  # so first number is the prediction horizon in seconds -this is the dt of the solver so it will think that the control inputs are changed every dt seconds
 		self.kp = -1.0
 		self.kd = -2.0
-		self.h = -1.0
+		self.h = -0.5
 		self.d_safety = 0.5
 
 		# initialize state variables
@@ -73,28 +73,44 @@ class Platooning_controller_class:
 			self.publish_throttle(tau)
 
 			# Steering control
-						#Pure pursuite trying to reach the point the leading car is at right now
-			x_point = 0.5 * (self.tag_point[0] + self.lidar_point[0])
-			y_point = 0.5 * (self.tag_point[1] + self.lidar_point[1])
-			dist = np.sqrt(x_point ** 2 + y_point ** 2)
-			alpha = np.arctan(y_point / x_point)
-			steering = -np.sign(alpha)*np.arctan(0.175 * 2 * np.cos(0.5*np.pi-np.abs(alpha))/ (0.5 + dist))
+			kd_omega = 0.5
+
+			#Pure pursuite trying to reach the point the leading car is at right now
+			#x_point = 0.5 * (self.tag_point[0] + self.lidar_point[0])
+			#y_point = 0.5 * (self.tag_point[1] + self.lidar_point[1])
+
+			x_point = self.lidar_point[0]
+			y_point = self.lidar_point[1]
+			#dist = np.sqrt(x_point ** 2 + y_point ** 2)  # we have a subscriber for that already
+			alpha = np.arctan(y_point / (x_point+0.001))
+			steering = -np.sign(alpha)*np.arctan(0.175 * 2 * np.cos(0.5*np.pi-np.abs(alpha))/ (2 + self.state[2])) #
+			
+
+
+			#steering = -np.sign(alpha)*np.arctan(0.175 / (self.V_target) * kd_omega * np.abs(alpha))
+			#steering =  kd_omega*(1-np.cos(alpha))**0.5 * np.sign(-np.sin(alpha))
+
 			#convert radians to [-1, 1] for steering commands
 			max_steer_deg = 17
 			steering_command = (steering/np.pi*180)/max_steer_deg
+			steering_sat = 0.1
+			if steering_command < -steering_sat:
+				steering_command = -steering_sat
+			elif steering_command > steering_sat:
+				steering_command = steering_sat
 
-			if steering_command < -1:
-				steering_command = -1
-			elif steering_command > 1:
-				steering_command = 1
+			steering_offset = -0.1
+			steering_command = steering_command + steering_offset
 
 			#applying first order filter
-			steering_command_out = (1-self.a)*steering_command+self.a*self.steering_command_prev
+			#steering_command_out = (1-self.a)*steering_command+self.a*self.steering_command_prev
+
+
 			#update prev
-			self.steering_command_prev = steering_command_out 
+			self.steering_command_prev = steering_command 
 			
 
-			self.steering_publisher.publish(steering_command_out)
+			self.steering_publisher.publish(steering_command)
 
 
 			self.rate.sleep()

@@ -1,0 +1,24 @@
+<launch>
+	<arg name="car_numb" value="$(env car_number_str)" />
+
+
+
+	<node
+		pkg="cytron_jetracer"
+		type="racecar_with_safety_universal.py"
+		name="$(eval 'racecar_with_safety' + arg('car_numb'))" >
+	</node>
+
+	<node
+		pkg="platooning_pkg_IROS_2023"
+		type="platooning_teleop_gamepad_universal.py"
+		name="$(eval 'platooning_leader_node' + arg('car_numb'))" >
+	</node>
+
+	<node
+		pkg="cytron_jetracer"
+		type="publish_sensors_Battery_IMU_Encoder.py"
+		name="$(eval 'velocity_publisher' + arg('car_numb'))" >
+	</node>
+
+</launch>

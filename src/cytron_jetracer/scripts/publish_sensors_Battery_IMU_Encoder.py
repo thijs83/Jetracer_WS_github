@@ -4,6 +4,7 @@ import rospy
 from std_msgs.msg import Float32, Float32MultiArray
 from std_msgs.msg import Bool
 from serial_read import Readline
+import os
 import time
 import serial
 import numpy as np
@@ -92,7 +93,7 @@ class PubSensors:
 if __name__ == '__main__':
 	print("Starting pid-controller for velocity")
 	try:	
-		car_number = 3
+		car_number = os.environ["car_number"]
 		vel_publisher = PubSensors(car_number)
 	except rospy.ROSInterruptException:
 		print('failed to lauch velocity publisher')

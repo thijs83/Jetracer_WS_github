@@ -12,6 +12,9 @@
 #include <std_msgs/Int32MultiArray.h>
 #include <std_msgs/Float32.h>
 #include <string.h>
+#include <iostream>
+#include <cstdlib>
+
 
 #include <pcl/common/centroid.h>
 #include <pcl/common/geometry.h>
@@ -84,21 +87,64 @@ class LidarFollow
 		{
 			
 			// Create a ROS subscriber for the input point cloud
-			sub = nh.subscribe("point_cloud2", 1, &LidarFollow::cloud_cb, this);
+			// std::getenv("car_number_str") //"point_cloud2"
+			const char* car_number_str = std::getenv("car_number_str");
+
+			const char* point_cloud = "point_cloud";
+			char point_cloud_topic_name[100];   // array to hold the result.
+			strcpy(point_cloud_topic_name,point_cloud); // copy string one into the result.
+			strcat(point_cloud_topic_name,car_number_str); // append string two to the result.
+			
+
+			
+			sub = nh.subscribe(point_cloud_topic_name, 1, &LidarFollow::cloud_cb, this); 
 			
 			// Create a ROS subscriber for the apriltag position
-			sub_tags = nh.subscribe("tag_detections2", 1, &LidarFollow::apriltag_cb, this);
+
+			const char* tag_detections = "tag_detections";
+			char tag_detections_topic_name[100];   // array to hold the result.
+			strcpy(tag_detections_topic_name,tag_detections); // copy string one into the result.
+			strcat(tag_detections_topic_name,car_number_str); // append string two to the result.
+
+			sub_tags = nh.subscribe(tag_detections_topic_name, 1, &LidarFollow::apriltag_cb, this);
 			
 			// Two points publishers for the apriltag and for the found corresponding cluster
 			send_info = true;
 			if (send_info)
-			{
-				pub_tagpoint = nh.advertise<geometry_msgs::PointStamped>("tag_point2",1);
-				pub_point = nh.advertise<geometry_msgs::PointStamped>("tag_point_shifted2",1);
-				pub_point2 = nh.advertise<geometry_msgs::PointStamped>("cluster_point2",1);
-				pub_cluster = nh.advertise<sensor_msgs::PointCloud2>("cluster2",1);
+			{	
+				const char* tag_point = "tag_point";
+				char tag_point_topic_name[100];   // array to hold the result.
+				strcpy(tag_point_topic_name,tag_point); // copy string one into the result.
+				strcat(tag_point_topic_name,car_number_str); // append string two to the result.
+
+				const char* tag_point_shifted = "tag_point_shifted";
+				char tag_point_shifted_topic_name[100];   // array to hold the result.
+				strcpy(tag_point_shifted_topic_name,tag_point_shifted); // copy string one into the result.
+				strcat(tag_point_shifted_topic_name,car_number_str); // append string two to the result.
+
+				const char* cluster_point = "cluster_point";
+				char cluster_point_topic_name[100];   // array to hold the result.
+				strcpy(cluster_point_topic_name,cluster_point); // copy string one into the result.
+				strcat(cluster_point_topic_name,car_number_str); // append string two to the result.
+
+				const char* cluster = "cluster";
+				char cluster_topic_name[100];   // array to hold the result.
+				strcpy(cluster_topic_name,cluster); // copy string one into the result.
+				strcat(cluster_topic_name,car_number_str); // append string two to the result.
+
+
+				pub_tagpoint = nh.advertise<geometry_msgs::PointStamped>(tag_point_topic_name,1);
+				pub_point = nh.advertise<geometry_msgs::PointStamped>(tag_point_shifted_topic_name,1);
+				pub_point2 = nh.advertise<geometry_msgs::PointStamped>(cluster_point_topic_name,1);
+				pub_cluster = nh.advertise<sensor_msgs::PointCloud2>(cluster_topic_name,1);
 			}
-			pub_distance = nh.advertise<std_msgs::Float32>("distance2",1);
+
+			const char* distance = "distance";
+			char distance_topic_name[100];   // array to hold the result.
+			strcpy(distance_topic_name,distance); // copy string one into the result.
+			strcat(distance_topic_name,car_number_str); // append string two to the result.
+
+			pub_distance = nh.advertise<std_msgs::Float32>(distance_topic_name,1);
 			// publisher for cluster point cloud
 			
 
@@ -284,7 +330,14 @@ class LidarFollow
 int main(int argc, char **argv) 
 {
 	// ROS init
-	ros::init(argc, argv, "lidar_tracker2");
+	const char* car_number_str = std::getenv("car_number_str");
+	const char* lidar_tracker = "lidar_tracker";
+	char lidar_tracker_topic_name[100];   // array to hold the result.
+	strcpy(lidar_tracker_topic_name,lidar_tracker); // copy string one into the result.
+	strcat(lidar_tracker_topic_name,car_number_str); // append string two to the result.
+
+
+	ros::init(argc, argv, lidar_tracker_topic_name);
 	// Setting up the class
 	cout << "starting\n";
 	LidarFollow LidFol;

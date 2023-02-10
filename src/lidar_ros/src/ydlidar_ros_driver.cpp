@@ -37,6 +37,9 @@
 #include "ydlidar_config.h"
 #include <limits>       // std::numeric_limits
 
+#include <iostream>
+#include <cstdlib>
+
 #define SDKROSVerision "1.0.1"
 
 CYdLidar laser;
@@ -54,12 +57,28 @@ bool start_scan(std_srvs::Empty::Request &req,
 }
 
 
+
 int main(int argc, char **argv) {
   ros::init(argc, argv, "ydlidar_ros_driver");
   ROS_INFO("YDLIDAR ROS Driver Version: %s", SDKROSVerision);
   ros::NodeHandle nh;
-  ros::Publisher scan_pub = nh.advertise<sensor_msgs::LaserScan>("scan2", 1);
-  ros::Publisher pc_pub = nh.advertise<sensor_msgs::PointCloud2>("point_cloud2",1);
+
+  // setting up topic names
+  const char* car_number_str = std::getenv("car_number_str");
+
+  const char* scan = "scan";
+  char scan_topic_name[100];   // array to hold the result.
+  strcpy(scan_topic_name,scan); // copy string one into the result.
+  strcat(scan_topic_name,car_number_str); // append string two to the result.
+
+  const char* point_cloud = "point_cloud";
+  char point_cloud_topic_name[100];   // array to hold the result.
+  strcpy(point_cloud_topic_name,point_cloud); // copy string one into the result.
+  strcat(point_cloud_topic_name,car_number_str); // append string two to the result.
+
+
+  ros::Publisher scan_pub = nh.advertise<sensor_msgs::LaserScan>(scan_topic_name, 1);
+  ros::Publisher pc_pub = nh.advertise<sensor_msgs::PointCloud2>(point_cloud_topic_name,1);
 
   ros::NodeHandle nh_private("~");
   std::string str_optvalue = "/dev/ydlidar";

@@ -131,6 +131,8 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/home/jetson/Jetracer_WS_github/build/gtest/cmake_install.cmake")
+  include("/home/jetson/Jetracer_WS_github/build/optitrack_package_lyons/cmake_install.cmake")
+  include("/home/jetson/Jetracer_WS_github/build/platooning_pkg_IROS_2023/cmake_install.cmake")
   include("/home/jetson/Jetracer_WS_github/build/custom_msgs_optitrack/cmake_install.cmake")
   include("/home/jetson/Jetracer_WS_github/build/cytron_jetracer/cmake_install.cmake")
   include("/home/jetson/Jetracer_WS_github/build/riccardo_chiesa_pkg/cmake_install.cmake")

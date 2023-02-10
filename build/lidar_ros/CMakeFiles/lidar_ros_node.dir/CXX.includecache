@@ -25,6 +25,10 @@ ydlidar_config.h
 /home/jetson/Jetracer_WS_github/src/lidar_ros/src/ydlidar_config.h
 limits
 -
+iostream
+-
+cstdlib
+-
 
 /opt/ros/melodic/include/geometry_msgs/Point32.h
 string

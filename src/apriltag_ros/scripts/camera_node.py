@@ -6,6 +6,8 @@ import numpy as np
 import rospy
 from cv_bridge import CvBridge
 from sensor_msgs.msg import Image, CameraInfo
+import os
+
  
 
 
@@ -32,8 +34,8 @@ def q_set():
 q = q_set()
 capture_fps = 28/1
 
-crop_y = 0
-crop_height = 300
+crop_y = 100
+crop_height = 400
  
 # Gstreamer code for improvded Raspberry Pi Camera Quality
 camSet='nvarguscamerasrc !  video/x-raw(memory:NVMM), width=3264, height=1848, format=NV12, framerate=28/1 ! nvvidconv flip-method=2 ! video/x-raw, width='+str(q.width)+', height='+str(q.height)+', format=I420 ! videobalance contrast=1.5 brightness=-0.25 ! appsink max-buffers=1 drop=true'
@@ -41,9 +43,11 @@ camSet='nvarguscamerasrc !  video/x-raw(memory:NVMM), width=3264, height=1848, f
 
 cam=cv2.VideoCapture(camSet, cv2.CAP_GSTREAMER)
 
-rospy.init_node('camera', anonymous=False)
-image_pub = rospy.Publisher("/camera_rect2/image_rect", Image, queue_size=1)
-info_pub = rospy.Publisher("/camera_rect2/camera_info", CameraInfo, queue_size=1)
+car_number = os.environ["car_number"]
+
+rospy.init_node('camera' + str(car_number), anonymous=False)
+image_pub = rospy.Publisher("/camera_rect_"+ str(car_number) + "/image_rect", Image, queue_size=1)
+info_pub = rospy.Publisher("/camera_rect_"+ str(car_number) + "/camera_info", CameraInfo, queue_size=1)
 bridge = CvBridge()
 rate = rospy.Rate(capture_fps)
 
@@ -60,6 +64,9 @@ while not rospy.is_shutdown():
     img_rect = cv2.undistort(img, K, D)
     img_crop = img_rect[crop_y : crop_y+crop_height, :]
     
+    # Display the video feed
+    #cv2.imshow('frame', img_crop)
+
     image_pub.publish(bridge.cv2_to_imgmsg(img_crop, encoding="8UC1"))   
     info_pub.publish(q)
     

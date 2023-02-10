@@ -73,6 +73,10 @@ std_msgs/Float32.h
 -
 string.h
 -
+iostream
+-
+cstdlib
+-
 pcl/common/centroid.h
 -
 pcl/common/geometry.h

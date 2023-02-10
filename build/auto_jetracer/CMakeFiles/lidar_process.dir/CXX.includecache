@@ -77,6 +77,8 @@ iostream
 -
 cstdlib
 -
+array
+-
 pcl/common/centroid.h
 -
 pcl/common/geometry.h

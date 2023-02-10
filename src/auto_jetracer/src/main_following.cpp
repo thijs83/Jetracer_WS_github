@@ -14,6 +14,7 @@
 #include <string.h>
 #include <iostream>
 #include <cstdlib>
+#include <array>
 
 
 #include <pcl/common/centroid.h>
@@ -44,6 +45,10 @@
 #define PI 3.14159265
 
 using namespace std;
+// global variables
+float previous_tag_distance = 100;
+float x_old = 10;
+float y_old = 10;
 
 class LidarFollow
 {
@@ -166,17 +171,74 @@ class LidarFollow
 		void apriltag_cb(const apriltag_ros::AprilTagDetectionArray &input)
 		{
 			if (!input.detections.empty())
-			{
+			{	int counter = 0;
+				float tag_distance = 100;
+				int closest_tag_index;
+				float max_tag_dist_jump = 0.3;
+
+				if (input.detections.size() > 1) //more than 1 tag has been detected
+				{
+				for(auto i:input.detections)
+					{
+					//left-right (x-axis) in camera frame is y-axis in lidar frame
+					float y_detection_loop = input.detections[counter].pose.pose.pose.position.x; 
+					//futher-closer (y-axis) in camera frame is x-axis in lidar frame
+					float x_detection_loop = input.detections[counter].pose.pose.pose.position.z; 
+					//up-down (y-axis) not needed since we are working on ground plane (2D)
+					
+					// compute distance
+					float new_tag_distance = sqrt(x_detection_loop*x_detection_loop + y_detection_loop*y_detection_loop);
+					if (new_tag_distance < tag_distance)
+					{closest_tag_index = counter;
+					 tag_distance = new_tag_distance;
+					}
+
+					counter = counter + 1;
+					}
+
+				previous_tag_distance = tag_distance;
 				//left-right (x-axis) in camera frame is y-axis in lidar frame
-				float y = input.detections[0].pose.pose.pose.position.x; 
+				y_old = input.detections[closest_tag_index].pose.pose.pose.position.x; 
 				//futher-closer (y-axis) in camera frame is x-axis in lidar frame
-				float x = input.detections[0].pose.pose.pose.position.z; 
+				x_old = input.detections[closest_tag_index].pose.pose.pose.position.z; 
 				//up-down (y-axis) not needed since we are working on ground plane (2D)
+
+				}
+				else // only 1 tag detected
+				{
+				float y_detection_loop = input.detections[0].pose.pose.pose.position.x; 
+				//futher-closer (y-axis) in camera frame is x-axis in lidar frame
+				float x_detection_loop = input.detections[0].pose.pose.pose.position.z; 
+				//up-down (y-axis) not needed since we are working on ground plane (2D)
+				
+				// compute distance
+				float new_tag_distance = sqrt(x_detection_loop*x_detection_loop + y_detection_loop*y_detection_loop);
+
+				// add maximum jumping distance constraint, incase the tag you have closest gets out of field of view, but lidar could still track it
+				if (abs(tag_distance - previous_tag_distance) <= max_tag_dist_jump || previous_tag_distance == 100) // 100 means it has been initialized but has taken no real value
+				{
+
+				previous_tag_distance = tag_distance;
+				//left-right (x-axis) in camera frame is y-axis in lidar frame
+				y_old = y_detection_loop; 
+				//futher-closer (y-axis) in camera frame is x-axis in lidar frame
+				x_old = x_detection_loop;
+				//up-down (y-axis) not needed since we are working on ground plane (2D)
+				
+				}
+				}
+
+
+
+
+
+
+
 				
 				
 				// create the parameters for the filter planes
-				a = x;
-				b = -y;
+				a = x_old;
+				b = -y_old;
 				
 				initial_apriltag = true;
 
@@ -320,10 +382,15 @@ class LidarFollow
 				//float distance 
 				std_msgs::Float32 dist;
 				dist.data = sqrt(p2.point.x*p2.point.x + p2.point.y*p2.point.y);
+
+
 				pub_distance.publish(dist);	
 			}
 		}
 };
+
+
+
 
 
 
@@ -337,6 +404,9 @@ int main(int argc, char **argv)
 	strcat(lidar_tracker_topic_name,car_number_str); // append string two to the result.
 
 
+
+
+
 	ros::init(argc, argv, lidar_tracker_topic_name);
 	// Setting up the class
 	cout << "starting\n";
@@ -345,3 +415,8 @@ int main(int argc, char **argv)
     
 	return 0;
 }
+
+
+
+
+

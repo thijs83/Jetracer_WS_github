@@ -65,7 +65,7 @@ while not rospy.is_shutdown():
     img_crop = img_rect[crop_y : crop_y+crop_height, :]
     
     # Display the video feed
-    cv2.imshow('frame', img_crop)
+    #cv2.imshow('frame', img_crop)
 
     image_pub.publish(bridge.cv2_to_imgmsg(img_crop, encoding="8UC1"))   
     info_pub.publish(q)

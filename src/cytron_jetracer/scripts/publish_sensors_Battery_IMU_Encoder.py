@@ -6,6 +6,7 @@ from std_msgs.msg import Bool
 from serial_read import Readline
 import time
 import serial
+import numpy as np
 
 
 class PubSensors:
@@ -21,6 +22,7 @@ class PubSensors:
 		pub_vol = rospy.Publisher("voltage_" + str(car_number), Float32, queue_size=1)
 		pub_acc = rospy.Publisher("IMU_" + str(car_number), Float32MultiArray, queue_size=1)
 		pub_vel = rospy.Publisher("velocity_" + str(car_number), Float32, queue_size=1)
+		pub_omega = rospy.Publisher("omega_" + str(car_number), Float32, queue_size=1)
 		
 		#Start serial connection
 		try:
@@ -61,8 +63,10 @@ class PubSensors:
 				vel_index = data.find('Vel')
 				current = float(data[3:7])
 				voltage = float(data[10:14])
-				acc = [float(data[acc_x_index+5 : acc_y_index]), float(data[acc_y_index+5 : gyr_z_index]), float(data[gyr_z_index+5 : vel_index]) ]
+				omega_deg = float(data[gyr_z_index+5 : vel_index])
+				acc = [float(data[acc_x_index+5 : acc_y_index]), float(data[acc_y_index+5 : gyr_z_index]), omega_deg ]
 				vel = float(data[vel_index+3:])
+
 
 
 				#define messages to send
@@ -74,6 +78,7 @@ class PubSensors:
 				pub_vol.publish(voltage)
 				pub_acc.publish(acc_msg)
 				pub_vel.publish(vel)
+				pub_omega.publish(omega_deg / 180 * np.pi)
 			
 
 			# Sleep for the time set in the rate

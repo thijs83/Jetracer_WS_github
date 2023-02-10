@@ -47,6 +47,7 @@
 using namespace std;
 // global variables
 float previous_tag_distance = 100;
+double last_tag_search_reset = 0;
 float x_old = 10;
 float y_old = 10;
 
@@ -197,6 +198,7 @@ class LidarFollow
 					}
 
 				previous_tag_distance = tag_distance;
+				last_tag_search_reset = ros::Time::now().toSec(); // reset timer on resetting the distance
 				//left-right (x-axis) in camera frame is y-axis in lidar frame
 				y_old = input.detections[closest_tag_index].pose.pose.pose.position.x; 
 				//futher-closer (y-axis) in camera frame is x-axis in lidar frame
@@ -213,6 +215,10 @@ class LidarFollow
 				
 				// compute distance
 				float new_tag_distance = sqrt(x_detection_loop*x_detection_loop + y_detection_loop*y_detection_loop);
+				if (ros::Time::now().toSec()-last_tag_search_reset > 5)
+				{previous_tag_distance = 100;
+				last_tag_search_reset = ros::Time::now().toSec();
+				}
 
 				// add maximum jumping distance constraint, incase the tag you have closest gets out of field of view, but lidar could still track it
 				if (abs(tag_distance - previous_tag_distance) <= max_tag_dist_jump || previous_tag_distance == 100) // 100 means it has been initialized but has taken no real value
@@ -407,7 +413,11 @@ int main(int argc, char **argv)
 
 
 
+
+
 	ros::init(argc, argv, lidar_tracker_topic_name);
+ 	ros::start();
+	last_tag_search_reset = ros::Time::now().toSec();
 	// Setting up the class
 	cout << "starting\n";
 	LidarFollow LidFol;

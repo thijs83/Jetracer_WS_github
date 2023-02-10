@@ -99,7 +99,7 @@ class Platooning_controller_class:
 			elif steering_command > steering_sat:
 				steering_command = steering_sat
 
-			steering_offset = -0.1
+			steering_offset = 0 #-0.1
 			steering_command = steering_command + steering_offset
 
 			#applying first order filter

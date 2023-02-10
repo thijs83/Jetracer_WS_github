@@ -64,9 +64,15 @@ class racecar:
 if __name__ == '__main__':
 	car_number = os.environ["car_number"]
 	print('car_number = ', os.environ["car_number"])
+	if car_number == 1:
+		steering_gain = -0.4
+		steering_offset = 0
+		print('setting steer gain and offset for car number 1')
+	else:
+		steering_gain = -0.4
+		steering_offset = 0.0008
 
-	steering_gain = -0.4
-	steering_offset = 0.0008
+
 	throttle_gain = 1
 	racecar(car_number, steering_gain, steering_offset, throttle_gain)
 

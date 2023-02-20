@@ -25,6 +25,8 @@ class teleop_gamepad:
 
 		#Setup topics publishing and nodes
 		self.throttle_publisher = rospy.Publisher('throttle_' + str(car_number), Float32, queue_size=8)
+		self.acc_publisher = rospy.Publisher('acceleration_' + str(car_number), Float32, queue_size=1)
+
 		pub_steering = rospy.Publisher('steering_' + str(car_number), Float32, queue_size=8)
 		pub_ref_dist = rospy.Publisher('ref_dist_gamepad', Float32, queue_size=8)
 		pub_Kp_dist = rospy.Publisher('Kp_dist_gamepad', Float32, queue_size=8)
@@ -52,6 +54,8 @@ class teleop_gamepad:
 
 			u_lin = self.h*(self.velocity - self.V_target)
 			print('u_lin = ', u_lin)
+			self.acc_publisher.publish(Float32(u_lin)) #publish acceleration for followers
+
 			tau = self.acc_2_throttle(u_lin)
 			self.publish_throttle(tau * throttle_joystick) # so you can turn on and off from velocity following from joystick
 			

@@ -4,7 +4,7 @@ import rospy
 import pygame
 import time
 import os
-from std_msgs.msg import Float32, Float32MultiArray
+from std_msgs.msg import Float32, Float32MultiArray, Bool
 
 
 class teleop_gamepad:
@@ -28,7 +28,7 @@ class teleop_gamepad:
 		self.acc_publisher = rospy.Publisher('acceleration_' + str(car_number), Float32, queue_size=1)
 
 		pub_steering = rospy.Publisher('steering_' + str(car_number), Float32, queue_size=8)
-		pub_ref_dist = rospy.Publisher('ref_dist_gamepad', Float32, queue_size=8)
+		pub_add_mpc = rospy.Publisher('add_mpc_gamepad', Bool, queue_size=8)
 		pub_Kp_dist = rospy.Publisher('Kp_dist_gamepad', Float32, queue_size=8)
 
 		self.gains_subscriber = rospy.Subscriber('linear_controller_gains', Float32MultiArray, self.gains_callback)
@@ -74,24 +74,22 @@ class teleop_gamepad:
 			for event in pygame.event.get(): # User did something.
 				if event.type == pygame.JOYBUTTONDOWN:
 					if j.get_button(4) == 1:
-						ref_dist = ref_dist + 0.05
-						print("reference distance set to:", ref_dist)
-						#print("ciao")
-						pub_ref_dist.publish(ref_dist)
+						print("add mpc set to true")
+
+						pub_add_mpc.publish(True)
 					if j.get_button(0) == 1:
-						ref_dist = ref_dist - 0.05
-						print("reference distance set to:", ref_dist)
-						#print("buongiorno")
-						pub_ref_dist.publish(ref_dist)
+						print("add mpc set to false")
+
+						pub_add_mpc.publish(False)
 					if j.get_button(1) == 1:
 						Kp_dist = Kp_dist + 0.05
 						print("reference distance set to:", Kp_dist)
-						#print("buonasera")
+
 						pub_Kp_dist.publish(Kp_dist)
 					if j.get_button(3) == 1:
 						Kp_dist = Kp_dist - 0.05
 						print("Kp_dist set to:", Kp_dist)
-						#print("buonanotte")
+
 						pub_Kp_dist.publish(Kp_dist)
 
 			self.rate.sleep()

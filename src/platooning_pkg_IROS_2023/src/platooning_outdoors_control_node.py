@@ -106,13 +106,13 @@ class Platooning_controller_class:
 			#convert radians to [-1, 1] for steering commands
 			max_steer_deg = 17
 			steering_command = (steering/np.pi*180)/max_steer_deg
-			steering_sat = 0.1
+			steering_sat = 0.5
 			if steering_command < -steering_sat:
 				steering_command = -steering_sat
 			elif steering_command > steering_sat:
 				steering_command = steering_sat
 
-			steering_offset = 0 #-0.1
+			steering_offset = 0.0 #-0.1
 			steering_command = steering_command + steering_offset
 
 			#applying first order filter
@@ -123,7 +123,7 @@ class Platooning_controller_class:
 			self.steering_command_prev = steering_command 
 			
 
-			self.steering_publisher.publish(steering_command)
+			self.steering_publisher.publish(float(steering_command))
 
 
 			self.rate.sleep()
@@ -215,6 +215,7 @@ class Platooning_controller_class:
 
 		#evaluate action
 		u_mpc = x_line - x_dot_rel_k_plus_1
+		print('u_mpc = ', u_mpc)
 
 		return u_mpc
 		

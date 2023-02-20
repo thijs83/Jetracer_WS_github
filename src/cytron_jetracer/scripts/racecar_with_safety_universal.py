@@ -27,7 +27,7 @@ class racecar:
 		self.car.throttle = 0.0
 
 		# additional features by Lyons
-		self.car_number = car_number
+		self.car_number = float(car_number)
 		self.safety_value = 0
 
 		#set up ros nodes for this vehicle
@@ -64,10 +64,14 @@ class racecar:
 if __name__ == '__main__':
 	car_number = os.environ["car_number"]
 	print('car_number = ', os.environ["car_number"])
-	if car_number == 1:
+	if float(car_number) == 1:
 		steering_gain = -0.4
 		steering_offset = 0
 		print('setting steer gain and offset for car number 1')
+	elif float(car_number) == 2:
+		steering_gain = -0.4
+		steering_offset = 0
+		print('setting steer gain and offset for car number 2')
 	else:
 		steering_gain = -0.4
 		steering_offset = 0.0008

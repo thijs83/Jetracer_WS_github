@@ -13,11 +13,12 @@ from geometry_msgs.msg import PointStamped
 
 
 class Platooning_controller_class:
-	def __init__(self, car_number):
+	def __init__(self, car_number,leader_number):
 		rospy.init_node('Platooning_control_node_' + str(car_number), anonymous=False)
 
 		#set up variables
 		self.car_number = car_number
+		self.leader_number = leader_number
 
 		# setu up N
 		self.N = 30  # must match the number of stages in the solver
@@ -28,6 +29,7 @@ class Platooning_controller_class:
 		self.kd = -2.0
 		self.h = -0.5
 		self.d_safety = 0.5
+		self.acc_sat = 0.1
 
 		# initialize state variables
 		# [v v_rel x_rel]
@@ -40,6 +42,10 @@ class Platooning_controller_class:
 		self.a = self.dt/(self.dt+self.tau_filter)
 		self.tag_point = [1.0, 1.0]
 		self.lidar_point = [1.0, 1.0]
+		self.acc_leader = 0
+
+
+
 
 
 
@@ -50,8 +56,9 @@ class Platooning_controller_class:
 		self.gains_subscriber = rospy.Subscriber('linear_controller_gains', Float32MultiArray, self.gains_callback)
 		self.v_target_subscriber = rospy.Subscriber('platoon_speed', Float32, self.v_target_callback)
 		self.safety_distance = rospy.Subscriber('d_safety', Float32, self.d_safety_callback)
-
-		#self.occupancy_xyr_4_subscriber = rospy.Subscriber('occupancy_xyr_4', Float32MultiArray, self.occupancy_xyr_4_subscriber_callback)
+		
+		self.acc_publisher = rospy.Publisher('acceleration_' + str(car_number), Float32, queue_size=1)
+		self.acc_leader_subscriber = rospy.Subscriber('acceleration_' + str(self.leader_number), Float32, self.acc_leader_callback)
 		self.v_encoder_subscriber = rospy.Subscriber('velocity_' + str(car_number), Float32, self.sub_vel_callback)
 		self.x_rel_subscriber = rospy.Subscriber('distance_' + str(car_number), Float32, self.distance_subscriber_callback) #subscribe to lidar and camera data output
 
@@ -68,8 +75,14 @@ class Platooning_controller_class:
 			# state = [v v_rel x_rel]
 
 			u_lin = self.kd * self.state[1] + self.kp*(-self.state[2]+self.d_safety) + self.h*(self.state[0] - self.V_target)
-			print('u_lin = ', u_lin)
-			tau = self.acc_2_throttle(u_lin)
+			#print('u_lin = ', u_lin)
+			
+			
+			u_mpc = self.generete_mpc_action(u_lin)
+			u_control = u_lin+u_mpc
+			
+			self.acc_publisher.publish(Float32(u_control)) # advertise acceleration for follower
+			tau = self.acc_2_throttle(u_control)
 			self.publish_throttle(tau)
 
 			# Steering control
@@ -130,6 +143,8 @@ class Platooning_controller_class:
 		tau = (acc + C * (self.state[0] - 1))/a_th + 0.129
 		return tau
 
+
+
 	def publish_throttle(self, tau):
 		# saturation limits for tau
 		if tau < 0:
@@ -184,38 +199,53 @@ class Platooning_controller_class:
 	def d_safety_callback(self,d_safety_callback_msg):
 		self.d_safety = d_safety_callback.data
 
+	def acc_leader_callback(self,acc_msg):
+		self.acc_leader = acc_msg.data
 
-	def occupancy_xyr_4_subscriber_callback(self, msg):
-		# some legacy shorter vector can also be accepted
-		# temporary block out to just test the tracking performance
-		dyn_ob_traj = msg.data
-		if len(dyn_ob_traj) == 45:
-			self.dyn_ob_traj_x[0:15] = dyn_ob_traj[0:15]
-			self.dyn_ob_traj_y[0:15] = dyn_ob_traj[15:30]
-			self.dyn_ob_traj_r[0:15] = dyn_ob_traj[30:45]
-			self.dyn_ob_traj_x[15:31] = dyn_ob_traj[14] + np.zeros(15)
-			self.dyn_ob_traj_y[15:31] = dyn_ob_traj[29] + np.zeros(15)
-			self.dyn_ob_traj_r[15:31] = dyn_ob_traj[34] + np.zeros(15)
-		elif len(dyn_ob_traj) == 90:
-			self.dyn_ob_traj_x[0:31] = dyn_ob_traj[0:30]
-			self.dyn_ob_traj_y[0:31] = dyn_ob_traj[30:60]
-			self.dyn_ob_traj_r[0:31] = dyn_ob_traj[60:90]
+	def generete_mpc_action(self, u_linear):
+		# evaluate new relative state using leader acceleration info
+		x_dot_rel_k_plus_1 = self.state[1] + u_linear*self.dt - self.acc_leader*self.dt
+		x_rel_k_plus_1 = self.state[2] + self.state[1]*self.dt
+
+		# for mpc line generation
+		no_dist_kd = self.kd+self.h
+		y_max = self.acc_sat/(self.kp*self.dt)*0.5 #last number is mpc line lowering coeff (1 is no lowering)
+		mpc_slope = -(no_dist_kd)/(self.kp)
+		x_line = -(y_max + x_rel_k_plus_1)/mpc_slope
+
+		#evaluate action
+		u_mpc = x_line - x_dot_rel_k_plus_1
+
+		return u_mpc
+		
+	
+
 
 
 
 
 
 if __name__ == '__main__':
-    try:
+	try:
 
-        car_number = os.environ["car_number"]
-
-        # choose solver to run
-        vehicle_controller = Platooning_controller_class(car_number)
-        vehicle_controller.start_platooning_control_loop()
+		car_number = os.environ["car_number"]
 
 
+		if float(car_number) == 1 :
+			leader_number = 2
+
+		elif float(car_number) == 2 :
+			leader_number = 3
 
 
-    except rospy.ROSInterruptException:
-        pass
+		vehicle_controller = Platooning_controller_class(car_number, leader_number)
+		vehicle_controller.start_platooning_control_loop()
+
+
+
+
+
+
+
+	except rospy.ROSInterruptException:
+		pass

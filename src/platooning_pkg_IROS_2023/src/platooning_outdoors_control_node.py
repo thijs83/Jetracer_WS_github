@@ -30,7 +30,7 @@ class Platooning_controller_class:
 		self.kd = -2.0
 		self.h = -0.5
 		self.d_safety = 0.5
-		self.acc_sat = 0.2
+		self.acc_sat = 1
 
 		# initialize state variables
 		# [v v_rel x_rel]

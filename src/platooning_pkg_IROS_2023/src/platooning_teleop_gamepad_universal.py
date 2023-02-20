@@ -24,7 +24,7 @@ class teleop_gamepad:
 		self.V_target = 1.0
 
 		#saturate acceleration limits
-		self.acc_sat = 0.2
+		self.acc_sat = 1
 
 		#Setup topics publishing and nodes
 		self.throttle_publisher = rospy.Publisher('throttle_' + str(car_number), Float32, queue_size=8)
@@ -56,7 +56,7 @@ class teleop_gamepad:
 			#print("Steering_3:", steering)
 
 			u_lin = self.h*(self.velocity - self.V_target)
-			u_lin = saturate_acc(u_lin)
+			u_lin = self.saturate_acc(u_lin)
 			print('u_lin = ', u_lin)
 			self.acc_publisher.publish(Float32(u_lin)) #publish acceleration for followers
 

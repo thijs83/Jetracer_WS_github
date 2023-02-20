@@ -3,12 +3,13 @@ import numpy as np
 import os
 import sys
 import rospy
-from std_msgs.msg import Float32, Float32MultiArray
+from std_msgs.msg import Float32, Float32MultiArray, Bool
 from datetime import datetime
 import csv
 import rospkg
 from custom_msgs_optitrack.msg import custom_opti_pose_stamped_msg
 from geometry_msgs.msg import PointStamped
+import random
 
 
 
@@ -29,7 +30,7 @@ class Platooning_controller_class:
 		self.kd = -2.0
 		self.h = -0.5
 		self.d_safety = 0.5
-		self.acc_sat = 0.1
+		self.acc_sat = 0.2
 
 		# initialize state variables
 		# [v v_rel x_rel]
@@ -43,6 +44,8 @@ class Platooning_controller_class:
 		self.tag_point = [1.0, 1.0]
 		self.lidar_point = [1.0, 1.0]
 		self.acc_leader = 0
+		self.u_mpc_prev = 0 # just to filter the random noise to lower frequency
+		self.add_mpc = True
 
 
 
@@ -56,6 +59,7 @@ class Platooning_controller_class:
 		self.gains_subscriber = rospy.Subscriber('linear_controller_gains', Float32MultiArray, self.gains_callback)
 		self.v_target_subscriber = rospy.Subscriber('platoon_speed', Float32, self.v_target_callback)
 		self.safety_distance = rospy.Subscriber('d_safety', Float32, self.d_safety_callback)
+		self.add_mpc_subscriber = rospy.Subscriber('add_mpc_gamepad', Bool, self.add_mpc_callback)
 		
 		self.acc_publisher = rospy.Publisher('acceleration_' + str(car_number), Float32, queue_size=1)
 		self.acc_leader_subscriber = rospy.Subscriber('acceleration_' + str(self.leader_number), Float32, self.acc_leader_callback)
@@ -81,6 +85,9 @@ class Platooning_controller_class:
 			u_mpc = self.generete_mpc_action(u_lin)
 			u_control = u_lin+u_mpc
 			
+			# artificial saturation bounds
+			u_control = self.saturate_acc(u_control)
+
 			self.acc_publisher.publish(Float32(u_control)) # advertise acceleration for follower
 			tau = self.acc_2_throttle(u_control)
 			self.publish_throttle(tau)
@@ -177,7 +184,7 @@ class Platooning_controller_class:
 		#compute x_rel and v_rel
 
 	def safety_value_subscriber_callback(self, msg):
-		print(msg.data)
+		#print(msg.data)
 		self.safety_value = msg.data
 
 	#tag_point callback function
@@ -202,23 +209,44 @@ class Platooning_controller_class:
 	def acc_leader_callback(self,acc_msg):
 		self.acc_leader = acc_msg.data
 
+	def add_mpc_callback(self,add_mpc_msg):
+		self.add_mpc = add_mpc_msg.data
+
 	def generete_mpc_action(self, u_linear):
-		# evaluate new relative state using leader acceleration info
-		x_dot_rel_k_plus_1 = self.state[1] + u_linear*self.dt - self.acc_leader*self.dt
-		x_rel_k_plus_1 = self.state[2] + self.state[1]*self.dt
+		if self.add_mpc and float(self.car_number) == 2:
+			# evaluate new relative state using leader acceleration info
+			x_dot_rel_k_plus_1 = self.state[1] + u_linear*self.dt - self.acc_leader*self.dt
+			x_rel_k_plus_1 = self.state[2] + self.state[1]*self.dt
 
-		# for mpc line generation
-		no_dist_kd = self.kd+self.h
-		y_max = self.acc_sat/(self.kp*self.dt)*0.5 #last number is mpc line lowering coeff (1 is no lowering)
-		mpc_slope = -(no_dist_kd)/(self.kp)
-		x_line = -(y_max + x_rel_k_plus_1)/mpc_slope
+			# for mpc line generation
+			no_dist_kd = self.kd+self.h
+			y_max = self.acc_sat/(self.kp*self.dt)*0.5 #last number is mpc line lowering coeff (1 is no lowering)
+			mpc_slope = -(no_dist_kd)/(self.kp)
+			x_line = -(y_max + x_rel_k_plus_1)/mpc_slope
 
-		#evaluate action
-		u_mpc = x_line - x_dot_rel_k_plus_1
+			#evaluate action
+			#u_mpc = x_line - x_dot_rel_k_plus_1
+			# corrupted mpc (filtered with noise to lower frequency)
+			u_mpc_new = self.acc_sat*(2*random.random()-1) # random number between amp*(-1 --> 1)
+			c = 0.2
+			u_mpc = (1-c) * u_mpc_new + c * self.u_mpc_prev
+			self.u_mpc_prev = u_mpc
+
+
+		else:
+			u_mpc = 0.0
+
 		print('u_mpc = ', u_mpc)
-
 		return u_mpc
 		
+	def saturate_acc(self,acc):
+		if acc >= self.acc_sat:
+			acc = self.acc_sat
+		elif acc <= -self.acc_sat:
+			acc = -self.acc_sat
+
+		return acc
+	
 	
 
 

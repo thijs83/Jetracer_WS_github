@@ -226,9 +226,9 @@ class Platooning_controller_class:
 
 			# for mpc line generation
 			no_dist_kd = self.kd+self.h
-			y_max = self.acc_sat/(self.kp*self.dt)*0.9 #last number is mpc line lowering coeff (1 is no lowering)
+			y_max = self.acc_sat/(-self.kp*self.dt)*0.9 #last number is mpc line lowering coeff (1 is no lowering)
 			mpc_slope = -(no_dist_kd)/(self.kp)
-			x_line = -(y_max + x_rel_k_plus_1)/mpc_slope
+			x_line = (-y_max + x_rel_k_plus_1)/mpc_slope
 
 			#evaluate action
 			u_mpc = x_line - x_dot_rel_k_plus_1

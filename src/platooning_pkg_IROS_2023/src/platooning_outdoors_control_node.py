@@ -26,11 +26,17 @@ class Platooning_controller_class:
 		# generate parameters
 		self.V_target = 1  # in terms of being scaled down the proportion is vreal life[km/h] = v[m/s]*42.0000  (assuming the 30cm jetracer is a 3.5 m long car)
 		self.dt = 0.1  # so first number is the prediction horizon in seconds -this is the dt of the solver so it will think that the control inputs are changed every dt seconds
-		self.kp = -1.0
-		self.kd = -2.0
-		self.h = -0.5
-		self.d_safety = 0.5
+		#self.kp = -1.0
+		#self.kd = -2.0
+		#self.h = -0.5
+		#self.d_safety = 0.5
 		self.acc_sat = 1
+		self.kp = -sqrt(self.acc_sat/(2*self.V_target))
+		self.h = 2*self.kp
+		self.kd = -2.0*sqrt(-self.kp)
+		self.d_safety = -self.acc_sat/self.kp
+
+		
 
 		# initialize state variables
 		# [v v_rel x_rel]
@@ -220,7 +226,7 @@ class Platooning_controller_class:
 
 			# for mpc line generation
 			no_dist_kd = self.kd+self.h
-			y_max = self.acc_sat/(self.kp*self.dt)*0.5 #last number is mpc line lowering coeff (1 is no lowering)
+			y_max = self.acc_sat/(self.kp*self.dt)*0.9 #last number is mpc line lowering coeff (1 is no lowering)
 			mpc_slope = -(no_dist_kd)/(self.kp)
 			x_line = -(y_max + x_rel_k_plus_1)/mpc_slope
 

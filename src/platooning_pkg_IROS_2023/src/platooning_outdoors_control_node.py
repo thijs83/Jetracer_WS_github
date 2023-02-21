@@ -77,7 +77,10 @@ class Platooning_controller_class:
 		self.v_encoder_subscriber = rospy.Subscriber('velocity_' + str(car_number), Float32, self.sub_vel_callback)
 		self.x_rel_subscriber = rospy.Subscriber('distance_' + str(car_number), Float32, self.distance_subscriber_callback) #subscribe to lidar and camera data output
 
-		self.acc_leader_subscriber_encoder = rospy.Subscriber('velocity_' + str(self.leader_number), Float32, self.acc_leader_callback_encoder)
+		leader_encoder_topic = 'velocity_' + str(self.leader_number)
+		print(leader_encoder_topic)
+
+		self.acc_leader_subscriber_encoder = rospy.Subscriber(leader_encoder_topic, Float32, self.acc_leader_callback_encoder)
 		rospy.Subscriber("tag_point_shifted_"+str(self.car_number), PointStamped, self.callback_tag_point, queue_size=1)
 		rospy.Subscriber("cluster_point_"+str(self.car_number), PointStamped, self.callback_lidar_point, queue_size=1)
 
@@ -91,7 +94,7 @@ class Platooning_controller_class:
 			# state = [v v_rel x_rel]
 
 			u_lin = self.kd * self.state[1] + self.kp*(self.state[2]) + self.h*(self.state[0] - self.V_target)
-			#print('u_lin = ', u_lin)
+			print('u_lin = ', u_lin)
 			
 			
 			u_mpc = self.generete_mpc_action(u_lin)
@@ -159,7 +162,11 @@ class Platooning_controller_class:
 		b_th = 1.54 / 1.63
 
 		# xdot4 = -C * (x[3] - 1) + (u[0] - 0.129) * a_th
-		tau = (acc + C * (self.state[0] - 1))/a_th + 0.129
+		if float(self.car_number) == 1:
+			tau = (acc + C * (self.state[0] - 1))/a_th + 0.145
+		else:
+			tau = (acc + C * (self.state[0] - 1))/a_th + 0.129
+		
 		return tau
 
 
@@ -242,12 +249,16 @@ class Platooning_controller_class:
 		
 
 	def add_mpc_callback(self,add_mpc_msg):
-		self.add_mpc = add_mpc_msg.data
+		if float(self.car_number) == 1:
+			self.add_mpc = True
+		else:
+			self.add_mpc = add_mpc_msg.data
+		
 
 	def generete_mpc_action(self, u_linear):
-		if self.add_mpc and float(self.car_number) == 2:
+		if self.add_mpc:
 			# evaluate new relative state using leader acceleration info
-			x_dot_rel_k_plus_1 = self.state[1] + u_linear*self.dt - self.acc_leader_encoder # - self.acc_leader*self.dt #
+			x_dot_rel_k_plus_1 = self.state[1] + u_linear*self.dt - self.acc_leader_encoder*self.dt # - self.acc_leader*self.dt #
 			x_rel_k_plus_1 = self.state[2] + self.state[1]*self.dt
 
 			# for mpc line generation
@@ -255,13 +266,13 @@ class Platooning_controller_class:
 			y_max = self.acc_sat/(-self.kp)*0.7 #last number is mpc line lowering coeff (1 is no lowering)
 			mpc_slope = -(no_dist_kd)/(self.kp)
 			x_line = (-y_max + x_rel_k_plus_1)/mpc_slope
-			print('y_max = ',y_max,'self.acc_leader = ',self.acc_leader,'x_rel_k_plus_1 =',x_rel_k_plus_1,'x_dot_rel_k_plus_1 = ',x_dot_rel_k_plus_1)
+			print('y_max = ',y_max,' self.acc_leader_encoder = ', self.acc_leader_encoder,'x_rel_k_plus_1 =',x_rel_k_plus_1,'x_dot_rel_k_plus_1 = ',x_dot_rel_k_plus_1, "u_linear =", u_linear,'self.state[1]',self.state[1])
 
 			#evaluate action
 			u_mpc = (x_line - x_dot_rel_k_plus_1)/self.dt
 			# corrupted mpc (filtered with noise to lower frequency)
 			#u_mpc_new = self.acc_sat*(2*random.random()-1) # random number between amp*(-1 --> 1)
-			c = 0.0
+			c = 0.5
 			u_mpc = (1-c) * u_mpc + c * self.u_mpc_prev
 			self.u_mpc_prev = u_mpc
 

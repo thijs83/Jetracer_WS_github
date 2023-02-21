@@ -65,8 +65,8 @@ if __name__ == '__main__':
 	car_number = os.environ["car_number"]
 	print('car_number = ', os.environ["car_number"])
 	if float(car_number) == 1:
-		steering_gain = -0.4
-		steering_offset = 0
+		steering_gain = -0.8
+		steering_offset = -0.05
 		print('setting steer gain and offset for car number 1')
 	elif float(car_number) == 2:
 		steering_gain = -0.4

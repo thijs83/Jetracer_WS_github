@@ -31,9 +31,9 @@ class Platooning_controller_class:
 		#self.h = -0.5
 		#self.d_safety = 0.5
 		self.acc_sat = 1
-		self.kp = -sqrt(self.acc_sat/(2*self.V_target))
+		self.kp = -np.sqrt(self.acc_sat/(2*self.V_target))
 		self.h = 2*self.kp
-		self.kd = -2.0*sqrt(-self.kp)
+		self.kd = -2.0*np.sqrt(-self.kp)
 		self.d_safety = -self.acc_sat/self.kp
 
 		
@@ -231,11 +231,11 @@ class Platooning_controller_class:
 			x_line = -(y_max + x_rel_k_plus_1)/mpc_slope
 
 			#evaluate action
-			#u_mpc = x_line - x_dot_rel_k_plus_1
+			u_mpc = x_line - x_dot_rel_k_plus_1
 			# corrupted mpc (filtered with noise to lower frequency)
-			u_mpc_new = self.acc_sat*(2*random.random()-1) # random number between amp*(-1 --> 1)
-			c = 0.2
-			u_mpc = (1-c) * u_mpc_new + c * self.u_mpc_prev
+			#u_mpc_new = self.acc_sat*(2*random.random()-1) # random number between amp*(-1 --> 1)
+			#c = 0.2
+			#u_mpc = (1-c) * u_mpc_new + c * self.u_mpc_prev
 			self.u_mpc_prev = u_mpc
 
 

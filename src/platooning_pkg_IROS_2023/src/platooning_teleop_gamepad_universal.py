@@ -56,12 +56,12 @@ class teleop_gamepad:
 			#print("Steering_3:", steering)
 
 			u_lin = self.h*(self.velocity - self.V_target)
-			u_lin = self.saturate_acc(u_lin)
+			u_lin = self.saturate_acc(u_lin * throttle_joystick)
 			print('u_lin = ', u_lin)
 			self.acc_publisher.publish(Float32(u_lin)) #publish acceleration for followers
 
 			tau = self.acc_2_throttle(u_lin)
-			self.publish_throttle(tau * throttle_joystick) # so you can turn on and off from velocity following from joystick
+			self.publish_throttle(tau) # so you can turn on and off from velocity following from joystick
 			
 
 			#Pubblish gamepad values

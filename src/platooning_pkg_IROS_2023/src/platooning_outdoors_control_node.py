@@ -42,6 +42,7 @@ class Platooning_controller_class:
 		# [v v_rel x_rel]
 		self.state = [0, 0, 0]
 		self.t_prev = 0.0
+		self.t_prev_encoder = 0.0
 
 		# initiate steering variables
 		self.steering_command_prev = 0
@@ -50,8 +51,12 @@ class Platooning_controller_class:
 		self.tag_point = [1.0, 1.0]
 		self.lidar_point = [1.0, 1.0]
 		self.acc_leader = 0
+		self.acc_leader_prev = 0
+		self.vel_leader_prev = 0
 		self.u_mpc_prev = 0 # just to filter the random noise to lower frequency
 		self.add_mpc = True
+		self.acc_leader_encoder = 0.0
+		self.acc_leader_prev_encoder = 0.0
 
 
 
@@ -72,6 +77,7 @@ class Platooning_controller_class:
 		self.v_encoder_subscriber = rospy.Subscriber('velocity_' + str(car_number), Float32, self.sub_vel_callback)
 		self.x_rel_subscriber = rospy.Subscriber('distance_' + str(car_number), Float32, self.distance_subscriber_callback) #subscribe to lidar and camera data output
 
+		self.acc_leader_subscriber_encoder = rospy.Subscriber('velocity_' + str(self.leader_number), Float32, self.acc_leader_callback_encoder)
 		rospy.Subscriber("tag_point_shifted_"+str(self.car_number), PointStamped, self.callback_tag_point, queue_size=1)
 		rospy.Subscriber("cluster_point_"+str(self.car_number), PointStamped, self.callback_lidar_point, queue_size=1)
 
@@ -84,7 +90,7 @@ class Platooning_controller_class:
 			#compute linear controller contorl action 
 			# state = [v v_rel x_rel]
 
-			u_lin = self.kd * self.state[1] + self.kp*(-self.state[2]+self.d_safety) + self.h*(self.state[0] - self.V_target)
+			u_lin = self.kd * self.state[1] + self.kp*(self.state[2]) + self.h*(self.state[0] - self.V_target)
 			#print('u_lin = ', u_lin)
 			
 			
@@ -119,7 +125,7 @@ class Platooning_controller_class:
 			#convert radians to [-1, 1] for steering commands
 			max_steer_deg = 17
 			steering_command = (steering/np.pi*180)/max_steer_deg
-			steering_sat = 0.5
+			steering_sat = 0.1
 			if steering_command < -steering_sat:
 				steering_command = -steering_sat
 			elif steering_command > steering_sat:
@@ -185,8 +191,8 @@ class Platooning_controller_class:
 		t = now.secs + now.nsecs/10**9
 		dt = t-self.t_prev
 		self.t_prev = t
-		self.state[1] = -(msg.data-self.state[2])/dt
-		self.state[2] = msg.data
+		self.state[1] = (-msg.data+self.d_safety-self.state[2])/dt
+		self.state[2] = -msg.data+self.d_safety
 		#compute x_rel and v_rel
 
 	def safety_value_subscriber_callback(self, msg):
@@ -213,7 +219,27 @@ class Platooning_controller_class:
 		self.d_safety = d_safety_callback.data
 
 	def acc_leader_callback(self,acc_msg):
-		self.acc_leader = acc_msg.data
+		tau_filter = 1/(2*np.pi*1)
+		c = self.dt/(self.dt+tau_filter)
+		self.acc_leader = (1-c) * acc_msg.data + c * self.acc_leader_prev
+		self.acc_leader_prev = self.acc_leader
+
+	def acc_leader_callback_encoder(self,velocity_msg):
+		now = rospy.get_rostime()
+		t = now.secs + now.nsecs/10**9
+		dt = t-self.t_prev_encoder
+		self.t_prev_encoder = t
+
+		acc_encoder_new = (velocity_msg.data-self.vel_leader_prev)/dt
+		self.vel_leader_prev = velocity_msg.data
+
+		tau_filter = 1/(2*np.pi*1)
+		#c = self.dt/(self.dt+tau_filter)
+		c=0.0
+
+		self.acc_leader_encoder = (1-c) * acc_encoder_new + c * self.acc_leader_prev_encoder
+		self.acc_leader_prev_encoder = self.acc_leader_encoder
+		
 
 	def add_mpc_callback(self,add_mpc_msg):
 		self.add_mpc = add_mpc_msg.data
@@ -221,21 +247,22 @@ class Platooning_controller_class:
 	def generete_mpc_action(self, u_linear):
 		if self.add_mpc and float(self.car_number) == 2:
 			# evaluate new relative state using leader acceleration info
-			x_dot_rel_k_plus_1 = self.state[1] + u_linear*self.dt - self.acc_leader*self.dt
+			x_dot_rel_k_plus_1 = self.state[1] + u_linear*self.dt - self.acc_leader_encoder # - self.acc_leader*self.dt #
 			x_rel_k_plus_1 = self.state[2] + self.state[1]*self.dt
 
 			# for mpc line generation
 			no_dist_kd = self.kd+self.h
-			y_max = self.acc_sat/(-self.kp*self.dt)*0.9 #last number is mpc line lowering coeff (1 is no lowering)
+			y_max = self.acc_sat/(-self.kp)*0.7 #last number is mpc line lowering coeff (1 is no lowering)
 			mpc_slope = -(no_dist_kd)/(self.kp)
 			x_line = (-y_max + x_rel_k_plus_1)/mpc_slope
+			print('y_max = ',y_max,'self.acc_leader = ',self.acc_leader,'x_rel_k_plus_1 =',x_rel_k_plus_1,'x_dot_rel_k_plus_1 = ',x_dot_rel_k_plus_1)
 
 			#evaluate action
-			u_mpc = x_line - x_dot_rel_k_plus_1
+			u_mpc = (x_line - x_dot_rel_k_plus_1)/self.dt
 			# corrupted mpc (filtered with noise to lower frequency)
 			#u_mpc_new = self.acc_sat*(2*random.random()-1) # random number between amp*(-1 --> 1)
-			#c = 0.2
-			#u_mpc = (1-c) * u_mpc_new + c * self.u_mpc_prev
+			c = 0.0
+			u_mpc = (1-c) * u_mpc + c * self.u_mpc_prev
 			self.u_mpc_prev = u_mpc
 
 

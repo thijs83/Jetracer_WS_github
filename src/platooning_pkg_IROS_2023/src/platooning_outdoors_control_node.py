@@ -163,7 +163,7 @@ class Platooning_controller_class:
 
 		# xdot4 = -C * (x[3] - 1) + (u[0] - 0.129) * a_th
 		if float(self.car_number) == 1:
-			tau = (acc + C * (self.state[0] - 1))/a_th + 0.145
+			tau = (acc + C * (self.state[0] - 1))/a_th + 0.135
 		else:
 			tau = (acc + C * (self.state[0] - 1))/a_th + 0.129
 		

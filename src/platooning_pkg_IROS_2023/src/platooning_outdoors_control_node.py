@@ -166,7 +166,6 @@ class Platooning_controller_class:
 		#b_th = 1.54 / 1.63
 
 		# xdot4 = -C * (x[3] - 1) + (u[0] - 0.129) * a_th
-<<<<<<< HEAD
 		#if float(self.car_number) == 1:
 			#tau = (acc + C * (self.state[0] - 1))/a_th + 0.145
 		#else:
@@ -187,7 +186,7 @@ class Platooning_controller_class:
 		c6 = 0.2028
 		c3 = 0.87*0.6
 		c4 = 61.2
-		tau = np.tan((acc+c3*self.velocity+c4)*np.pi/(c1*c5)-np.pi/2)/c6
+		tau = np.tan((acc+c3*self.state[0]+c4)*np.pi/(c1*c5)-np.pi/2)/c6
 
 		#if float(self.car_number) == 1:
 			#tau = (acc + C * (self.state[0] - 1))/a_th + 0.135

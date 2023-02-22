@@ -94,7 +94,7 @@ class Platooning_controller_class:
 			# state = [v v_rel x_rel]
 
 			u_lin = self.kd * self.state[1] + self.kp*(self.state[2]) + self.h*(self.state[0] - self.V_target)
-			print('u_lin = ', u_lin)
+			#print('u_lin = ', u_lin)
 			
 			
 			u_mpc = self.generete_mpc_action(u_lin)

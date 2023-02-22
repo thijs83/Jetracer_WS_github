@@ -84,6 +84,8 @@ class Platooning_controller_class:
 		rospy.Subscriber("tag_point_shifted_"+str(self.car_number), PointStamped, self.callback_tag_point, queue_size=1)
 		rospy.Subscriber("cluster_point_"+str(self.car_number), PointStamped, self.callback_lidar_point, queue_size=1)
 
+		self.u_control_publisher = rospy.Publisher('u_control_' + str(car_number), Float32, queue_size=1)
+
 
 
 	def start_platooning_control_loop(self):
@@ -99,6 +101,8 @@ class Platooning_controller_class:
 			
 			u_mpc = self.generete_mpc_action(u_lin)
 			u_control = u_lin+u_mpc
+
+			self.u_control_publisher.publish(float(u_control))
 			
 			# artificial saturation bounds
 			u_control = self.saturate_acc(u_control)

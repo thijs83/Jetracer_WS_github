@@ -263,16 +263,16 @@ class Platooning_controller_class:
 
 			# for mpc line generation
 			no_dist_kd = self.kd+self.h
-			y_max = self.acc_sat/(-self.kp)*0.7 #last number is mpc line lowering coeff (1 is no lowering)
+			y_max = self.acc_sat/(-self.kp)*0.5 #last number is mpc line lowering coeff (1 is no lowering)
 			mpc_slope = -(no_dist_kd)/(self.kp)
 			x_line = (-y_max + x_rel_k_plus_1)/mpc_slope
-			print('y_max = ',y_max,' self.acc_leader_encoder = ', self.acc_leader_encoder,'x_rel_k_plus_1 =',x_rel_k_plus_1,'x_dot_rel_k_plus_1 = ',x_dot_rel_k_plus_1, "u_linear =", u_linear,'self.state[1]',self.state[1])
+			#print('y_max = ',y_max,' self.acc_leader_encoder = ', self.acc_leader_encoder,'x_rel_k_plus_1 =',x_rel_k_plus_1,'x_dot_rel_k_plus_1 = ',x_dot_rel_k_plus_1, "u_linear =", u_linear,'self.state[1]',self.state[1])
 
 			#evaluate action
 			u_mpc = (x_line - x_dot_rel_k_plus_1)/self.dt
 			# corrupted mpc (filtered with noise to lower frequency)
 			#u_mpc_new = self.acc_sat*(2*random.random()-1) # random number between amp*(-1 --> 1)
-			c = 0.5
+			c = 0.0
 			u_mpc = (1-c) * u_mpc + c * self.u_mpc_prev
 			self.u_mpc_prev = u_mpc
 
@@ -280,7 +280,7 @@ class Platooning_controller_class:
 		else:
 			u_mpc = 0.0
 
-		print('u_mpc = ', u_mpc)
+		#print('u_mpc = ', u_mpc)
 		return u_mpc
 		
 	def saturate_acc(self,acc):

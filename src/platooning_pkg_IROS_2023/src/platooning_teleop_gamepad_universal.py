@@ -21,7 +21,7 @@ class teleop_gamepad:
 		Kp_dist = 0.1
 
 		self.h = -1.0
-		self.V_target = 1.0
+		self.V_target = 1.5
 
 		#saturate acceleration limits
 		self.acc_sat = 1

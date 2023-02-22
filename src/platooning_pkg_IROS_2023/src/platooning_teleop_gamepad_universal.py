@@ -4,6 +4,7 @@ import rospy
 import pygame
 import time
 import os
+import numpy as np
 from std_msgs.msg import Float32, Float32MultiArray, Bool
 
 
@@ -66,7 +67,7 @@ class teleop_gamepad:
 
 			#Pubblish gamepad values
 			#pub_throttle.publish(throttle * 0.14)  #reduce the throttle to keep velocity rasonable
-			pub_steering.publish(steering* 0.33) 	#reduce the steering to keep going straight-ish
+			pub_steering.publish(steering* 0.1+0.05) 	#reduce the steering to keep going straight-ish
 
 			#safety value publishing
 			if j.get_button(7) == 1:
@@ -118,13 +119,24 @@ class teleop_gamepad:
 
 	def acc_2_throttle(self, acc):
 		# compute inverted dynamics to recover throttle from required acceleration
-		C = 1.54 / 1.63  # longitudinal damping coefficient divided by the mass
-		a_th = 60 / 1.63  # motor curve coefficient divided by the mass
-		b_th = 1.54 / 1.63
+		#C = 1.54 / 1.63  # longitudinal damping coefficient divided by the mass
+		#a_th = 60 / 1.63  # motor curve coefficient divided by the mass
+		#b_th = 1.54 / 1.63
 
 		# xdot4 = -C * (x[3] - 1) + (u[0] - 0.129) * a_th
-		tau = (acc + C * (self.velocity - 1))/a_th + 0.129
+		#tau = (acc + C * (self.velocity - 1))/a_th + 0.129
+
+		#riccardo's magic formula
+		c1 = 90
+		c5 = 1.36
+		c6 = 0.2028
+		c3 = 0.87*0.6
+		c4 = 61.2
+		tau = np.tan((acc+c3*self.velocity+c4)*np.pi/(c1*c5)-np.pi/2)/c6
+
 		return tau
+
+
 
 	def saturate_acc(self,acc):
 		if acc >= self.acc_sat:

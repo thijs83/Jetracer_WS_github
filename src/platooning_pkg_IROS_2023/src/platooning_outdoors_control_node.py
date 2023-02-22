@@ -157,15 +157,32 @@ class Platooning_controller_class:
 
 	def acc_2_throttle(self, acc):
 		# compute inverted dynamics to recover throttle from required acceleration
-		C = 1.54 / 1.63  # longitudinal damping coefficient divided by the mass
-		a_th = 60 / 1.63  # motor curve coefficient divided by the mass
-		b_th = 1.54 / 1.63
+		#C = 1.54 / 1.63  # longitudinal damping coefficient divided by the mass
+		#a_th = 60 / 1.63  # motor curve coefficient divided by the mass
+		#b_th = 1.54 / 1.63
 
 		# xdot4 = -C * (x[3] - 1) + (u[0] - 0.129) * a_th
-		if float(self.car_number) == 1:
-			tau = (acc + C * (self.state[0] - 1))/a_th + 0.145
-		else:
-			tau = (acc + C * (self.state[0] - 1))/a_th + 0.129
+		#if float(self.car_number) == 1:
+			#tau = (acc + C * (self.state[0] - 1))/a_th + 0.145
+		#else:
+			#tau = (acc + C * (self.state[0] - 1))/a_th + 0.129
+
+
+		# compute inverted dynamics to recover throttle from required acceleration
+		#C = 1.54 / 1.63  # longitudinal damping coefficient divided by the mass
+		#a_th = 60 / 1.63  # motor curve coefficient divided by the mass
+		#b_th = 1.54 / 1.63
+
+		# xdot4 = -C * (x[3] - 1) + (u[0] - 0.129) * a_th
+		#tau = (acc + C * (self.velocity - 1))/a_th + 0.129
+
+		#riccardo's magic formula
+		c1 = 90
+		c5 = 1.36
+		c6 = 0.2028
+		c3 = 0.87*0.6
+		c4 = 61.2
+		tau = np.tan((acc+c3*self.velocity+c4)*np.pi/(c1*c5)-np.pi/2)/c6
 		
 		return tau
 

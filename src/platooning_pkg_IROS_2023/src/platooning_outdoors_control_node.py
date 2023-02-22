@@ -84,6 +84,8 @@ class Platooning_controller_class:
 		rospy.Subscriber("tag_point_shifted_"+str(self.car_number), PointStamped, self.callback_tag_point, queue_size=1)
 		rospy.Subscriber("cluster_point_"+str(self.car_number), PointStamped, self.callback_lidar_point, queue_size=1)
 
+		self.u_control_publisher = rospy.Publisher('u_control_' + str(car_number), Float32, queue_size=1)
+
 
 
 	def start_platooning_control_loop(self):
@@ -94,11 +96,13 @@ class Platooning_controller_class:
 			# state = [v v_rel x_rel]
 
 			u_lin = self.kd * self.state[1] + self.kp*(self.state[2]) + self.h*(self.state[0] - self.V_target)
-			print('u_lin = ', u_lin)
+			#print('u_lin = ', u_lin)
 			
 			
 			u_mpc = self.generete_mpc_action(u_lin)
 			u_control = u_lin+u_mpc
+
+			self.u_control_publisher.publish(float(u_control))
 			
 			# artificial saturation bounds
 			u_control = self.saturate_acc(u_control)
@@ -162,6 +166,7 @@ class Platooning_controller_class:
 		#b_th = 1.54 / 1.63
 
 		# xdot4 = -C * (x[3] - 1) + (u[0] - 0.129) * a_th
+<<<<<<< HEAD
 		#if float(self.car_number) == 1:
 			#tau = (acc + C * (self.state[0] - 1))/a_th + 0.145
 		#else:
@@ -183,6 +188,11 @@ class Platooning_controller_class:
 		c3 = 0.87*0.6
 		c4 = 61.2
 		tau = np.tan((acc+c3*self.velocity+c4)*np.pi/(c1*c5)-np.pi/2)/c6
+
+		#if float(self.car_number) == 1:
+			#tau = (acc + C * (self.state[0] - 1))/a_th + 0.135
+		#else:
+			#tau = (acc + C * (self.state[0] - 1))/a_th + 0.129
 		
 		return tau
 

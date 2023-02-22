@@ -102,10 +102,12 @@ class Platooning_controller_class:
 			u_mpc = self.generete_mpc_action(u_lin)
 			u_control = u_lin+u_mpc
 
-			self.u_control_publisher.publish(float(u_control))
+			
 			
 			# artificial saturation bounds
 			u_control = self.saturate_acc(u_control)
+
+			self.u_control_publisher.publish(float(u_control))
 
 			self.acc_publisher.publish(Float32(u_control)) # advertise acceleration for follower
 			tau = self.acc_2_throttle(u_control)
@@ -173,20 +175,20 @@ class Platooning_controller_class:
 
 
 		# compute inverted dynamics to recover throttle from required acceleration
-		#C = 1.54 / 1.63  # longitudinal damping coefficient divided by the mass
-		#a_th = 60 / 1.63  # motor curve coefficient divided by the mass
-		#b_th = 1.54 / 1.63
+		C = 1.54 / 1.63  # longitudinal damping coefficient divided by the mass
+		a_th = 60 / 1.63  # motor curve coefficient divided by the mass
+		b_th = 1.54 / 1.63
 
 		# xdot4 = -C * (x[3] - 1) + (u[0] - 0.129) * a_th
-		#tau = (acc + C * (self.velocity - 1))/a_th + 0.129
+		tau = (acc + C * (self.state[0] - 1))/a_th + 0.129
 
 		#riccardo's magic formula
-		c1 = 90
-		c5 = 1.36
-		c6 = 0.2028
-		c3 = 0.87*0.6
-		c4 = 61.2
-		tau = np.tan((acc+c3*self.state[0]+c4)*np.pi/(c1*c5)-np.pi/2)/c6
+		#c1 = 90
+		#c5 = 1.36
+		#c6 = 0.2028
+		#c3 = 0.87*0.6
+		#c4 = 61.2
+		#tau = np.tan((acc+c3*self.state[0]+c4)*np.pi/(c1*c5)-np.pi/2)/c6
 
 		#if float(self.car_number) == 1:
 			#tau = (acc + C * (self.state[0] - 1))/a_th + 0.135
@@ -289,13 +291,13 @@ class Platooning_controller_class:
 
 			# for mpc line generation
 			no_dist_kd = self.kd+self.h
-			y_max = self.acc_sat/(-self.kp)*0.5 #last number is mpc line lowering coeff (1 is no lowering)
+			y_max = self.acc_sat/(-self.kp)*0.8 #last number is mpc line lowering coeff (1 is no lowering)
 			mpc_slope = -(no_dist_kd)/(self.kp)
 			x_line = (-y_max + x_rel_k_plus_1)/mpc_slope
 			#print('y_max = ',y_max,' self.acc_leader_encoder = ', self.acc_leader_encoder,'x_rel_k_plus_1 =',x_rel_k_plus_1,'x_dot_rel_k_plus_1 = ',x_dot_rel_k_plus_1, "u_linear =", u_linear,'self.state[1]',self.state[1])
 
 			#evaluate action
-			u_mpc = (x_line - x_dot_rel_k_plus_1)/self.dt
+			u_mpc = (x_line - x_dot_rel_k_plus_1)/(self.dt*2)
 			# corrupted mpc (filtered with noise to lower frequency)
 			#u_mpc_new = self.acc_sat*(2*random.random()-1) # random number between amp*(-1 --> 1)
 			c = 0.0

@@ -137,7 +137,7 @@ class teleop_gamepad:
 			
 	def publish_throttle(self, tau):
 		# saturation limits for tau
-		if tau < 0:
+		if tau < 0.104:
 			tau = 0
 		elif tau > 1:
 			tau = 1

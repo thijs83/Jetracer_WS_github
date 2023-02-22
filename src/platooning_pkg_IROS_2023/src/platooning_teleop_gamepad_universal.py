@@ -21,7 +21,7 @@ class teleop_gamepad:
 		Kp_dist = 0.1
 
 		self.h = -1.0
-		self.V_target = 1.0
+		self.V_target = 1.5
 
 		#saturate acceleration limits
 		self.acc_sat = 1
@@ -137,7 +137,7 @@ class teleop_gamepad:
 			
 	def publish_throttle(self, tau):
 		# saturation limits for tau
-		if tau < 0:
+		if tau < 0.104:
 			tau = 0
 		elif tau > 1:
 			tau = 1

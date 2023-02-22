@@ -168,10 +168,10 @@ class Platooning_controller_class:
 		#b_th = 1.54 / 1.63
 
 		# xdot4 = -C * (x[3] - 1) + (u[0] - 0.129) * a_th
-		#if float(self.car_number) == 1:
-			#tau = (acc + C * (self.state[0] - 1))/a_th + 0.145
-		#else:
-			#tau = (acc + C * (self.state[0] - 1))/a_th + 0.129
+		if float(self.car_number) == 2:
+			tau_offset = -0.002
+		else:
+			tau_offset = 0
 
 
 		# compute inverted dynamics to recover throttle from required acceleration
@@ -180,7 +180,7 @@ class Platooning_controller_class:
 		b_th = 1.54 / 1.63
 
 		# xdot4 = -C * (x[3] - 1) + (u[0] - 0.129) * a_th
-		tau = (acc + C * (self.state[0] - 1))/a_th + 0.129
+		tau = (acc + C * (self.state[0] - 1))/a_th + 0.129 + tau_offset
 
 		#riccardo's magic formula
 		#c1 = 90

@@ -31,7 +31,7 @@ class Platooning_controller_class:
 		#self.h = -0.5
 		#self.d_safety = 0.5
 		self.acc_sat = 1
-		self.kp = -np.sqrt(self.acc_sat/(2*self.V_target))
+		self.kp = -(self.acc_sat/(2*self.V_target))
 		self.h = 2*self.kp
 		self.kd = -2.0*np.sqrt(-self.kp)
 		self.d_safety = -self.acc_sat/self.kp
@@ -54,7 +54,7 @@ class Platooning_controller_class:
 		self.acc_leader_prev = 0
 		self.vel_leader_prev = 0
 		self.u_mpc_prev = 0 # just to filter the random noise to lower frequency
-		self.add_mpc = True
+		self.add_mpc = False
 		self.acc_leader_encoder = 0.0
 		self.acc_leader_prev_encoder = 0.0
 
@@ -171,7 +171,7 @@ class Platooning_controller_class:
 		if float(self.car_number) == 2:
 			tau_offset = -0.002
 		else:
-			tau_offset = 0
+			tau_offset = 0.0
 
 
 		# compute inverted dynamics to recover throttle from required acceleration
@@ -277,8 +277,8 @@ class Platooning_controller_class:
 		
 
 	def add_mpc_callback(self,add_mpc_msg):
-		if float(self.car_number) == 1:
-			self.add_mpc = True
+		if float(self.car_number) == 1 and float(self.car_number) == 2:
+			self.add_mpc = False
 		else:
 			self.add_mpc = add_mpc_msg.data
 		
@@ -308,7 +308,7 @@ class Platooning_controller_class:
 		else:
 			u_mpc = 0.0
 
-		#print('u_mpc = ', u_mpc)
+		print('u_mpc = ', u_mpc)
 		return u_mpc
 		
 	def saturate_acc(self,acc):

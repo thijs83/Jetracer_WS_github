@@ -1,9 +1,0 @@
-- GP_model.ipynb: il GP è allenato per imparare l'errore tra i dati e il modello nominale. 
-Il codice carica i dati che ho raccolto in laboratorio con MPC. Deriva le velocità globali da optitrack, calcola le velocità locali, (filtra i dati eventualmente), salva [ tau, delta, vx_locale, vy_locale, w_imu] in formato .mat. Successivamente training del GP, single step-ahead prediction, multiple-step ahead prediction. Infine salvo i modelli e i dati necessari che vengono poi dati in pasto a 'GP_to_parameters_for_FORCES_sim_Riccardo_MODEL.ipnyb'
-
-- GP_no_model: il GP è allentato per imparare la differenza tra x_k+1 e x_k. Dopodichè performa le stesse operazione, passando modelli e dati a 'GP_to_parameters_for_FORCES_sim_Riccardo.ipynb'
-
-- GP_no_model_no_delta: il GP è allentato per imparare la differenza tra il dato successivo senza alcun modello. Dopodichè performa le stesse operazione, passando modelli e dati a 'GP_to_parameters_for_FORCES_sim_Riccardo_NO_DELTA.ipynb'
-
-- solitamente a MATLAB passo sempre due set di dati: 1. matlab_data1_LOW_RAW --> dataset caratterizzato da basse velocità
-						       2. matlab_data2_LUNGO_RAW --> dataset contenente piu dati e con piu varieta di velocita raggiunte

@@ -31,7 +31,7 @@ class Platooning_controller_class:
 		#self.h = -0.5
 		#self.d_safety = 0.5
 		self.acc_sat = 1
-		self.kp = -np.sqrt(self.acc_sat/(2*self.V_target))
+		self.kp = -(self.acc_sat/(2*self.V_target))
 		self.h = 2*self.kp
 		self.kd = -2.0*np.sqrt(-self.kp)
 		self.d_safety = -self.acc_sat/self.kp
@@ -54,7 +54,7 @@ class Platooning_controller_class:
 		self.acc_leader_prev = 0
 		self.vel_leader_prev = 0
 		self.u_mpc_prev = 0 # just to filter the random noise to lower frequency
-		self.add_mpc = True
+		self.add_mpc = False
 		self.acc_leader_encoder = 0.0
 		self.acc_leader_prev_encoder = 0.0
 
@@ -102,10 +102,12 @@ class Platooning_controller_class:
 			u_mpc = self.generete_mpc_action(u_lin)
 			u_control = u_lin+u_mpc
 
-			self.u_control_publisher.publish(float(u_control))
+			
 			
 			# artificial saturation bounds
 			u_control = self.saturate_acc(u_control)
+
+			self.u_control_publisher.publish(float(u_control))
 
 			self.acc_publisher.publish(Float32(u_control)) # advertise acceleration for follower
 			tau = self.acc_2_throttle(u_control)
@@ -166,10 +168,10 @@ class Platooning_controller_class:
 		#b_th = 1.54 / 1.63
 
 		# xdot4 = -C * (x[3] - 1) + (u[0] - 0.129) * a_th
-		#if float(self.car_number) == 1:
-			#tau = (acc + C * (self.state[0] - 1))/a_th + 0.145
-		#else:
-			#tau = (acc + C * (self.state[0] - 1))/a_th + 0.129
+		if float(self.car_number) == 2:
+			tau_offset = -0.002
+		else:
+			tau_offset = 0.0
 
 
 		# compute inverted dynamics to recover throttle from required acceleration
@@ -178,7 +180,11 @@ class Platooning_controller_class:
 		b_th = 1.54 / 1.63
 
 		# xdot4 = -C * (x[3] - 1) + (u[0] - 0.129) * a_th
+<<<<<<< HEAD
 		tau = (acc + C * (self.velocity - 1))/a_th + 0.13
+=======
+		tau = (acc + C * (self.state[0] - 1))/a_th + 0.129 + tau_offset
+>>>>>>> 7404969a8a5a58c9a4c681fb1c555f5dfb80ebb4
 
 		#riccardo's magic formula
 		#c1 = 90
@@ -275,8 +281,8 @@ class Platooning_controller_class:
 		
 
 	def add_mpc_callback(self,add_mpc_msg):
-		if float(self.car_number) == 1:
-			self.add_mpc = True
+		if float(self.car_number) == 1 and float(self.car_number) == 2:
+			self.add_mpc = False
 		else:
 			self.add_mpc = add_mpc_msg.data
 		
@@ -289,13 +295,13 @@ class Platooning_controller_class:
 
 			# for mpc line generation
 			no_dist_kd = self.kd+self.h
-			y_max = self.acc_sat/(-self.kp)*0.5 #last number is mpc line lowering coeff (1 is no lowering)
+			y_max = self.acc_sat/(-self.kp)*0.8 #last number is mpc line lowering coeff (1 is no lowering)
 			mpc_slope = -(no_dist_kd)/(self.kp)
 			x_line = (-y_max + x_rel_k_plus_1)/mpc_slope
 			#print('y_max = ',y_max,' self.acc_leader_encoder = ', self.acc_leader_encoder,'x_rel_k_plus_1 =',x_rel_k_plus_1,'x_dot_rel_k_plus_1 = ',x_dot_rel_k_plus_1, "u_linear =", u_linear,'self.state[1]',self.state[1])
 
 			#evaluate action
-			u_mpc = (x_line - x_dot_rel_k_plus_1)/self.dt
+			u_mpc = (x_line - x_dot_rel_k_plus_1)/(self.dt*2)
 			# corrupted mpc (filtered with noise to lower frequency)
 			#u_mpc_new = self.acc_sat*(2*random.random()-1) # random number between amp*(-1 --> 1)
 			c = 0.0
@@ -306,7 +312,7 @@ class Platooning_controller_class:
 		else:
 			u_mpc = 0.0
 
-		#print('u_mpc = ', u_mpc)
+		print('u_mpc = ', u_mpc)
 		return u_mpc
 		
 	def saturate_acc(self,acc):

@@ -51,9 +51,9 @@ class record_input_and_sensor_data:
 	
 	
 	
-	def run_game_pad(self):
+	def start_recording(self):
 		rate = rospy.Rate(10) # 10hz
-		subfolder = '/Data_no_sellotape_19_dec_2022/'
+		subfolder = '/Data_ps4_joystick/'
 		current_dir = os.path.realpath(os.path.dirname(__file__))
 		
 
@@ -142,9 +142,10 @@ class record_input_and_sensor_data:
 
 if __name__ == '__main__':
 	try:
-		car_number = 3
+		car_number = os.environ["car_number"]
+		print('car_number = ', os.environ["car_number"])
 		recording = record_input_and_sensor_data(car_number)
-		recording.run_game_pad()
+		recording.start_recording()
 	except rospy.ROSInterruptException:
 		#close any open file
 		try:

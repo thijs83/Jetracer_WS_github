@@ -124,7 +124,7 @@ class teleop_gamepad:
 		b_th = 1.54 / 1.63
 
 		# xdot4 = -C * (x[3] - 1) + (u[0] - 0.129) * a_th
-		tau = (acc + C * (self.velocity - 1))/a_th + 0.127
+		tau = (acc + C * (self.velocity - 1))/a_th + 0.13
 
 		#riccardo's magic formula
 		#c1 = 90

@@ -81,7 +81,7 @@ class record_input_and_sensor_data:
 				print(file_name)
 #write header line
 				writer = csv.writer(file)
-				writer.writerow(['safety_value', 'throttle', 'steering', 'current', 'voltage', 'IMU[0]', 'IMU[1]', 'IMU[2]', 'velocity','elapsed time', 'opti x', 'opti y','opti rot', 'opti time'])
+				writer.writerow(['elapsed time', 'opti x', 'opti y','opti theta','safety_value', 'throttle', 'steering', 'current', 'voltage', 'IMU[0]', 'IMU[1]', 'IMU[2]', 'velocity', 'opti time'])
 				first_run = False
 				#reset start time
 				self.start_clock_time = rospy.get_rostime()
@@ -89,7 +89,7 @@ class record_input_and_sensor_data:
 
 			else:
 				#write new data line
-				data_line = [self.safety_value, self.throttle, self.steering, self.current, self.voltage, self.IMU[0], self.IMU[1], self.IMU[2], self.velocity, elapsed_time, self.opti_state[0],self.opti_state[1],self.opti_state[2],self.opti_state[3]]
+				data_line = [ elapsed_time, self.opti_state[0], self.opti_state[1],self.opti_state[2], self.safety_value, self.throttle, self.steering, self.current, self.voltage, self.IMU[0], self.IMU[1], self.IMU[2], self.velocity, self.opti_state[3]]
 				#print(self.opti_state[3])
 				writer.writerow(data_line)
 				#print(elapsed_time - republished_time)

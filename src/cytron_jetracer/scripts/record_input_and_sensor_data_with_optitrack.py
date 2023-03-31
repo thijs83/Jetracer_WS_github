@@ -68,7 +68,7 @@ class record_input_and_sensor_data:
 
 		with open(file_name, 'w+') as file:
 			writer = csv.writer(file)
-			writer.writerow(['safety_value', 'throttle', 'steering', 'current', 'voltage', 'IMU[0]', 'IMU[1]', 'IMU[2]', 'velocity','elapsed time', 'opti x', 'opti y','opti rot', 'opti time'])
+			writer.writerow(['elapsed time', 'opti x', 'opti y','opti theta','safety_value', 'throttle', 'steering', 'current', 'voltage', 'IMU[0]', 'IMU[1]', 'IMU[2]', 'velocity', 'opti time'])
 			data_msg = Float32MultiArray()
 			while not rospy.is_shutdown():
 				#store data here
@@ -82,7 +82,7 @@ class record_input_and_sensor_data:
 
 
 				#republished_time = self.republished_time.secs - self.start_clock_time.secs + (self.republished_time.nsecs - self.start_clock_time.nsecs)/1000000000
-				data_line = [self.safety_value, self.throttle, self.steering, self.current, self.voltage, self.IMU[0], self.IMU[1], self.IMU[2], self.velocity, elapsed_time, self.opti_state[0],self.opti_state[1],self.opti_state[2],self.opti_state[3]]
+				data_line = [ elapsed_time, self.opti_state[0], self.opti_state[1],self.opti_state[2], self.safety_value, self.throttle, self.steering, self.current, self.voltage, self.IMU[0], self.IMU[1], self.IMU[2], self.velocity, self.opti_state[3]]
 				print(self.opti_state[3])
 				writer.writerow(data_line)
 				#print(elapsed_time - republished_time)

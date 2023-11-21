@@ -53,7 +53,7 @@ class record_input_and_sensor_data:
 	
 	def start_recording(self):
 		rate = rospy.Rate(10) # 10hz
-		subfolder = '/Data_ps4_joystick/'
+		subfolder = '/Data_june_2023_timesynchtest/'
 		current_dir = os.path.realpath(os.path.dirname(__file__))
 		
 
@@ -66,6 +66,7 @@ class record_input_and_sensor_data:
 			#store data here
 			self.stop_clock_time = rospy.get_rostime()
 			elapsed_time = self.stop_clock_time.secs - self.start_clock_time.secs + (self.stop_clock_time.nsecs - self.start_clock_time.nsecs)/1000000000
+			time_now = self.stop_clock_time.secs + (self.stop_clock_time.nsecs)/1000000000
 			if elapsed_time > 60 or first_run: #so create new file every 60 seconds
 				try:
 					file_name.close()
@@ -89,7 +90,8 @@ class record_input_and_sensor_data:
 
 			else:
 				#write new data line
-				data_line = [ elapsed_time, self.opti_state[0], self.opti_state[1],self.opti_state[2], self.safety_value, self.throttle, self.steering, self.current, self.voltage, self.IMU[0], self.IMU[1], self.IMU[2], self.velocity, self.opti_state[3]]
+				# first it was the elapsed time
+				data_line = [ time_now, self.opti_state[0], self.opti_state[1],self.opti_state[2], self.safety_value, self.throttle, self.steering, self.current, self.voltage, self.IMU[0], self.IMU[1], self.IMU[2], self.velocity, self.opti_state[3]]
 				#print(self.opti_state[3])
 				writer.writerow(data_line)
 				#print(elapsed_time - republished_time)

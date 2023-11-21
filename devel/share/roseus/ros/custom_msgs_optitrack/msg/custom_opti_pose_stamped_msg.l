@@ -16,7 +16,7 @@
 
 (defclass custom_msgs_optitrack::custom_opti_pose_stamped_msg
   :super ros::object
-  :slots (_header _x _y _rotation ))
+  :slots (_header _x _y _rotation _car_number ))
 
 (defmethod custom_msgs_optitrack::custom_opti_pose_stamped_msg
   (:init
@@ -25,12 +25,14 @@
     ((:x __x) 0.0)
     ((:y __y) 0.0)
     ((:rotation __rotation) 0.0)
+    ((:car_number __car_number) 0.0)
     )
    (send-super :init)
    (setq _header __header)
    (setq _x (float __x))
    (setq _y (float __y))
    (setq _rotation (float __rotation))
+   (setq _car_number (float __car_number))
    self)
   (:header
    (&rest __header)
@@ -48,6 +50,9 @@
   (:rotation
    (&optional __rotation)
    (if __rotation (setq _rotation __rotation)) _rotation)
+  (:car_number
+   (&optional __car_number)
+   (if __car_number (setq _car_number __car_number)) _car_number)
   (:serialization-length
    ()
    (+
@@ -58,6 +63,8 @@
     ;; float32 _y
     4
     ;; float32 _rotation
+    4
+    ;; float32 _car_number
     4
     ))
   (:serialize
@@ -72,6 +79,8 @@
        (sys::poke _y (send s :buffer) (send s :count) :float) (incf (stream-count s) 4)
      ;; float32 _rotation
        (sys::poke _rotation (send s :buffer) (send s :count) :float) (incf (stream-count s) 4)
+     ;; float32 _car_number
+       (sys::poke _car_number (send s :buffer) (send s :count) :float) (incf (stream-count s) 4)
      ;;
      (if (null strm) (get-output-stream-string s))))
   (:deserialize
@@ -84,17 +93,20 @@
      (setq _y (sys::peek buf ptr- :float)) (incf ptr- 4)
    ;; float32 _rotation
      (setq _rotation (sys::peek buf ptr- :float)) (incf ptr- 4)
+   ;; float32 _car_number
+     (setq _car_number (sys::peek buf ptr- :float)) (incf ptr- 4)
    ;;
    self)
   )
 
-(setf (get custom_msgs_optitrack::custom_opti_pose_stamped_msg :md5sum-) "70bfefdfc7d1f29f125789ac694c643e")
+(setf (get custom_msgs_optitrack::custom_opti_pose_stamped_msg :md5sum-) "43beb3a48f3877dec12e819cc3cd4001")
 (setf (get custom_msgs_optitrack::custom_opti_pose_stamped_msg :datatype-) "custom_msgs_optitrack/custom_opti_pose_stamped_msg")
 (setf (get custom_msgs_optitrack::custom_opti_pose_stamped_msg :definition-)
       "std_msgs/Header header
 float32 x
 float32 y
 float32 rotation
+float32 car_number
 
 ================================================================================
 MSG: std_msgs/Header
@@ -116,6 +128,6 @@ string frame_id
 
 
 
-(provide :custom_msgs_optitrack/custom_opti_pose_stamped_msg "70bfefdfc7d1f29f125789ac694c643e")
+(provide :custom_msgs_optitrack/custom_opti_pose_stamped_msg "43beb3a48f3877dec12e819cc3cd4001")
 
 

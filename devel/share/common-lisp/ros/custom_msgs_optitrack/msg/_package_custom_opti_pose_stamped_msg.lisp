@@ -7,4 +7,6 @@
           Y
           ROTATION-VAL
           ROTATION
+          CAR_NUMBER-VAL
+          CAR_NUMBER
 ))

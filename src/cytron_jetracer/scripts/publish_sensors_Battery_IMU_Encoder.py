@@ -24,6 +24,8 @@ class PubSensors:
 		pub_acc = rospy.Publisher("IMU_" + str(car_number), Float32MultiArray, queue_size=1)
 		pub_vel = rospy.Publisher("velocity_" + str(car_number), Float32, queue_size=1)
 		pub_omega = rospy.Publisher("omega_" + str(car_number), Float32, queue_size=1)
+		#self.last_omegas = []
+		self.omega_deg_offset = -1.9 #this was measured as the average reading when car is perfectly still
 		
 		#Start serial connection
 		try:
@@ -64,10 +66,12 @@ class PubSensors:
 				vel_index = data.find('Vel')
 				current = float(data[3:7])
 				voltage = float(data[10:14])
-				omega_deg = float(data[gyr_z_index+5 : vel_index])
+				omega_deg = float(data[gyr_z_index+5 : vel_index]) + self.omega_deg_offset
 				acc = [float(data[acc_x_index+5 : acc_y_index]), float(data[acc_y_index+5 : gyr_z_index]), omega_deg ]
 				vel = float(data[vel_index+3:])
 
+				#self.last_omegas = [*self.last_omegas, omega_deg]
+				#print('average omega =',np.mean(self.last_omegas)) 
 
 
 				#define messages to send

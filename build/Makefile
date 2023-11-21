@@ -1753,6 +1753,19 @@ std_srvs_generate_messages_lisp/fast:
 	$(MAKE) -f auto_jetracer/CMakeFiles/std_srvs_generate_messages_lisp.dir/build.make auto_jetracer/CMakeFiles/std_srvs_generate_messages_lisp.dir/build
 .PHONY : std_srvs_generate_messages_lisp/fast
 
+#=============================================================================
+# Target rules for targets named ydlidar_ros_driver_node
+
+# Build rule for target.
+ydlidar_ros_driver_node: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 ydlidar_ros_driver_node
+.PHONY : ydlidar_ros_driver_node
+
+# fast build rule for target.
+ydlidar_ros_driver_node/fast:
+	$(MAKE) -f ydlidar_ros_driver-master/CMakeFiles/ydlidar_ros_driver_node.dir/build.make ydlidar_ros_driver-master/CMakeFiles/ydlidar_ros_driver_node.dir/build
+.PHONY : ydlidar_ros_driver_node/fast
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -1888,6 +1901,7 @@ help:
 	@echo "... pcl_msgs_generate_messages_py"
 	@echo "... std_srvs_generate_messages_eus"
 	@echo "... std_srvs_generate_messages_lisp"
+	@echo "... ydlidar_ros_driver_node"
 .PHONY : help
 
 

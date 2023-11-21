@@ -139,6 +139,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("/home/jetson/Jetracer_WS_github/build/lidar_ros/cmake_install.cmake")
   include("/home/jetson/Jetracer_WS_github/build/apriltag_ros/cmake_install.cmake")
   include("/home/jetson/Jetracer_WS_github/build/auto_jetracer/cmake_install.cmake")
+  include("/home/jetson/Jetracer_WS_github/build/ydlidar_ros_driver-master/cmake_install.cmake")
 
 endif()
 

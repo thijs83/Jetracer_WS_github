@@ -4,7 +4,7 @@ import rospy
 import math
 import os
 from jetracer.nvidia_racecar import NvidiaRacecar
-from std_msgs.msg import Float32
+from std_msgs.msg import Float32,Float64MultiArray
 
 
 
@@ -36,6 +36,7 @@ class racecar:
 		rospy.Subscriber('steering_' + str(car_number), Float32, self.callback_steering)
 		rospy.Subscriber('throttle_' + str(car_number), Float32, self.callback_throttle)
 		rospy.Subscriber('safety_value', Float32, self.callback_safety)
+		self.commands_timestamped = rospy.Publisher("commands_timestamped_car_" + str(car_number), Float64MultiArray, queue_size=1)
 		rospy.spin()
 
 	#Safety callback function
@@ -46,6 +47,13 @@ class racecar:
 	def callback_steering(self, steer):
 		self.car.steering = steer.data
 		rospy.loginfo("Steering " + str(self.car_number) + ": %s", str(steer.data))
+		#publish command inputs with a timestamp
+		time_now = rospy.get_rostime()
+		time_float = time_now.secs + (time_now.nsecs)/1000000000
+		commands_data_msg = Float64MultiArray()
+		commands_data_msg.data = [time_float, self.car.throttle, self.car.steering]
+		self.commands_timestamped.publish(commands_data_msg)
+		
 	
 	#Throttle callback function
 	def callback_throttle(self, throttle):
@@ -54,7 +62,14 @@ class racecar:
 		else:
 			self.car.throttle = 0
 			rospy.loginfo("Throttle" + str(self.car_number) + ": %s", str(self.car.throttle*self.safety_value))
+
+		#publish command inputs with a timestamp
+		time_now = rospy.get_rostime()
+		time_float = time_now.secs + (time_now.nsecs)/1000000000
+		commands_data_msg = Float64MultiArray()
+		commands_data_msg.data = [time_float, self.car.throttle, self.car.steering]
 		
+		self.commands_timestamped.publish(commands_data_msg)
 	
 
 

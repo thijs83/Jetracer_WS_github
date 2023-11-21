@@ -1,0 +1,6 @@
+<launch>
+  	<include 
+		file="$(find lidar_ros)/launch/X4.launch">
+  	</include>
+
+</launch>

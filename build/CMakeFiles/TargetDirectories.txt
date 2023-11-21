@@ -204,3 +204,11 @@
 /home/jetson/Jetracer_WS_github/build/auto_jetracer/CMakeFiles/pcl_msgs_generate_messages_py.dir
 /home/jetson/Jetracer_WS_github/build/auto_jetracer/CMakeFiles/std_srvs_generate_messages_eus.dir
 /home/jetson/Jetracer_WS_github/build/auto_jetracer/CMakeFiles/std_srvs_generate_messages_lisp.dir
+/home/jetson/Jetracer_WS_github/build/ydlidar_ros_driver-master/CMakeFiles/install/strip.dir
+/home/jetson/Jetracer_WS_github/build/ydlidar_ros_driver-master/CMakeFiles/install/local.dir
+/home/jetson/Jetracer_WS_github/build/ydlidar_ros_driver-master/CMakeFiles/test.dir
+/home/jetson/Jetracer_WS_github/build/ydlidar_ros_driver-master/CMakeFiles/list_install_components.dir
+/home/jetson/Jetracer_WS_github/build/ydlidar_ros_driver-master/CMakeFiles/edit_cache.dir
+/home/jetson/Jetracer_WS_github/build/ydlidar_ros_driver-master/CMakeFiles/ydlidar_ros_driver_node.dir
+/home/jetson/Jetracer_WS_github/build/ydlidar_ros_driver-master/CMakeFiles/rebuild_cache.dir
+/home/jetson/Jetracer_WS_github/build/ydlidar_ros_driver-master/CMakeFiles/install.dir

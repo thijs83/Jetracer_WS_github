@@ -62,10 +62,6 @@ lidar_ros/CMakeFiles/lidar_ros_node.dir/src/ydlidar_ros_driver.cpp.o: /opt/ros/m
 lidar_ros/CMakeFiles/lidar_ros_node.dir/src/ydlidar_ros_driver.cpp.o: /opt/ros/melodic/include/sensor_msgs/ChannelFloat32.h
 lidar_ros/CMakeFiles/lidar_ros_node.dir/src/ydlidar_ros_driver.cpp.o: /opt/ros/melodic/include/sensor_msgs/LaserScan.h
 lidar_ros/CMakeFiles/lidar_ros_node.dir/src/ydlidar_ros_driver.cpp.o: /opt/ros/melodic/include/sensor_msgs/PointCloud.h
-lidar_ros/CMakeFiles/lidar_ros_node.dir/src/ydlidar_ros_driver.cpp.o: /opt/ros/melodic/include/sensor_msgs/PointCloud2.h
-lidar_ros/CMakeFiles/lidar_ros_node.dir/src/ydlidar_ros_driver.cpp.o: /opt/ros/melodic/include/sensor_msgs/PointField.h
-lidar_ros/CMakeFiles/lidar_ros_node.dir/src/ydlidar_ros_driver.cpp.o: /opt/ros/melodic/include/sensor_msgs/point_cloud_conversion.h
-lidar_ros/CMakeFiles/lidar_ros_node.dir/src/ydlidar_ros_driver.cpp.o: /opt/ros/melodic/include/sensor_msgs/point_field_conversion.h
 lidar_ros/CMakeFiles/lidar_ros_node.dir/src/ydlidar_ros_driver.cpp.o: /opt/ros/melodic/include/std_msgs/Header.h
 lidar_ros/CMakeFiles/lidar_ros_node.dir/src/ydlidar_ros_driver.cpp.o: /opt/ros/melodic/include/std_srvs/Empty.h
 lidar_ros/CMakeFiles/lidar_ros_node.dir/src/ydlidar_ros_driver.cpp.o: /opt/ros/melodic/include/std_srvs/EmptyRequest.h

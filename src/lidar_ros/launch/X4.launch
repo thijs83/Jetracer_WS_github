@@ -4,7 +4,7 @@
   <node name="$(eval 'ydlidar_lidar_publisher' + arg('car_numb'))"  pkg="lidar_ros"  type="lidar_ros_node" output="screen" respawn="false" > 
     <!-- string property -->
     <param name="port"         			type="string" value="/dev/ydlidar"/>  
-    <param name="frame_id"     			type="string" value="map"/>  <!-- was laser_frame-->
+    <param name="frame_id"     			type="string" value="map_frame"/>  <!-- was laser_frame-->
     <param name="ignore_array"     		type="string" value=""/>
 
     <!-- int property -->

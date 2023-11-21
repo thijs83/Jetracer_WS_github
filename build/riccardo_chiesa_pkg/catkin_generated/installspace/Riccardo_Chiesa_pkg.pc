@@ -1,8 +1,0 @@
-prefix=/home/jetson/Jetracer_WS_github/install
-
-Name: Riccardo_Chiesa_pkg
-Description: Description of Riccardo_Chiesa_pkg
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 

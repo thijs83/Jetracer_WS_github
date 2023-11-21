@@ -23,6 +23,7 @@ class custom_opti_pose_stamped_msg {
       this.x = null;
       this.y = null;
       this.rotation = null;
+      this.car_number = null;
     }
     else {
       if (initObj.hasOwnProperty('header')) {
@@ -49,6 +50,12 @@ class custom_opti_pose_stamped_msg {
       else {
         this.rotation = 0.0;
       }
+      if (initObj.hasOwnProperty('car_number')) {
+        this.car_number = initObj.car_number
+      }
+      else {
+        this.car_number = 0.0;
+      }
     }
   }
 
@@ -62,6 +69,8 @@ class custom_opti_pose_stamped_msg {
     bufferOffset = _serializer.float32(obj.y, buffer, bufferOffset);
     // Serialize message field [rotation]
     bufferOffset = _serializer.float32(obj.rotation, buffer, bufferOffset);
+    // Serialize message field [car_number]
+    bufferOffset = _serializer.float32(obj.car_number, buffer, bufferOffset);
     return bufferOffset;
   }
 
@@ -77,13 +86,15 @@ class custom_opti_pose_stamped_msg {
     data.y = _deserializer.float32(buffer, bufferOffset);
     // Deserialize message field [rotation]
     data.rotation = _deserializer.float32(buffer, bufferOffset);
+    // Deserialize message field [car_number]
+    data.car_number = _deserializer.float32(buffer, bufferOffset);
     return data;
   }
 
   static getMessageSize(object) {
     let length = 0;
     length += std_msgs.msg.Header.getMessageSize(object.header);
-    return length + 12;
+    return length + 16;
   }
 
   static datatype() {
@@ -93,7 +104,7 @@ class custom_opti_pose_stamped_msg {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return '70bfefdfc7d1f29f125789ac694c643e';
+    return '43beb3a48f3877dec12e819cc3cd4001';
   }
 
   static messageDefinition() {
@@ -103,6 +114,7 @@ class custom_opti_pose_stamped_msg {
     float32 x
     float32 y
     float32 rotation
+    float32 car_number
     
     ================================================================================
     MSG: std_msgs/Header
@@ -155,6 +167,13 @@ class custom_opti_pose_stamped_msg {
     }
     else {
       resolved.rotation = 0.0
+    }
+
+    if (msg.car_number !== undefined) {
+      resolved.car_number = msg.car_number;
+    }
+    else {
+      resolved.car_number = 0.0
     }
 
     return resolved;

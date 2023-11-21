@@ -28,13 +28,15 @@ struct custom_opti_pose_stamped_msg_
     : header()
     , x(0.0)
     , y(0.0)
-    , rotation(0.0)  {
+    , rotation(0.0)
+    , car_number(0.0)  {
     }
   custom_opti_pose_stamped_msg_(const ContainerAllocator& _alloc)
     : header(_alloc)
     , x(0.0)
     , y(0.0)
-    , rotation(0.0)  {
+    , rotation(0.0)
+    , car_number(0.0)  {
   (void)_alloc;
     }
 
@@ -51,6 +53,9 @@ struct custom_opti_pose_stamped_msg_
 
    typedef float _rotation_type;
   _rotation_type rotation;
+
+   typedef float _car_number_type;
+  _car_number_type car_number;
 
 
 
@@ -84,7 +89,8 @@ bool operator==(const ::custom_msgs_optitrack::custom_opti_pose_stamped_msg_<Con
   return lhs.header == rhs.header &&
     lhs.x == rhs.x &&
     lhs.y == rhs.y &&
-    lhs.rotation == rhs.rotation;
+    lhs.rotation == rhs.rotation &&
+    lhs.car_number == rhs.car_number;
 }
 
 template<typename ContainerAllocator1, typename ContainerAllocator2>
@@ -141,12 +147,12 @@ struct MD5Sum< ::custom_msgs_optitrack::custom_opti_pose_stamped_msg_<ContainerA
 {
   static const char* value()
   {
-    return "70bfefdfc7d1f29f125789ac694c643e";
+    return "43beb3a48f3877dec12e819cc3cd4001";
   }
 
   static const char* value(const ::custom_msgs_optitrack::custom_opti_pose_stamped_msg_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x70bfefdfc7d1f29fULL;
-  static const uint64_t static_value2 = 0x125789ac694c643eULL;
+  static const uint64_t static_value1 = 0x43beb3a48f3877deULL;
+  static const uint64_t static_value2 = 0xc12e819cc3cd4001ULL;
 };
 
 template<class ContainerAllocator>
@@ -169,6 +175,7 @@ struct Definition< ::custom_msgs_optitrack::custom_opti_pose_stamped_msg_<Contai
 "float32 x\n"
 "float32 y\n"
 "float32 rotation\n"
+"float32 car_number\n"
 "\n"
 "================================================================================\n"
 "MSG: std_msgs/Header\n"
@@ -207,6 +214,7 @@ namespace serialization
       stream.next(m.x);
       stream.next(m.y);
       stream.next(m.rotation);
+      stream.next(m.car_number);
     }
 
     ROS_DECLARE_ALLINONE_SERIALIZER
@@ -234,6 +242,8 @@ struct Printer< ::custom_msgs_optitrack::custom_opti_pose_stamped_msg_<Container
     Printer<float>::stream(s, indent + "  ", v.y);
     s << indent << "rotation: ";
     Printer<float>::stream(s, indent + "  ", v.rotation);
+    s << indent << "car_number: ";
+    Printer<float>::stream(s, indent + "  ", v.car_number);
   }
 };
 

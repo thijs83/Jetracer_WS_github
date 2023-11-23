@@ -1747,6 +1747,24 @@ clean: cytron_jetracer/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/clean
 .PHONY : clean
 
 #=============================================================================
+# Directory level rules for directory localization_and_mapping_jetracer_pkg
+
+# Convenience name for "all" pass in the directory.
+localization_and_mapping_jetracer_pkg/all:
+
+.PHONY : localization_and_mapping_jetracer_pkg/all
+
+# Convenience name for "clean" pass in the directory.
+localization_and_mapping_jetracer_pkg/clean:
+
+.PHONY : localization_and_mapping_jetracer_pkg/clean
+
+# Convenience name for "preinstall" pass in the directory.
+localization_and_mapping_jetracer_pkg/preinstall:
+
+.PHONY : localization_and_mapping_jetracer_pkg/preinstall
+
+#=============================================================================
 # Directory level rules for directory riccardo_chiesa_pkg
 
 # Convenience name for "all" pass in the directory.

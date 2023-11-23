@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
 
-from kinematic_bicycle_model import kinematic_bicycle_2,evaluate_steer_angle
 import numpy as np
 import os
 import rospy
@@ -28,7 +27,6 @@ class odom_pub:
 		rospy.init_node('odometry_publisher_' + str(car_number), anonymous=True)
 		self.odom_pub = rospy.Publisher("odom_"+ str(car_number), Odometry, queue_size=50)
 		self.odom_broadcaster = tf.TransformBroadcaster()
-		rospy.Subscriber('steering_' + str(car_number), Float32, self.callback_steering)
 		rospy.Subscriber('velocity_' + str(car_number), Float32, self.callback_velocity)
 		rospy.Subscriber('IMU_' + str(car_number), Float32MultiArray, self.callback_IMU)
 
@@ -47,10 +45,6 @@ class odom_pub:
 		self.current_time = rospy.Time.now()
 		self.last_time = rospy.Time.now()
 
-
-	#Steering callback function
-	def callback_steering(self, steer):
-		self.steering = steer.data
 
 
 	#velocity callback function
@@ -72,16 +66,10 @@ class odom_pub:
 			dt = (self.current_time - self.last_time).to_sec()
 
 			# --- evaluate estimated movement in the absolute frame according to the kinematic bicycle model ---
-
-
-			#evaluate steering angle 
-			steer_angle = evaluate_steer_angle(self.steering)
-
 			#simple kinematic bicycle model
-			#L = 0.175
 			vx_map = self.vx * np.cos(self.theta) 
 			vy_map = self.vx * np.sin(self.theta)
-			w = self.w_IMU # self.vx * np.tan(steer_angle) / L 
+			w = self.w_IMU
 
 			self.x = self.x + vx_map * dt
 			self.y = self.y + vy_map * dt

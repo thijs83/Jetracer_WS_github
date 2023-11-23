@@ -1,4 +1,4 @@
-map_frame: map_frame
+map_frame: map
 base_frame: base_link_3
 odom_frame: odom_3
 map_update_interval: 0.5

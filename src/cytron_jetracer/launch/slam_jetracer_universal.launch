@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+
+<launch>
+  <!-- set car number parameter to avoid having nodes with same name with multiple jetracers -->
+  <arg name="car_number_str_local" value="$(env car_number_str)"/>
+
+  <!-- sensor publishing -->
+  <node name="sensor_publisher$(arg car_number_str_local)" pkg="cytron_jetracer" type="publish_sensors_Battery_IMU_Encoder.py" output="screen"/>
+
+  <!-- odometry publishing -->
+  <node name="odometry_publisher$(arg car_number_str_local)" pkg="cytron_jetracer" type="publish_odometry_universal.py" output="screen"/>
+
+  <!-- Start the lidar (here we include the launch file that fires up the lidar)-->
+  <include file="$(find lidar_ros)/launch/X4.launch"/>
+
+  <!-- SLAM -->
+  <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping$(arg car_number_str_local)" output="screen">
+    <rosparam command="load" file="$(find cytron_jetracer)/config/gmapping_params_jetracer$(arg car_number_str_local).yaml" />
+
+    <remap from="/scan" to="/scan$(arg car_number_str_local)" />
+  </node>
+</launch>

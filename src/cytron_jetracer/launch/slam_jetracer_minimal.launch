@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+
+<launch>
+  <!-- Gmapping -->
+  <node name="slam_node" pkg="gmapping" type="slam_gmapping" output="screen">
+  </node>
+</launch>

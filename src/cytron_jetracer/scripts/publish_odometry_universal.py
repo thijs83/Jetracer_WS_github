@@ -12,7 +12,8 @@ from std_msgs.msg import Float32,Float32MultiArray
 
 
 
-
+# got reference code from here:
+# https://gist.github.com/atotto/f2754f75bedb6ea56e3e0264ec405dcf
 
 	
 
@@ -25,7 +26,7 @@ class odom_pub:
 
 		# set up topics and nodes
 		rospy.init_node('odometry_publisher_' + str(car_number), anonymous=True)
-		self.odom_pub = rospy.Publisher("map_frame", Odometry, queue_size=50)
+		self.odom_pub = rospy.Publisher("odom_"+ str(car_number), Odometry, queue_size=50)
 		self.odom_broadcaster = tf.TransformBroadcaster()
 		rospy.Subscriber('steering_' + str(car_number), Float32, self.callback_steering)
 		rospy.Subscriber('velocity_' + str(car_number), Float32, self.callback_velocity)
@@ -77,7 +78,7 @@ class odom_pub:
 			steer_angle = evaluate_steer_angle(self.steering)
 
 			#simple kinematic bicycle model
-			L = 0.175
+			#L = 0.175
 			vx_map = self.vx * np.cos(self.theta) 
 			vy_map = self.vx * np.sin(self.theta)
 			w = self.w_IMU # self.vx * np.tan(steer_angle) / L 
@@ -90,26 +91,26 @@ class odom_pub:
 			# since all odometry is 6DOF we'll need a quaternion created from yaw
 			odom_quat = tf.transformations.quaternion_from_euler(0, 0, self.theta)
 
-			# first, we'll publish the transform over tf
+			# first, we'll publish the transform over tf - the transformation from the odometry frame to the base link frame
 			self.odom_broadcaster.sendTransform(
 			(self.x, self.y, 0.),
 			odom_quat,
 			self.current_time,
-			"base_link"+str(car_number),
-			"map_frame"
+			"base_link_"+str(car_number),
+			"odom_"+ str(car_number)
 			)
 
 			# next, we'll publish the odometry message over ROS
 			odom = Odometry()
 			odom.header.stamp = self.current_time
-			odom.header.frame_id = "map_frame"
+			odom.header.frame_id = "odom_"+ str(car_number)
 
 			# set the position
 			odom.pose.pose = Pose(Point(self.x, self.y, 0.), Quaternion(*odom_quat))
 
-			# set the velocity
+			# set the velocity NOTE that the velocity is expressed in the base link frame! (So the robot frame)
 			odom.child_frame_id = "base_link_"+str(self.car_number)
-			odom.twist.twist = Twist(Vector3(vx_map, vy_map, 0), Vector3(0, 0, w))
+			odom.twist.twist = Twist(Vector3(self.vx, 0, 0), Vector3(0, 0, w))
 
 			# publish the message
 			self.odom_pub.publish(odom)

@@ -15,7 +15,7 @@
 
 
   <!-- Map server (loads map)-->
-  <arg name="map_file" default="$(find localization_and_mapping_jetracer_pkg)/saved_maps_from_slam/office_map.yaml"/>
+  <arg name="map_file" default="$(find localization_and_mapping_jetracer_pkg)/saved_maps_from_slam/map_italot_office_ok.yaml"/>
   <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)"/>
 
 

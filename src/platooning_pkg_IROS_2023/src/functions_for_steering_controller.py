@@ -46,7 +46,7 @@ def produce_track(choice,n_checkpoints):
 
 	elif choice == 'straight_line':
 		Checkpoints_x = np.linspace(0, 10, n_checkpoints)
-		Checkpoints_y = np.zeros(n_checkpoints)
+		Checkpoints_y = np.linspace(0, 0, n_checkpoints)
 
 	return Checkpoints_x, Checkpoints_y
 
@@ -88,8 +88,8 @@ def find_s_of_closest_point_on_global_path(x_y_state, s_vals_global_path, x_vals
 	Delta_indexes = estimated_index_jumps * 3
 
 	# takes the previous index (where the vehicle was) and defines a search space around it
-	start_i = previous_index - Delta_indexes
-	finish_i = previous_index + Delta_indexes
+	start_i = int(previous_index - Delta_indexes)
+	finish_i = int(previous_index + Delta_indexes)
 
 	# check if start_i is negative and finish_i is bigger than the path, in which case the search space is wrapped around
 	if start_i < 0:
@@ -110,13 +110,14 @@ def find_s_of_closest_point_on_global_path(x_y_state, s_vals_global_path, x_vals
 
 
 	# remove the last value to avoid ambiguity since first and last value may be the same
-	distances = np.zeros(s_search_vector.size)
+	distances_squared = np.zeros(s_search_vector.size)
 	for ii in range(0, s_search_vector.size):
 		# evaluate the distance between the vehicle (x_y_state[0:3]) and each point of the search vector (i.e. of the path)
-		distances[ii] = math.dist([x_search_vector[ii], y_search_vector[ii]], x_y_state[0:2])
+		#distances[ii] = math.dist([x_search_vector[ii], y_search_vector[ii]], x_y_state[0:2])
+		distances_squared[ii] = (x_search_vector[ii]-x_y_state[0]) ** 2 + (y_search_vector[ii]-x_y_state[1]) ** 2
 
 	# retrieve the index of the minimum distance element
-	local_index = np.argmin(distances)
+	local_index = np.argmin(distances_squared)
 
 	# check if the found minimum is on the boarder (indicating that the real minimum is outside of the search vector)
 	# this offers some protection against failing the local search but it doesn't fix all of the possible problems
@@ -124,10 +125,10 @@ def find_s_of_closest_point_on_global_path(x_y_state, s_vals_global_path, x_vals
 	# then you can still get an error (If you have lane boundary information then you colud put a check on the actual value of the min)
 	if local_index == 0 or local_index == s_search_vector.size-1:
 		print('search vector was not long enough, doing search on full path')
-		distances_2 = np.zeros(s_vals_global_path.size)
+		distances_squared_2 = np.zeros(s_vals_global_path.size)
 		for ii in range(0, s_vals_global_path.size):
-			distances_2[ii] = math.dist([x_vals_original_path[ii], y_vals_original_path[ii]], x_y_state[0:2])
-		index = np.argmin(distances_2)
+			distances_squared_2[ii] = (x_vals_original_path[ii]-x_y_state[0]) ** 2 +  (y_vals_original_path[ii]-x_y_state[1]) ** 2
+		index = np.argmin(distances_squared_2)
 	else:
 		index = np.where(s_vals_global_path == s_search_vector[local_index])
 		# extract an int from the "where" operand
@@ -183,6 +184,39 @@ def produce_marker_array_rviz(x, y, rgba, marker_type):
 
 	return  marker_array
 
+def produce_marker_rviz(x, y, rgba, marker_type, scale):
+	marker = Marker()                         # single marker within the marker_array
 
+	marker.header.frame_id = "map"            # map frame, used when markers or data should be positioned in relation to a global map.
+	marker.header.stamp = rospy.Time.now()    # associate a timestamp to the frame
+
+	# set shape, Arrow: 0; Cube: 1 ; Sphere: 2 ; Cylinder: 3 ; Line_strip: 4
+	marker.type = marker_type
+	marker.id = 0
+
+	# Set the scale of the marker
+	marker.scale.x = scale
+	marker.scale.y = scale
+	marker.scale.z = scale
+
+	# Set the color
+	marker.color.r = rgba[0] / 256
+	marker.color.g = rgba[1] / 256
+	marker.color.b = rgba[2] / 256
+	marker.color.a = rgba[3]
+
+	# Set the pose of the marker
+	marker.pose.orientation.x = 0.0
+	marker.pose.orientation.y = 0.0
+	marker.pose.orientation.z = 0.0
+	marker.pose.orientation.w = 1.0
+
+	# set position
+	marker.pose.position.x = x
+	marker.pose.position.y = y
+
+	
+
+	return  marker
 
 

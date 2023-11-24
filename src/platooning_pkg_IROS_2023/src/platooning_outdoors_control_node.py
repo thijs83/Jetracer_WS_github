@@ -77,7 +77,7 @@ class Platooning_controller_class:
 		self.v_encoder_subscriber = rospy.Subscriber('velocity_' + str(car_number), Float32, self.sub_vel_callback)
 		self.x_rel_subscriber = rospy.Subscriber('distance_' + str(car_number), Float32, self.distance_subscriber_callback) #subscribe to lidar and camera data output
 
-		leader_encoder_topic = 'velocity_' + str(self.leader_number)
+		leader_encoder_topic = 'rel_theta' + str(self.leader_number)
 		print(leader_encoder_topic)
 
 		self.acc_leader_subscriber_encoder = rospy.Subscriber(leader_encoder_topic, Float32, self.acc_leader_callback_encoder)

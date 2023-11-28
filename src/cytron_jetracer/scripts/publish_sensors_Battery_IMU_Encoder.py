@@ -25,7 +25,7 @@ class PubSensors:
 		pub_vel = rospy.Publisher("velocity_" + str(car_number), Float32, queue_size=1)
 		pub_omega = rospy.Publisher("omega_" + str(car_number), Float32, queue_size=1)
 		#self.last_omegas = []
-		self.omega_deg_offset = -1.9 #this was measured as the average reading when car is perfectly still
+		#self.omega_deg_offset = -1.9 #this was measured as the average reading when car is perfectly still
 		
 		#Start serial connection
 		try:
@@ -66,8 +66,8 @@ class PubSensors:
 				vel_index = data.find('Vel')
 				current = float(data[3:7])
 				voltage = float(data[10:14])
-				omega_deg = float(data[gyr_z_index+5 : vel_index]) + self.omega_deg_offset
-				acc = [float(data[acc_x_index+5 : acc_y_index]), float(data[acc_y_index+5 : gyr_z_index]), omega_deg ]
+				omega_rad = float(data[gyr_z_index+5 : vel_index])  #+ self.omega_deg_offset
+				acc = [float(data[acc_x_index+5 : acc_y_index]), float(data[acc_y_index+5 : gyr_z_index]), omega_rad]
 				vel = float(data[vel_index+3:])
 
 				#self.last_omegas = [*self.last_omegas, omega_deg]
@@ -83,7 +83,7 @@ class PubSensors:
 				pub_vol.publish(voltage)
 				pub_acc.publish(acc_msg)
 				pub_vel.publish(vel)
-				pub_omega.publish(omega_deg / 180 * np.pi)
+				pub_omega.publish(omega_rad)
 			
 
 			# Sleep for the time set in the rate

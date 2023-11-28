@@ -2,6 +2,7 @@
 
 <launch>
   <arg name="car_numb" value="$(env car_number_str)" />
+  <arg name="car_number_str_local" value="$(env car_number_str)"/>
 
   <node name="$(eval 'ydlidar_lidar_publisher' + arg('car_numb'))"  pkg="lidar_ros"  type="lidar_ros_node" output="screen" respawn="false" > 
     <!-- string property -->
@@ -38,5 +39,5 @@
     <param name="frequency"    			type="double" value="10.0"/>
   </node> 
   <node pkg="tf" type="static_transform_publisher" name="$(eval 'base_link_to_laser' + arg('car_numb'))"
-    args="0.0 0.0 0.0 0.0 0.0 0.0 /base_link_3 /scan_3 40" />
+    args="0.0 0.0 0.0 0.0 0.0 0.0 /base_link$(arg car_number_str_local) /scan$(arg car_number_str_local) 40" />
 </launch>

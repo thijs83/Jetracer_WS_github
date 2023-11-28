@@ -46,7 +46,7 @@ class racecar:
 	#Steering control callback function
 	def callback_steering(self, steer):
 		self.car.steering = steer.data
-		rospy.loginfo("Steering " + str(self.car_number) + ": %s", str(steer.data))
+		#rospy.loginfo("Steering " + str(self.car_number) + ": %s", str(steer.data))
 		#publish command inputs with a timestamp
 		time_now = rospy.get_rostime()
 		time_float = time_now.secs + (time_now.nsecs)/1000000000
@@ -61,7 +61,7 @@ class racecar:
 			self.car.throttle = throttle.data
 		else:
 			self.car.throttle = 0
-			rospy.loginfo("Throttle" + str(self.car_number) + ": %s", str(self.car.throttle*self.safety_value))
+			#rospy.loginfo("Throttle" + str(self.car_number) + ": %s", str(self.car.throttle*self.safety_value))
 
 		#publish command inputs with a timestamp
 		time_now = rospy.get_rostime()

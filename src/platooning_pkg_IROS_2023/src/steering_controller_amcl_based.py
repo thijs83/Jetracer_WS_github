@@ -144,16 +144,16 @@ class steering_controller_class:
 		#evaluate relative orientation to path
 		path_theta = np.arctan2(-y_closest_point+y_next_closest_point, -x_closest_point+x_next_closest_point)
 		rel_theta = robot_theta - path_theta
-		print('lateral distance =', lateral_distance, 'relative theta =', rel_theta, 'path theta', path_theta)
+		#print('lateral distance =', lateral_distance, 'relative theta =', rel_theta, 'path theta', path_theta)
 
 		#evaluate control action
 
-		kp = 2 # so max steering when 1 m away from the line
+		kp = 0.05
 		kp_theta = 1/ (np.pi/4)
 		kp_err_lat_dot = 0.5/ (np.pi/4)
 		# evaluating lateral error derivative
 		err_lat_dot = np.sin(rel_theta) * (self.v + 0.1)
-		steering =  kp_err_lat_dot * err_lat_dot #  #- kp * lateral_distance + # kp_theta * rel_theta
+		steering =  kp_err_lat_dot * err_lat_dot - kp * lateral_distance # + kp_theta * rel_theta
 		# check for saturation
 		steering = np.min([1,steering])
 		steering = np.max([-1,steering])

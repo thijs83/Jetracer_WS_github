@@ -46,7 +46,6 @@ class odom_pub:
 		self.last_time = rospy.Time.now()
 
 
-
 	#velocity callback function
 	def callback_velocity(self, vx):
 		self.vx = vx.data
@@ -54,7 +53,6 @@ class odom_pub:
 	#IMU callback function
 	def callback_IMU(self, IMU):
 		self.w_IMU = IMU.data[2] # omega is in radians
-		#print('w imu = ',self.w_IMU)
 
 	def publish_odometry(self,rate):
 

@@ -45,7 +45,7 @@ def produce_track(choice,n_checkpoints):
 				 Checkpoints_y1[0:n_checkpoints - 1]), axis=0)
 
 	elif choice == 'straight_line':
-		Checkpoints_x = np.linspace(0, 10, n_checkpoints)
+		Checkpoints_x = np.linspace(0, 30, n_checkpoints)
 		Checkpoints_y = np.linspace(0, 0, n_checkpoints)
 
 	return Checkpoints_x, Checkpoints_y

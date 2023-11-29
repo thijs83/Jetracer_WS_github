@@ -5,7 +5,7 @@ kld_z:                     0.99
 update_min_d:              0.10
 update_min_a:              0.10
 resample_interval:         2
-transform_tolerance:       0.1
+transform_tolerance:       0.5
 recovery_alpha_slow:       0.00
 recovery_alpha_fast:       0.00
 initial_pose_x:            0.0
@@ -31,8 +31,8 @@ odom_alpha1:               0.1
 odom_alpha2:               0.1
 odom_alpha3:               0.1
 odom_alpha4:               0.1
-odom_frame_id:             odom_3
-base_frame_id:             base_link_3
+odom_frame_id:             odom_2
+base_frame_id:             base_link_2
 lasamplestep: 0.05
 
 

@@ -40,8 +40,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/usr/include/opencv4"
   "/usr/include/opencv"
   "/home/jetson/Jetracer_WS_github/src/auto_jetracer/include"
-  "/usr/local/include"
-  "/usr/local/include/apriltag"
+  "/opt/ros/melodic/include/apriltag"
   )
 
 # Targets to which this target links.

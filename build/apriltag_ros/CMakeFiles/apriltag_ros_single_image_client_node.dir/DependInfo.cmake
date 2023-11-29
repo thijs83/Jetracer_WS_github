@@ -24,8 +24,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/usr/include/opencv"
   "/usr/include/eigen3"
   "/usr/include/opencv4"
-  "/usr/local/include"
-  "/usr/local/include/apriltag"
+  "/opt/ros/melodic/include/apriltag"
   )
 
 # Targets to which this target links.

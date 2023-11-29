@@ -351,7 +351,7 @@ lidar_process_EXTERNAL_OBJECTS =
 /home/jetson/Jetracer_WS_github/devel/lib/auto_jetracer/lidar_process: /usr/lib/aarch64-linux-gnu/libopencv_imgcodecs.so.4.1.1
 /home/jetson/Jetracer_WS_github/devel/lib/auto_jetracer/lidar_process: /usr/lib/aarch64-linux-gnu/libopencv_imgproc.so.4.1.1
 /home/jetson/Jetracer_WS_github/devel/lib/auto_jetracer/lidar_process: /usr/lib/aarch64-linux-gnu/libopencv_core.so.4.1.1
-/home/jetson/Jetracer_WS_github/devel/lib/auto_jetracer/lidar_process: /usr/local/lib/libapriltag.so.3.2.0
+/home/jetson/Jetracer_WS_github/devel/lib/auto_jetracer/lidar_process: /opt/ros/melodic/lib/libapriltag.so.3.2.0
 /home/jetson/Jetracer_WS_github/devel/lib/auto_jetracer/lidar_process: /opt/ros/melodic/lib/libcv_bridge.so
 /home/jetson/Jetracer_WS_github/devel/lib/auto_jetracer/lidar_process: /opt/ros/melodic/lib/libimage_geometry.so
 /home/jetson/Jetracer_WS_github/devel/lib/auto_jetracer/lidar_process: /usr/lib/aarch64-linux-gnu/libopencv_calib3d.so.3.2.0

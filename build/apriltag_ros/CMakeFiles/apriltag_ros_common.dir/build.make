@@ -177,7 +177,7 @@ apriltag_ros_common_EXTERNAL_OBJECTS =
 /home/jetson/Jetracer_WS_github/devel/lib/libapriltag_ros_common.so: /usr/lib/aarch64-linux-gnu/libopencv_stitching.so.4.1.1
 /home/jetson/Jetracer_WS_github/devel/lib/libapriltag_ros_common.so: /usr/lib/aarch64-linux-gnu/libopencv_video.so.4.1.1
 /home/jetson/Jetracer_WS_github/devel/lib/libapriltag_ros_common.so: /usr/lib/aarch64-linux-gnu/libopencv_videoio.so.4.1.1
-/home/jetson/Jetracer_WS_github/devel/lib/libapriltag_ros_common.so: /usr/local/lib/libapriltag.so.3.2.0
+/home/jetson/Jetracer_WS_github/devel/lib/libapriltag_ros_common.so: /opt/ros/melodic/lib/libapriltag.so.3.2.0
 /home/jetson/Jetracer_WS_github/devel/lib/libapriltag_ros_common.so: /usr/lib/aarch64-linux-gnu/libopencv_imgcodecs.so.4.1.1
 /home/jetson/Jetracer_WS_github/devel/lib/libapriltag_ros_common.so: /usr/lib/aarch64-linux-gnu/libopencv_calib3d.so.4.1.1
 /home/jetson/Jetracer_WS_github/devel/lib/libapriltag_ros_common.so: /usr/lib/aarch64-linux-gnu/libopencv_features2d.so.4.1.1

@@ -34,7 +34,7 @@ def teleop_gamepad():
 		#print("Steering_3:", steering)
 
 		#Pubblish gamepad values
-		pub_throttle.publish(throttle * 0.30)
+		pub_throttle.publish(0.1 + throttle * 0.20)
 		pub_steering.publish(steering)
 
 		#safety value publishing

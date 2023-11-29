@@ -1,6 +1,6 @@
 map_frame: map
-base_frame: base_link_3
-odom_frame: odom_3
+base_frame: base_link_2
+odom_frame: odom_2
 map_update_interval: 0.1
 maxRange: 5.0
 maxUrange: 5.0

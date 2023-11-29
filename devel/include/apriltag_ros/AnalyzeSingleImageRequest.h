@@ -8,7 +8,7 @@
 
 #include <string>
 #include <vector>
-#include <map>
+#include <memory>
 
 #include <ros/types.h>
 #include <ros/serialization.h>
@@ -38,10 +38,10 @@ struct AnalyzeSingleImageRequest_
 
 
 
-   typedef std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other >  _full_path_where_to_get_image_type;
+   typedef std::basic_string<char, std::char_traits<char>, typename std::allocator_traits<ContainerAllocator>::template rebind_alloc<char>> _full_path_where_to_get_image_type;
   _full_path_where_to_get_image_type full_path_where_to_get_image;
 
-   typedef std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other >  _full_path_where_to_save_image_type;
+   typedef std::basic_string<char, std::char_traits<char>, typename std::allocator_traits<ContainerAllocator>::template rebind_alloc<char>> _full_path_where_to_save_image_type;
   _full_path_where_to_save_image_type full_path_where_to_save_image;
 
    typedef  ::sensor_msgs::CameraInfo_<ContainerAllocator>  _camera_info_type;
@@ -383,9 +383,9 @@ struct Printer< ::apriltag_ros::AnalyzeSingleImageRequest_<ContainerAllocator> >
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::apriltag_ros::AnalyzeSingleImageRequest_<ContainerAllocator>& v)
   {
     s << indent << "full_path_where_to_get_image: ";
-    Printer<std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other > >::stream(s, indent + "  ", v.full_path_where_to_get_image);
+    Printer<std::basic_string<char, std::char_traits<char>, typename std::allocator_traits<ContainerAllocator>::template rebind_alloc<char>>>::stream(s, indent + "  ", v.full_path_where_to_get_image);
     s << indent << "full_path_where_to_save_image: ";
-    Printer<std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other > >::stream(s, indent + "  ", v.full_path_where_to_save_image);
+    Printer<std::basic_string<char, std::char_traits<char>, typename std::allocator_traits<ContainerAllocator>::template rebind_alloc<char>>>::stream(s, indent + "  ", v.full_path_where_to_save_image);
     s << indent << "camera_info: ";
     s << std::endl;
     Printer< ::sensor_msgs::CameraInfo_<ContainerAllocator> >::stream(s, indent + "  ", v.camera_info);

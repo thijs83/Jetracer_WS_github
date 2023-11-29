@@ -263,7 +263,7 @@ apriltag_ros_single_image_server_node_EXTERNAL_OBJECTS =
 /home/jetson/Jetracer_WS_github/devel/lib/apriltag_ros/apriltag_ros_single_image_server_node: /usr/lib/aarch64-linux-gnu/libopencv_imgcodecs.so.4.1.1
 /home/jetson/Jetracer_WS_github/devel/lib/apriltag_ros/apriltag_ros_single_image_server_node: /usr/lib/aarch64-linux-gnu/libopencv_imgproc.so.4.1.1
 /home/jetson/Jetracer_WS_github/devel/lib/apriltag_ros/apriltag_ros_single_image_server_node: /usr/lib/aarch64-linux-gnu/libopencv_core.so.4.1.1
-/home/jetson/Jetracer_WS_github/devel/lib/apriltag_ros/apriltag_ros_single_image_server_node: /usr/local/lib/libapriltag.so.3.2.0
+/home/jetson/Jetracer_WS_github/devel/lib/apriltag_ros/apriltag_ros_single_image_server_node: /opt/ros/melodic/lib/libapriltag.so.3.2.0
 /home/jetson/Jetracer_WS_github/devel/lib/apriltag_ros/apriltag_ros_single_image_server_node: apriltag_ros/CMakeFiles/apriltag_ros_single_image_server_node.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/jetson/Jetracer_WS_github/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable /home/jetson/Jetracer_WS_github/devel/lib/apriltag_ros/apriltag_ros_single_image_server_node"
 	cd /home/jetson/Jetracer_WS_github/build/apriltag_ros && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/apriltag_ros_single_image_server_node.dir/link.txt --verbose=$(VERBOSE)

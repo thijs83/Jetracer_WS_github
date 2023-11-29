@@ -10,6 +10,14 @@ apriltag_ros/CMakeFiles/apriltag_ros_single_image_server_node.dir/src/apriltag_r
  /home/jetson/Jetracer_WS_github/src/apriltag_ros/include/apriltag_ros/common_functions.h
  /home/jetson/Jetracer_WS_github/src/apriltag_ros/include/apriltag_ros/single_image_detector.h
  /home/jetson/Jetracer_WS_github/src/apriltag_ros/src/apriltag_ros_single_image_server_node.cpp
+ /opt/ros/melodic/include/apriltag/apriltag.h
+ /opt/ros/melodic/include/apriltag/common/image_types.h
+ /opt/ros/melodic/include/apriltag/common/image_u8.h
+ /opt/ros/melodic/include/apriltag/common/matd.h
+ /opt/ros/melodic/include/apriltag/common/time_util.h
+ /opt/ros/melodic/include/apriltag/common/timeprofile.h
+ /opt/ros/melodic/include/apriltag/common/workerpool.h
+ /opt/ros/melodic/include/apriltag/common/zarray.h
  /opt/ros/melodic/include/cv_bridge/cv_bridge.h
  /opt/ros/melodic/include/geometry_msgs/Point.h
  /opt/ros/melodic/include/geometry_msgs/PointStamped.h
@@ -230,11 +238,3 @@ apriltag_ros/CMakeFiles/apriltag_ros_single_image_server_node.dir/src/apriltag_r
  /usr/include/opencv4/opencv2/video/background_segm.hpp
  /usr/include/opencv4/opencv2/video/tracking.hpp
  /usr/include/opencv4/opencv2/videoio.hpp
- /usr/local/include/apriltag/apriltag.h
- /usr/local/include/apriltag/common/image_types.h
- /usr/local/include/apriltag/common/image_u8.h
- /usr/local/include/apriltag/common/matd.h
- /usr/local/include/apriltag/common/time_util.h
- /usr/local/include/apriltag/common/timeprofile.h
- /usr/local/include/apriltag/common/workerpool.h
- /usr/local/include/apriltag/common/zarray.h

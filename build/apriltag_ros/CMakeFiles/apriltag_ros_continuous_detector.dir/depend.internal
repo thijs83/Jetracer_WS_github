@@ -7,6 +7,14 @@ apriltag_ros/CMakeFiles/apriltag_ros_continuous_detector.dir/src/continuous_dete
  /home/jetson/Jetracer_WS_github/src/apriltag_ros/include/apriltag_ros/common_functions.h
  /home/jetson/Jetracer_WS_github/src/apriltag_ros/include/apriltag_ros/continuous_detector.h
  /home/jetson/Jetracer_WS_github/src/apriltag_ros/src/continuous_detector.cpp
+ /opt/ros/melodic/include/apriltag/apriltag.h
+ /opt/ros/melodic/include/apriltag/common/image_types.h
+ /opt/ros/melodic/include/apriltag/common/image_u8.h
+ /opt/ros/melodic/include/apriltag/common/matd.h
+ /opt/ros/melodic/include/apriltag/common/time_util.h
+ /opt/ros/melodic/include/apriltag/common/timeprofile.h
+ /opt/ros/melodic/include/apriltag/common/workerpool.h
+ /opt/ros/melodic/include/apriltag/common/zarray.h
  /opt/ros/melodic/include/class_loader/class_loader.hpp
  /opt/ros/melodic/include/class_loader/class_loader_core.hpp
  /opt/ros/melodic/include/class_loader/exceptions.hpp
@@ -237,11 +245,3 @@ apriltag_ros/CMakeFiles/apriltag_ros_continuous_detector.dir/src/continuous_dete
  /usr/include/opencv4/opencv2/video/background_segm.hpp
  /usr/include/opencv4/opencv2/video/tracking.hpp
  /usr/include/opencv4/opencv2/videoio.hpp
- /usr/local/include/apriltag/apriltag.h
- /usr/local/include/apriltag/common/image_types.h
- /usr/local/include/apriltag/common/image_u8.h
- /usr/local/include/apriltag/common/matd.h
- /usr/local/include/apriltag/common/time_util.h
- /usr/local/include/apriltag/common/timeprofile.h
- /usr/local/include/apriltag/common/workerpool.h
- /usr/local/include/apriltag/common/zarray.h

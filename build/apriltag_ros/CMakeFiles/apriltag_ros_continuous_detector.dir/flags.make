@@ -6,5 +6,5 @@ CXX_FLAGS = -O3 -DNDEBUG -fPIC   -O3 -funsafe-loop-optimizations -fsee -funroll-
 
 CXX_DEFINES = -DROSCONSOLE_BACKEND_LOG4CXX -DROS_BUILD_SHARED_LIBS=1 -DROS_PACKAGE_NAME=\"apriltag_ros\" -Dapriltag_ros_continuous_detector_EXPORTS
 
-CXX_INCLUDES = -I/home/jetson/Jetracer_WS_github/devel/include -I/home/jetson/Jetracer_WS_github/src/apriltag_ros/include -I/opt/ros/melodic/include -I/opt/ros/melodic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp -I/usr/include/opencv -I/usr/include/eigen3 -isystem /usr/include/opencv4 -isystem /usr/local/include -isystem /usr/local/include/apriltag 
+CXX_INCLUDES = -I/home/jetson/Jetracer_WS_github/devel/include -I/home/jetson/Jetracer_WS_github/src/apriltag_ros/include -isystem /opt/ros/melodic/include -I/opt/ros/melodic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp -I/usr/include/opencv -I/usr/include/eigen3 -isystem /usr/include/opencv4 -isystem /opt/ros/melodic/include/apriltag 
 

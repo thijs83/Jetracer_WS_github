@@ -5,7 +5,7 @@
   <arg name="car_number_str_local" value="$(env car_number_str)"/>
 
   <!-- sensor publishing -->
-  <node name="sensor_publisher$(arg car_number_str_local)" pkg="cytron_jetracer" type="publish_sensors_Battery_IMU_Encoder.py" output="screen"/>
+  <node name="sensor_publisher$(arg car_number_str_local)" pkg="cytron_jetracer" type="publish_sensors_universal.py" output="screen"/>
 
   <!-- odometry publishing -->
   <node name="odometry_publisher$(arg car_number_str_local)" pkg="localization_and_mapping_jetracer_pkg" type="publish_odometry_universal.py" output="screen"/>

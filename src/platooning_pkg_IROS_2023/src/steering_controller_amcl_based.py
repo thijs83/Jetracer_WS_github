@@ -142,15 +142,15 @@ class steering_controller_class:
 		# evaluate lateral distance
 		lateral_distance = normal_right[0] * (robot_position[0]-x_closest_point) + normal_right[1] * (robot_position[1]-y_closest_point)
 		#evaluate relative orientation to path
-		path_theta = np.arctan2(-y_closest_point+y_next_closest_point, -x_closest_point+x_next_closest_point)
+		path_theta = np.arctan(-y_closest_point+y_next_closest_point, -x_closest_point+x_next_closest_point)
 		rel_theta = robot_theta - path_theta
-		#print('lateral distance =', lateral_distance, 'relative theta =', rel_theta, 'path theta', path_theta)
+		print('lateral distance =', lateral_distance[0], 'relative theta =', rel_theta[0], 'path theta', path_theta[0])
 
 		#evaluate control action
 
-		kp = 0.05
+		kp =0.33
 		kp_theta = 1/ (np.pi/4)
-		kp_err_lat_dot = 0.5/ (np.pi/4)
+		kp_err_lat_dot = 0.0/ (np.pi/4)# wa 0.5 * 
 		# evaluating lateral error derivative
 		err_lat_dot = np.sin(rel_theta) * (self.v + 0.1)
 		steering =  kp_err_lat_dot * err_lat_dot - kp * lateral_distance # + kp_theta * rel_theta
@@ -159,7 +159,7 @@ class steering_controller_class:
 		steering = np.max([-1,steering])
 
 		#publish command
-		self.steering_publisher.publish(steering)
+		self.steering_publisher.publish(steering) ## super temporary fix because the map is flipped!
 		self.throttle_publisher.publish(0.15)
 
 

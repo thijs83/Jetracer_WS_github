@@ -1,10 +1,1 @@
-(cl:defpackage apriltag_ros-srv
-  (:use )
-  (:export
-   "ANALYZESINGLEIMAGE"
-   "<ANALYZESINGLEIMAGE-REQUEST>"
-   "ANALYZESINGLEIMAGE-REQUEST"
-   "<ANALYZESINGLEIMAGE-RESPONSE>"
-   "ANALYZESINGLEIMAGE-RESPONSE"
-  ))
-
+/home/jetson/Jetracer_WS_github/devel/.private/apriltag_ros/share/common-lisp/ros/apriltag_ros/srv/_package.lisp

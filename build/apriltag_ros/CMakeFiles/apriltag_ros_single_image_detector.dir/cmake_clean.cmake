@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/apriltag_ros_single_image_detector.dir/src/single_image_detector.cpp.o"
-  "/home/jetson/Jetracer_WS_github/devel/lib/libapriltag_ros_single_image_detector.pdb"
-  "/home/jetson/Jetracer_WS_github/devel/lib/libapriltag_ros_single_image_detector.so"
+  "/home/jetson/Jetracer_WS_github/devel/.private/apriltag_ros/lib/libapriltag_ros_single_image_detector.pdb"
+  "/home/jetson/Jetracer_WS_github/devel/.private/apriltag_ros/lib/libapriltag_ros_single_image_detector.so"
 )
 
 # Per-language clean rules from dependency scanning.

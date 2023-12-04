@@ -1,6 +1,1 @@
-
-"use strict";
-
-module.exports = {
-  msg: require('./msg/_index.js'),
-};
+/home/jetson/Jetracer_WS_github/devel/.private/custom_msgs_optitrack/share/gennodejs/ros/custom_msgs_optitrack/_index.js

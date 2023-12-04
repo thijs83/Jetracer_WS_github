@@ -163,7 +163,6 @@ include_directories(
 catkin_install_python(PROGRAMS
   scripts/racecar.py
   scripts/teleop.py
-  scripts/teleop_gamepad_3_with_safety.py
   scripts/camera.py
   scripts/joint_state.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}

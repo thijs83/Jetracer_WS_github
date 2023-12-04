@@ -1,0 +1,8 @@
+prefix=/home/jetson/Jetracer_WS_github/devel_isolated/auto_jetracer
+
+Name: auto_jetracer
+Description: Description of auto_jetracer
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

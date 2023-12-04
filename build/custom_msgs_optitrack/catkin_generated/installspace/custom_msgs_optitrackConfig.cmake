@@ -68,7 +68,7 @@ set(custom_msgs_optitrack_CONFIG_INCLUDED TRUE)
 # set variables for source/devel/install prefixes
 if("FALSE" STREQUAL "TRUE")
   set(custom_msgs_optitrack_SOURCE_PREFIX /home/jetson/Jetracer_WS_github/src/custom_msgs_optitrack)
-  set(custom_msgs_optitrack_DEVEL_PREFIX /home/jetson/Jetracer_WS_github/devel)
+  set(custom_msgs_optitrack_DEVEL_PREFIX /home/jetson/Jetracer_WS_github/devel/.private/custom_msgs_optitrack)
   set(custom_msgs_optitrack_INSTALL_PREFIX "")
   set(custom_msgs_optitrack_PREFIX ${custom_msgs_optitrack_DEVEL_PREFIX})
 else()

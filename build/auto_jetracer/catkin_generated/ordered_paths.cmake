@@ -1,1 +1,1 @@
-set(ORDERED_PATHS "/opt/ros/melodic/lib")
+set(ORDERED_PATHS "/home/jetson/Jetracer_WS_github/devel/.private/apriltag_ros/lib;/opt/ros/melodic/lib")

@@ -68,7 +68,7 @@ set(optitrack_package_lyons_CONFIG_INCLUDED TRUE)
 # set variables for source/devel/install prefixes
 if("FALSE" STREQUAL "TRUE")
   set(optitrack_package_lyons_SOURCE_PREFIX /home/jetson/Jetracer_WS_github/src/optitrack_package_lyons)
-  set(optitrack_package_lyons_DEVEL_PREFIX /home/jetson/Jetracer_WS_github/devel)
+  set(optitrack_package_lyons_DEVEL_PREFIX /home/jetson/Jetracer_WS_github/devel/.private/optitrack_package_lyons)
   set(optitrack_package_lyons_INSTALL_PREFIX "")
   set(optitrack_package_lyons_PREFIX ${optitrack_package_lyons_DEVEL_PREFIX})
 else()

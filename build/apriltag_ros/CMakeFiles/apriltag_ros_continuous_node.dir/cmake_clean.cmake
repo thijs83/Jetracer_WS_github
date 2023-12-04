@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/apriltag_ros_continuous_node.dir/src/apriltag_ros_continuous_node.cpp.o"
-  "/home/jetson/Jetracer_WS_github/devel/lib/apriltag_ros/apriltag_ros_continuous_node.pdb"
-  "/home/jetson/Jetracer_WS_github/devel/lib/apriltag_ros/apriltag_ros_continuous_node"
+  "/home/jetson/Jetracer_WS_github/devel/.private/apriltag_ros/lib/apriltag_ros/apriltag_ros_continuous_node.pdb"
+  "/home/jetson/Jetracer_WS_github/devel/.private/apriltag_ros/lib/apriltag_ros/apriltag_ros_continuous_node"
 )
 
 # Per-language clean rules from dependency scanning.

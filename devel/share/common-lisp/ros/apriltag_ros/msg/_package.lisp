@@ -1,9 +1,1 @@
-(cl:defpackage apriltag_ros-msg
-  (:use )
-  (:export
-   "<APRILTAGDETECTION>"
-   "APRILTAGDETECTION"
-   "<APRILTAGDETECTIONARRAY>"
-   "APRILTAGDETECTIONARRAY"
-  ))
-
+/home/jetson/Jetracer_WS_github/devel/.private/apriltag_ros/share/common-lisp/ros/apriltag_ros/msg/_package.lisp

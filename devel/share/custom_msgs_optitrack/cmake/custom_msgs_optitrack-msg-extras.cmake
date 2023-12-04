@@ -1,2 +1,1 @@
-set(custom_msgs_optitrack_MESSAGE_FILES "/home/jetson/Jetracer_WS_github/src/custom_msgs_optitrack/msg/custom_opti_pose_stamped_msg.msg")
-set(custom_msgs_optitrack_SERVICE_FILES "")
+/home/jetson/Jetracer_WS_github/devel/.private/custom_msgs_optitrack/share/custom_msgs_optitrack/cmake/custom_msgs_optitrack-msg-extras.cmake

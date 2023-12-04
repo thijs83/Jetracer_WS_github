@@ -1,8 +1,1 @@
-(cl:in-package apriltag_ros-msg)
-(cl:export '(ID-VAL
-          ID
-          SIZE-VAL
-          SIZE
-          POSE-VAL
-          POSE
-))
+/home/jetson/Jetracer_WS_github/devel/.private/apriltag_ros/share/common-lisp/ros/apriltag_ros/msg/_package_AprilTagDetection.lisp

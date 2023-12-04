@@ -1,8 +1,1 @@
-
-"use strict";
-
-let AnalyzeSingleImage = require('./AnalyzeSingleImage.js')
-
-module.exports = {
-  AnalyzeSingleImage: AnalyzeSingleImage,
-};
+/home/jetson/Jetracer_WS_github/devel/.private/apriltag_ros/share/gennodejs/ros/apriltag_ros/srv/_index.js

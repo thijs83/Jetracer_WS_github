@@ -1,8 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/apriltag_ros_generate_messages_cpp"
-  "/home/jetson/Jetracer_WS_github/devel/include/apriltag_ros/AprilTagDetectionArray.h"
-  "/home/jetson/Jetracer_WS_github/devel/include/apriltag_ros/AprilTagDetection.h"
-  "/home/jetson/Jetracer_WS_github/devel/include/apriltag_ros/AnalyzeSingleImage.h"
+  "/home/jetson/Jetracer_WS_github/devel/.private/apriltag_ros/include/apriltag_ros/AprilTagDetectionArray.h"
+  "/home/jetson/Jetracer_WS_github/devel/.private/apriltag_ros/include/apriltag_ros/AprilTagDetection.h"
+  "/home/jetson/Jetracer_WS_github/devel/.private/apriltag_ros/include/apriltag_ros/AnalyzeSingleImage.h"
 )
 
 # Per-language clean rules from dependency scanning.

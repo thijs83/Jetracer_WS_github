@@ -1,0 +1,11 @@
+/home/jetson/Jetracer_WS_github/build/apriltag/CMakeFiles/list_install_components.dir
+/home/jetson/Jetracer_WS_github/build/apriltag/CMakeFiles/rebuild_cache.dir
+/home/jetson/Jetracer_WS_github/build/apriltag/CMakeFiles/install.dir
+/home/jetson/Jetracer_WS_github/build/apriltag/CMakeFiles/apriltag_demo.dir
+/home/jetson/Jetracer_WS_github/build/apriltag/CMakeFiles/edit_cache.dir
+/home/jetson/Jetracer_WS_github/build/apriltag/CMakeFiles/apriltag.dir
+/home/jetson/Jetracer_WS_github/build/apriltag/CMakeFiles/install/local.dir
+/home/jetson/Jetracer_WS_github/build/apriltag/CMakeFiles/apriltag.cpython-36m-aarch64-linux-gnu.so.dir
+/home/jetson/Jetracer_WS_github/build/apriltag/CMakeFiles/apriltag_python.dir
+/home/jetson/Jetracer_WS_github/build/apriltag/CMakeFiles/install/strip.dir
+/home/jetson/Jetracer_WS_github/build/apriltag/CMakeFiles/opencv_demo.dir

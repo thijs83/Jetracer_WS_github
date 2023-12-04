@@ -1,0 +1,2 @@
+apriltag:apriltag_ros/apriltag_ros:auto_jetracer:custom_msgs_optitrack:cytron_jetracer:lidar_ros:localization_and_mapping_jetracer_pkg:optitrack_package_lyons:platooning_pkg_iros_2023:riccardo_chiesa_pkg:ydlidar_ros_driver-master
+-G Unix Makefiles -DCATKIN_DEVEL_PREFIX=/home/jetson/Jetracer_WS_github/devel_isolated -DCMAKE_INSTALL_PREFIX=/home/jetson/Jetracer_WS_github/install_isolated

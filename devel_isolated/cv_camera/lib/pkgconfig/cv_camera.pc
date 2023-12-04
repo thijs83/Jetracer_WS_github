@@ -1,0 +1,8 @@
+prefix=/home/jetson/Jetracer_WS_github/devel_isolated/cv_camera
+
+Name: cv_camera
+Description: Description of cv_camera
+Version: 0.6.0
+Cflags: -I/home/jetson/Jetracer_WS_github/src/cv_camera/include -I/usr/include/opencv4
+Libs: -L${prefix}/lib -lcv_camera /usr/lib/aarch64-linux-gnu/libopencv_calib3d.so.4.1.1 /usr/lib/aarch64-linux-gnu/libopencv_core.so.4.1.1 /usr/lib/aarch64-linux-gnu/libopencv_dnn.so.4.1.1 /usr/lib/aarch64-linux-gnu/libopencv_features2d.so.4.1.1 /usr/lib/aarch64-linux-gnu/libopencv_flann.so.4.1.1 /usr/lib/aarch64-linux-gnu/libopencv_gapi.so.4.1.1 /usr/lib/aarch64-linux-gnu/libopencv_highgui.so.4.1.1 /usr/lib/aarch64-linux-gnu/libopencv_imgcodecs.so.4.1.1 /usr/lib/aarch64-linux-gnu/libopencv_imgproc.so.4.1.1 /usr/lib/aarch64-linux-gnu/libopencv_ml.so.4.1.1 /usr/lib/aarch64-linux-gnu/libopencv_objdetect.so.4.1.1 /usr/lib/aarch64-linux-gnu/libopencv_photo.so.4.1.1 /usr/lib/aarch64-linux-gnu/libopencv_stitching.so.4.1.1 /usr/lib/aarch64-linux-gnu/libopencv_video.so.4.1.1 /usr/lib/aarch64-linux-gnu/libopencv_videoio.so.4.1.1
+Requires: image_transport roscpp cv_bridge sensor_msgs nodelet camera_info_manager

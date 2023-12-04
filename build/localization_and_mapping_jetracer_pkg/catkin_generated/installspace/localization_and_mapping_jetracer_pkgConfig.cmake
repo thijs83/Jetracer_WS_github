@@ -68,7 +68,7 @@ set(localization_and_mapping_jetracer_pkg_CONFIG_INCLUDED TRUE)
 # set variables for source/devel/install prefixes
 if("FALSE" STREQUAL "TRUE")
   set(localization_and_mapping_jetracer_pkg_SOURCE_PREFIX /home/jetson/Jetracer_WS_github/src/localization_and_mapping_jetracer_pkg)
-  set(localization_and_mapping_jetracer_pkg_DEVEL_PREFIX /home/jetson/Jetracer_WS_github/devel)
+  set(localization_and_mapping_jetracer_pkg_DEVEL_PREFIX /home/jetson/Jetracer_WS_github/devel/.private/localization_and_mapping_jetracer_pkg)
   set(localization_and_mapping_jetracer_pkg_INSTALL_PREFIX "")
   set(localization_and_mapping_jetracer_pkg_PREFIX ${localization_and_mapping_jetracer_pkg_DEVEL_PREFIX})
 else()

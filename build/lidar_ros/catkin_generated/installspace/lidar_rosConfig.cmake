@@ -68,7 +68,7 @@ set(lidar_ros_CONFIG_INCLUDED TRUE)
 # set variables for source/devel/install prefixes
 if("FALSE" STREQUAL "TRUE")
   set(lidar_ros_SOURCE_PREFIX /home/jetson/Jetracer_WS_github/src/lidar_ros)
-  set(lidar_ros_DEVEL_PREFIX /home/jetson/Jetracer_WS_github/devel)
+  set(lidar_ros_DEVEL_PREFIX /home/jetson/Jetracer_WS_github/devel/.private/lidar_ros)
   set(lidar_ros_INSTALL_PREFIX "")
   set(lidar_ros_PREFIX ${lidar_ros_DEVEL_PREFIX})
 else()

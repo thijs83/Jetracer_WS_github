@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/jetson/Jetracer_WS_github/devel/include/apriltag_ros/AprilTagDetection.h
+/home/jetson/Jetracer_WS_github/devel/.private/apriltag_ros/include/apriltag_ros/AprilTagDetection.h
 string
 -
 vector
@@ -24,7 +24,7 @@ ros/message_operations.h
 geometry_msgs/PoseWithCovarianceStamped.h
 -
 
-/home/jetson/Jetracer_WS_github/devel/include/apriltag_ros/AprilTagDetectionArray.h
+/home/jetson/Jetracer_WS_github/devel/.private/apriltag_ros/include/apriltag_ros/AprilTagDetectionArray.h
 string
 -
 vector

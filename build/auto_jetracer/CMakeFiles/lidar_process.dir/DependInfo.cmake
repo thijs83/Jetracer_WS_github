@@ -17,8 +17,10 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
+  "/home/jetson/Jetracer_WS_github/devel/.private/apriltag_ros/include"
   "/home/jetson/Jetracer_WS_github/devel/include"
-  "/home/jetson/Jetracer_WS_github/src/apriltag_ros/include"
+  "/home/jetson/Jetracer_WS_github/devel/include/apriltag"
+  "/home/jetson/Jetracer_WS_github/src/apriltag_ros/apriltag_ros/include"
   "/opt/ros/melodic/include"
   "/opt/ros/melodic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp"
   "/usr/include/eigen3"
@@ -40,14 +42,10 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/usr/include/opencv4"
   "/usr/include/opencv"
   "/home/jetson/Jetracer_WS_github/src/auto_jetracer/include"
-  "/opt/ros/melodic/include/apriltag"
   )
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/jetson/Jetracer_WS_github/build/apriltag_ros/CMakeFiles/apriltag_ros_continuous_detector.dir/DependInfo.cmake"
-  "/home/jetson/Jetracer_WS_github/build/apriltag_ros/CMakeFiles/apriltag_ros_single_image_detector.dir/DependInfo.cmake"
-  "/home/jetson/Jetracer_WS_github/build/apriltag_ros/CMakeFiles/apriltag_ros_common.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

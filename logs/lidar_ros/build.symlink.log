@@ -1,0 +1,4 @@
+Symlinking /home/jetson/Jetracer_WS_github/devel/lib/lidar_ros/lidar_ros_node
+Symlinking /home/jetson/Jetracer_WS_github/devel/lib/pkgconfig/lidar_ros.pc
+Symlinking /home/jetson/Jetracer_WS_github/devel/share/lidar_ros/cmake/lidar_rosConfig.cmake
+Symlinking /home/jetson/Jetracer_WS_github/devel/share/lidar_ros/cmake/lidar_rosConfig-version.cmake

@@ -1,0 +1,3 @@
+Symlinking /home/jetson/Jetracer_WS_github/devel/lib/pkgconfig/platooning_pkg_iros_2023.pc
+Symlinking /home/jetson/Jetracer_WS_github/devel/share/platooning_pkg_iros_2023/cmake/platooning_pkg_iros_2023Config-version.cmake
+Symlinking /home/jetson/Jetracer_WS_github/devel/share/platooning_pkg_iros_2023/cmake/platooning_pkg_iros_2023Config.cmake

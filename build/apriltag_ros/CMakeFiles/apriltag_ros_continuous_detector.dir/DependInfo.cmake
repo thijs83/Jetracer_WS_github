@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/jetson/Jetracer_WS_github/src/apriltag_ros/src/continuous_detector.cpp" "/home/jetson/Jetracer_WS_github/build/apriltag_ros/CMakeFiles/apriltag_ros_continuous_detector.dir/src/continuous_detector.cpp.o"
+  "/home/jetson/Jetracer_WS_github/src/apriltag_ros/apriltag_ros/src/continuous_detector.cpp" "/home/jetson/Jetracer_WS_github/build/apriltag_ros/CMakeFiles/apriltag_ros_continuous_detector.dir/src/continuous_detector.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -17,14 +17,15 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
-  "/home/jetson/Jetracer_WS_github/devel/include"
-  "/home/jetson/Jetracer_WS_github/src/apriltag_ros/include"
+  "/home/jetson/Jetracer_WS_github/devel/.private/apriltag_ros/include"
+  "/home/jetson/Jetracer_WS_github/src/apriltag_ros/apriltag_ros/include"
   "/opt/ros/melodic/include"
   "/opt/ros/melodic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp"
   "/usr/include/opencv"
   "/usr/include/eigen3"
   "/usr/include/opencv4"
-  "/opt/ros/melodic/include/apriltag"
+  "/home/jetson/Jetracer_WS_github/devel/include"
+  "/home/jetson/Jetracer_WS_github/devel/include/apriltag"
   )
 
 # Targets to which this target links.

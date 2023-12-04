@@ -68,7 +68,7 @@ set(cytron_jetracer_CONFIG_INCLUDED TRUE)
 # set variables for source/devel/install prefixes
 if("FALSE" STREQUAL "TRUE")
   set(cytron_jetracer_SOURCE_PREFIX /home/jetson/Jetracer_WS_github/src/cytron_jetracer)
-  set(cytron_jetracer_DEVEL_PREFIX /home/jetson/Jetracer_WS_github/devel)
+  set(cytron_jetracer_DEVEL_PREFIX /home/jetson/Jetracer_WS_github/devel/.private/cytron_jetracer)
   set(cytron_jetracer_INSTALL_PREFIX "")
   set(cytron_jetracer_PREFIX ${cytron_jetracer_DEVEL_PREFIX})
 else()

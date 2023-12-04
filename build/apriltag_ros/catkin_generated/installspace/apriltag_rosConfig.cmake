@@ -67,8 +67,8 @@ set(apriltag_ros_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
 if("FALSE" STREQUAL "TRUE")
-  set(apriltag_ros_SOURCE_PREFIX /home/jetson/Jetracer_WS_github/src/apriltag_ros)
-  set(apriltag_ros_DEVEL_PREFIX /home/jetson/Jetracer_WS_github/devel)
+  set(apriltag_ros_SOURCE_PREFIX /home/jetson/Jetracer_WS_github/src/apriltag_ros/apriltag_ros)
+  set(apriltag_ros_DEVEL_PREFIX /home/jetson/Jetracer_WS_github/devel/.private/apriltag_ros)
   set(apriltag_ros_INSTALL_PREFIX "")
   set(apriltag_ros_PREFIX ${apriltag_ros_DEVEL_PREFIX})
 else()
@@ -91,9 +91,9 @@ endif()
 # flag project as catkin-based to distinguish if a find_package()-ed project is a catkin project
 set(apriltag_ros_FOUND_CATKIN_PROJECT TRUE)
 
-if(NOT "include;/usr/include/opencv4 " STREQUAL " ")
+if(NOT "include;/usr/include/eigen3;/home/jetson/Jetracer_WS_github/devel/include;/home/jetson/Jetracer_WS_github/devel/include/apriltag;/usr/include/opencv4 " STREQUAL " ")
   set(apriltag_ros_INCLUDE_DIRS "")
-  set(_include_dirs "include;/usr/include/opencv4")
+  set(_include_dirs "include;/usr/include/eigen3;/home/jetson/Jetracer_WS_github/devel/include;/home/jetson/Jetracer_WS_github/devel/include/apriltag;/usr/include/opencv4")
   if(NOT "https://github.com/AprilRobotics/apriltag_ros/issues " STREQUAL " ")
     set(_report "Check the issue tracker 'https://github.com/AprilRobotics/apriltag_ros/issues' and consider creating a ticket if the problem has not been reported yet.")
   elseif(NOT "http://www.ros.org/wiki/apriltag_ros " STREQUAL " ")
@@ -116,7 +116,7 @@ if(NOT "include;/usr/include/opencv4 " STREQUAL " ")
   endforeach()
 endif()
 
-set(libraries "apriltag_ros_common;apriltag_ros_continuous_detector;apriltag_ros_single_image_detector;/usr/lib/aarch64-linux-gnu/libopencv_calib3d.so.4.1.1;/usr/lib/aarch64-linux-gnu/libopencv_core.so.4.1.1;/usr/lib/aarch64-linux-gnu/libopencv_dnn.so.4.1.1;/usr/lib/aarch64-linux-gnu/libopencv_features2d.so.4.1.1;/usr/lib/aarch64-linux-gnu/libopencv_flann.so.4.1.1;/usr/lib/aarch64-linux-gnu/libopencv_gapi.so.4.1.1;/usr/lib/aarch64-linux-gnu/libopencv_highgui.so.4.1.1;/usr/lib/aarch64-linux-gnu/libopencv_imgcodecs.so.4.1.1;/usr/lib/aarch64-linux-gnu/libopencv_imgproc.so.4.1.1;/usr/lib/aarch64-linux-gnu/libopencv_ml.so.4.1.1;/usr/lib/aarch64-linux-gnu/libopencv_objdetect.so.4.1.1;/usr/lib/aarch64-linux-gnu/libopencv_photo.so.4.1.1;/usr/lib/aarch64-linux-gnu/libopencv_stitching.so.4.1.1;/usr/lib/aarch64-linux-gnu/libopencv_video.so.4.1.1;/usr/lib/aarch64-linux-gnu/libopencv_videoio.so.4.1.1")
+set(libraries "apriltag_ros_common;apriltag_ros_continuous_detector;apriltag_ros_single_image_detector;-lpthread;m;/usr/lib/aarch64-linux-gnu/libopencv_calib3d.so.4.1.1;/usr/lib/aarch64-linux-gnu/libopencv_core.so.4.1.1;/usr/lib/aarch64-linux-gnu/libopencv_dnn.so.4.1.1;/usr/lib/aarch64-linux-gnu/libopencv_features2d.so.4.1.1;/usr/lib/aarch64-linux-gnu/libopencv_flann.so.4.1.1;/usr/lib/aarch64-linux-gnu/libopencv_gapi.so.4.1.1;/usr/lib/aarch64-linux-gnu/libopencv_highgui.so.4.1.1;/usr/lib/aarch64-linux-gnu/libopencv_imgcodecs.so.4.1.1;/usr/lib/aarch64-linux-gnu/libopencv_imgproc.so.4.1.1;/usr/lib/aarch64-linux-gnu/libopencv_ml.so.4.1.1;/usr/lib/aarch64-linux-gnu/libopencv_objdetect.so.4.1.1;/usr/lib/aarch64-linux-gnu/libopencv_photo.so.4.1.1;/usr/lib/aarch64-linux-gnu/libopencv_stitching.so.4.1.1;/usr/lib/aarch64-linux-gnu/libopencv_video.so.4.1.1;/usr/lib/aarch64-linux-gnu/libopencv_videoio.so.4.1.1")
 foreach(library ${libraries})
   # keep build configuration keywords, target names and absolute libraries as-is
   if("${library}" MATCHES "^(debug|optimized|general)$")

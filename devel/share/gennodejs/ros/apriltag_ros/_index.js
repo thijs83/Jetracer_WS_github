@@ -1,7 +1,1 @@
-
-"use strict";
-
-module.exports = {
-  msg: require('./msg/_index.js'),
-  srv: require('./srv/_index.js')
-};
+/home/jetson/Jetracer_WS_github/devel/.private/apriltag_ros/share/gennodejs/ros/apriltag_ros/_index.js

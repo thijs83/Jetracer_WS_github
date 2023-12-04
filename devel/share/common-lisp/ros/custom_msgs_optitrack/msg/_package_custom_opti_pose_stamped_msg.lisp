@@ -1,12 +1,1 @@
-(cl:in-package custom_msgs_optitrack-msg)
-(cl:export '(HEADER-VAL
-          HEADER
-          X-VAL
-          X
-          Y-VAL
-          Y
-          ROTATION-VAL
-          ROTATION
-          CAR_NUMBER-VAL
-          CAR_NUMBER
-))
+/home/jetson/Jetracer_WS_github/devel/.private/custom_msgs_optitrack/share/common-lisp/ros/custom_msgs_optitrack/msg/_package_custom_opti_pose_stamped_msg.lisp

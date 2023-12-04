@@ -1,0 +1,4 @@
+Symlinking /home/jetson/Jetracer_WS_github/devel/lib/pkgconfig/auto_jetracer.pc
+Symlinking /home/jetson/Jetracer_WS_github/devel/lib/auto_jetracer/lidar_process
+Symlinking /home/jetson/Jetracer_WS_github/devel/share/auto_jetracer/cmake/auto_jetracerConfig-version.cmake
+Symlinking /home/jetson/Jetracer_WS_github/devel/share/auto_jetracer/cmake/auto_jetracerConfig.cmake

@@ -1,8 +1,1 @@
-
-"use strict";
-
-let custom_opti_pose_stamped_msg = require('./custom_opti_pose_stamped_msg.js');
-
-module.exports = {
-  custom_opti_pose_stamped_msg: custom_opti_pose_stamped_msg,
-};
+/home/jetson/Jetracer_WS_github/devel/.private/custom_msgs_optitrack/share/gennodejs/ros/custom_msgs_optitrack/msg/_index.js

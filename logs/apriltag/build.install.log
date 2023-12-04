@@ -1,0 +1,59 @@
+[ 82%] Built target apriltag
+[ 87%] Built target apriltag_demo
+[ 95%] Built target apriltag.cpython-36m-aarch64-linux-gnu.so
+[ 95%] Built target apriltag_python
+[100%] Built target opencv_demo
+[36mInstall the project...[0m
+-- Install configuration: "Release"
+-- Installing: /home/jetson/Jetracer_WS_github/devel/include/apriltag/apriltag.h
+-- Installing: /home/jetson/Jetracer_WS_github/devel/include/apriltag/apriltag_math.h
+-- Installing: /home/jetson/Jetracer_WS_github/devel/include/apriltag/apriltag_pose.h
+-- Installing: /home/jetson/Jetracer_WS_github/devel/include/apriltag/tag16h5.h
+-- Installing: /home/jetson/Jetracer_WS_github/devel/include/apriltag/tag25h9.h
+-- Installing: /home/jetson/Jetracer_WS_github/devel/include/apriltag/tag36h10.h
+-- Installing: /home/jetson/Jetracer_WS_github/devel/include/apriltag/tag36h11.h
+-- Installing: /home/jetson/Jetracer_WS_github/devel/include/apriltag/tagCircle21h7.h
+-- Installing: /home/jetson/Jetracer_WS_github/devel/include/apriltag/tagCircle49h12.h
+-- Installing: /home/jetson/Jetracer_WS_github/devel/include/apriltag/tagCustom48h12.h
+-- Installing: /home/jetson/Jetracer_WS_github/devel/include/apriltag/tagStandard41h12.h
+-- Installing: /home/jetson/Jetracer_WS_github/devel/include/apriltag/tagStandard52h13.h
+-- Installing: /home/jetson/Jetracer_WS_github/devel/include/apriltag/common/debug_print.h
+-- Installing: /home/jetson/Jetracer_WS_github/devel/include/apriltag/common/doubles.h
+-- Installing: /home/jetson/Jetracer_WS_github/devel/include/apriltag/common/doubles_floats_impl.h
+-- Installing: /home/jetson/Jetracer_WS_github/devel/include/apriltag/common/floats.h
+-- Installing: /home/jetson/Jetracer_WS_github/devel/include/apriltag/common/g2d.h
+-- Installing: /home/jetson/Jetracer_WS_github/devel/include/apriltag/common/getopt.h
+-- Installing: /home/jetson/Jetracer_WS_github/devel/include/apriltag/common/homography.h
+-- Installing: /home/jetson/Jetracer_WS_github/devel/include/apriltag/common/image_types.h
+-- Installing: /home/jetson/Jetracer_WS_github/devel/include/apriltag/common/image_u8.h
+-- Installing: /home/jetson/Jetracer_WS_github/devel/include/apriltag/common/image_u8x3.h
+-- Installing: /home/jetson/Jetracer_WS_github/devel/include/apriltag/common/image_u8x4.h
+-- Installing: /home/jetson/Jetracer_WS_github/devel/include/apriltag/common/matd.h
+-- Installing: /home/jetson/Jetracer_WS_github/devel/include/apriltag/common/math_util.h
+-- Installing: /home/jetson/Jetracer_WS_github/devel/include/apriltag/common/pam.h
+-- Installing: /home/jetson/Jetracer_WS_github/devel/include/apriltag/common/pjpeg.h
+-- Installing: /home/jetson/Jetracer_WS_github/devel/include/apriltag/common/pnm.h
+-- Installing: /home/jetson/Jetracer_WS_github/devel/include/apriltag/common/postscript_utils.h
+-- Installing: /home/jetson/Jetracer_WS_github/devel/include/apriltag/common/pthreads_cross.h
+-- Installing: /home/jetson/Jetracer_WS_github/devel/include/apriltag/common/string_util.h
+-- Installing: /home/jetson/Jetracer_WS_github/devel/include/apriltag/common/svd22.h
+-- Installing: /home/jetson/Jetracer_WS_github/devel/include/apriltag/common/time_util.h
+-- Installing: /home/jetson/Jetracer_WS_github/devel/include/apriltag/common/timeprofile.h
+-- Installing: /home/jetson/Jetracer_WS_github/devel/include/apriltag/common/unionfind.h
+-- Installing: /home/jetson/Jetracer_WS_github/devel/include/apriltag/common/workerpool.h
+-- Installing: /home/jetson/Jetracer_WS_github/devel/include/apriltag/common/zarray.h
+-- Installing: /home/jetson/Jetracer_WS_github/devel/include/apriltag/common/zhash.h
+-- Installing: /home/jetson/Jetracer_WS_github/devel/include/apriltag/common/zmaxheap.h
+-- Installing: /home/jetson/Jetracer_WS_github/devel/lib/libapriltag.so.3.3.0
+-- Installing: /home/jetson/Jetracer_WS_github/devel/lib/libapriltag.so.3
+-- Installing: /home/jetson/Jetracer_WS_github/devel/lib/libapriltag.so
+-- Installing: /home/jetson/Jetracer_WS_github/devel/share/apriltag/cmake/apriltagTargets.cmake
+-- Installing: /home/jetson/Jetracer_WS_github/devel/share/apriltag/cmake/apriltagTargets-release.cmake
+-- Installing: /home/jetson/Jetracer_WS_github/devel/share/apriltag/cmake/apriltagConfig.cmake
+-- Installing: /home/jetson/Jetracer_WS_github/devel/share/apriltag/cmake/apriltagConfigVersion.cmake
+-- Installing: /home/jetson/Jetracer_WS_github/devel/lib/pkgconfig/apriltag.pc
+-- Installing: /home/jetson/.local/lib/python3.6/site-packages/apriltag.cpython-36m-aarch64-linux-gnu.so
+-- Installing: /home/jetson/Jetracer_WS_github/devel/bin/opencv_demo
+-- Set runtime path of "/home/jetson/Jetracer_WS_github/devel/bin/opencv_demo" to ""
+-- Installing: /home/jetson/Jetracer_WS_github/devel/bin/apriltag_demo
+-- Set runtime path of "/home/jetson/Jetracer_WS_github/devel/bin/apriltag_demo" to ""

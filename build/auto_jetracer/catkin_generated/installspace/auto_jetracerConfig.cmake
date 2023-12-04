@@ -68,7 +68,7 @@ set(auto_jetracer_CONFIG_INCLUDED TRUE)
 # set variables for source/devel/install prefixes
 if("FALSE" STREQUAL "TRUE")
   set(auto_jetracer_SOURCE_PREFIX /home/jetson/Jetracer_WS_github/src/auto_jetracer)
-  set(auto_jetracer_DEVEL_PREFIX /home/jetson/Jetracer_WS_github/devel)
+  set(auto_jetracer_DEVEL_PREFIX /home/jetson/Jetracer_WS_github/devel/.private/auto_jetracer)
   set(auto_jetracer_INSTALL_PREFIX "")
   set(auto_jetracer_PREFIX ${auto_jetracer_DEVEL_PREFIX})
 else()

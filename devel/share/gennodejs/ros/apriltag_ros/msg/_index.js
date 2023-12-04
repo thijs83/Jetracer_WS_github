@@ -1,10 +1,1 @@
-
-"use strict";
-
-let AprilTagDetectionArray = require('./AprilTagDetectionArray.js');
-let AprilTagDetection = require('./AprilTagDetection.js');
-
-module.exports = {
-  AprilTagDetectionArray: AprilTagDetectionArray,
-  AprilTagDetection: AprilTagDetection,
-};
+/home/jetson/Jetracer_WS_github/devel/.private/apriltag_ros/share/gennodejs/ros/apriltag_ros/msg/_index.js

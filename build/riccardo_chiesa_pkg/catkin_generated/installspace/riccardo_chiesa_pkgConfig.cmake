@@ -68,7 +68,7 @@ set(riccardo_chiesa_pkg_CONFIG_INCLUDED TRUE)
 # set variables for source/devel/install prefixes
 if("FALSE" STREQUAL "TRUE")
   set(riccardo_chiesa_pkg_SOURCE_PREFIX /home/jetson/Jetracer_WS_github/src/riccardo_chiesa_pkg)
-  set(riccardo_chiesa_pkg_DEVEL_PREFIX /home/jetson/Jetracer_WS_github/devel)
+  set(riccardo_chiesa_pkg_DEVEL_PREFIX /home/jetson/Jetracer_WS_github/devel/.private/riccardo_chiesa_pkg)
   set(riccardo_chiesa_pkg_INSTALL_PREFIX "")
   set(riccardo_chiesa_pkg_PREFIX ${riccardo_chiesa_pkg_DEVEL_PREFIX})
 else()

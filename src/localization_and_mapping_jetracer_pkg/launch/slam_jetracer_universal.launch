@@ -18,4 +18,5 @@
     <rosparam command="load" file="$(find localization_and_mapping_jetracer_pkg)/config/gmapping_params_jetracer$(arg car_number_str_local).yaml" />
     <remap from="/scan" to="/scan$(arg car_number_str_local)" />
   </node>
+
 </launch>

@@ -13,12 +13,7 @@
   <!-- Start the lidar (here we include the launch file that fires up the lidar)-->
   <include file="$(find lidar_ros)/launch/X4.launch"/>
 
-
-  <!-- Map server (loads map)-->
-  <arg name="map_file" default="$(find localization_and_mapping_jetracer_pkg)/saved_maps_from_slam/map_my_house_hallway.yaml"/>
-  <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)"/>
-
-
+  <!-- A map server is also needed, but to avoid conflicts between multiple robots I have removed it from this launch file -->
   <!-- AMCL -->
   <node pkg="amcl" type="amcl" name="amcl_node$(arg car_number_str_local)">
     <rosparam command="load" file="$(find localization_and_mapping_jetracer_pkg)/config/amcl_params_jetracer$(arg car_number_str_local).yaml" />

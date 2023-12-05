@@ -134,7 +134,7 @@ class relative_state_publisher:
 
 		#publish relative state
 		floatarray_msg = Float32MultiArray()
-		floatarray_msg.data = [rel_vel, distance]
+		floatarray_msg.data = [rel_vel, -distance]
 		self.relative_state_publisher.publish(floatarray_msg)
 		#print('relative state =', [rel_vel, distance])
 

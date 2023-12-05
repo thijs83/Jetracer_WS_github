@@ -16,18 +16,17 @@ from tf.transformations import euler_from_quaternion
 import tf
 from nav_msgs.msg import Odometry
 from geometry_msgs.msg import Point, Pose, Quaternion, Twist, Vector3
-from functions_for_controllers import find_s_of_closest_point_on_global_path, produce_track,produce_marker_array_rviz,produce_marker_rviz
+from functions_for_controllers import find_s_of_closest_point_on_global_path, produce_track,produce_marker_array_rviz,produce_marker_rviz, steer_angle_2_command
 from visualization_msgs.msg import MarkerArray, Marker
 
 
 class steering_controller_class:
 	def __init__(self, car_number):
-		
+		#self.controller_type = 'linear'
+		self.controller_type = 'pursuit'
 
 		#set up variables
 		self.car_number = car_number
-
-		self.kp = 1
 
 		# initialize state variables
 		# [x y theta]
@@ -108,18 +107,21 @@ class steering_controller_class:
 
 	def compute_steering_control_action(self):
 
+		# --- get point on path closest to the robot ---
+
 		#get latest transform data for robot pose
 		try:
 			self.tf_listener.waitForTransform("/map", "/base_link_" + str(self.car_number), rospy.Time(), rospy.Duration(1.0))
 			(robot_position,robot_quaternion) = self.tf_listener.lookupTransform("/map",  "/base_link_" + str(self.car_number), rospy.Time(0))
+			# transform from quaternion to euler angles
+			robot_euler = euler_from_quaternion(robot_quaternion)
+			robot_theta = robot_euler[2]
 		except:
 			print('Failed to evaluate transform, trying again')
 			robot_theta = 0.0
 			robot_position = [0.0,0.0]
 
-		# transform from quaternion to euler angles
-		robot_euler = euler_from_quaternion(robot_quaternion)
-		robot_theta = robot_euler[2]
+
 
 		# adding delay compensation by projecting the position of the robot into the future
 		delay = 0.0 # [s]  is about 0.16 s
@@ -147,42 +149,62 @@ class steering_controller_class:
 		closest_point_message = produce_marker_rviz(x_closest_point, y_closest_point, rgba, marker_type, scale)
 		self.rviz_closest_point_on_path.publish(closest_point_message)
 
-		# determine tangent to path in closest point
-		# using a 10 point index jump just to avoid numerical issues with very small numbers
-		x_next_closest_point = self.x_vals_global_path[self.current_path_index+10]
-		y_next_closest_point = self.y_vals_global_path[self.current_path_index+10]
-		norm =  np.sqrt((x_next_closest_point-x_closest_point)**2+(y_next_closest_point-y_closest_point)**2)
-		tangent = [x_next_closest_point-x_closest_point, y_next_closest_point-x_closest_point] / norm
-		normal_right = [tangent[1],-tangent[0]]
-		# evaluate lateral distance
-		lateral_distance = normal_right[0] * (robot_position[0]-x_closest_point) + normal_right[1] * (robot_position[1]-y_closest_point)
-		#evaluate relative orientation to path
-		path_theta = np.arctan2(-y_closest_point+y_next_closest_point, -x_closest_point+x_next_closest_point)
-		rel_theta = robot_theta - path_theta
-		#print('lateral distance =', lateral_distance[0], 'relative theta =', rel_theta[0], 'path theta', path_theta[0])
 
-
+		# ----------------------------------------
 
 		#evaluate control action
-		kp =0.25 # 0.15
-		kp_err_lat_dot = 0.25/ (np.pi/4) 
-		# evaluating lateral error derivative
-		err_lat_dot = np.sin(rel_theta) * (self.v + 0.5)
-		steering = - kp * lateral_distance + kp_err_lat_dot * err_lat_dot 
-		# check for saturation
-		steering = np.min([1,steering])
-		steering = np.max([-1,steering])
+		if self.controller_type == 'linear':
 
-		#publish command
-		# steering offset
-		if car_number == '1':
-			steering_offset = 0.03
-		elif car_number == '2':
-			steering_offset = -0.075
+			# determine tangent to path in closest point
+			# using a 10 point index jump just to avoid numerical issues with very small numbers
+			x_next_closest_point = self.x_vals_global_path[self.current_path_index+10]
+			y_next_closest_point = self.y_vals_global_path[self.current_path_index+10]
+			norm =  np.sqrt((x_next_closest_point-x_closest_point)**2+(y_next_closest_point-y_closest_point)**2)
+			tangent = [x_next_closest_point-x_closest_point, y_next_closest_point-x_closest_point] / norm
+			normal_right = [tangent[1],-tangent[0]]
+			# evaluate lateral distance
+			lateral_distance = normal_right[0] * (robot_position[0]-x_closest_point) + normal_right[1] * (robot_position[1]-y_closest_point)
+			#evaluate relative orientation to path
+			path_theta = np.arctan2(-y_closest_point+y_next_closest_point, -x_closest_point+x_next_closest_point)
+			rel_theta = robot_theta - path_theta
+			#print('lateral distance =', lateral_distance[0], 'relative theta =', rel_theta[0], 'path theta', path_theta[0])
 
-		self.steering_publisher.publish(steering+steering_offset) ## super temporary fix because the map is flipped!
-		#self.throttle_publisher.publish(0.135)
+			#evaluate control action
+			kp =0.25 # 0.15
+			kp_err_lat_dot = 0.25/ (np.pi/4) 
+			# evaluating lateral error derivative
+			err_lat_dot = np.sin(rel_theta) * (self.v + 0.5)
+			steering = - kp * lateral_distance + kp_err_lat_dot * err_lat_dot 
+			# check for saturation
+			steering = np.min([1,steering])
+			steering = np.max([-1,steering])
 
+			# publish command
+			# steering offset
+			if car_number == '1':
+				steering_offset = 0.03
+			elif car_number == '2':
+				steering_offset = -0.075
+
+			self.steering_publisher.publish(steering+steering_offset) ## super temporary fix because the map is flipped!
+
+		elif self.controller_type == 'pursuit':
+			L = 0.175 # length of vehicle [m]
+			look_ahead_dist = 1 # look ahead distance on path [m]
+			Px = np.interp(s+look_ahead_dist, self.s_vals_global_path, self.x_vals_global_path)
+			Py = np.interp(s+look_ahead_dist, self.s_vals_global_path, self.y_vals_global_path)
+			#Px = self.x_of_s(s+look_ahead_dist)
+			#Py = self.y_of_s(s+look_ahead_dist)
+			ld = np.sqrt((Py-robot_position[1])**2+(Px-robot_position[0])+0.001)
+
+			alpha = np.arctan2((Py-robot_position[1]),(Px-robot_position[0])) - robot_theta # putting -theta corrects for the robot orinetation
+			#print('Px =', Px, '   Py=',Py ,'x_robot=',robot_position[0],'y_robot=',robot_position[1],'robot theta',robot_theta)
+			delta =np.arctan2(2*L*np.sin(alpha),ld)
+			print('delta=',delta)
+			# convert from steering angle to steering command
+			steering = steer_angle_2_command(delta)
+
+			self.steering_publisher.publish(steering) ## super temporary fix because the map is flipped!
 
 
 
@@ -203,7 +225,7 @@ if __name__ == '__main__':
 		# straight_line
 		# savoiardo
 		# straight_line_my_house
-		vehicle_controller.generate_track('straight_line_my_house')
+		vehicle_controller.generate_track('straight_line_pme')
 		
 		counter = 0
 		

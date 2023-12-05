@@ -7,11 +7,11 @@ import sys
 import rospy
 from std_msgs.msg import Float32, Float32MultiArray, Bool
 import rospkg
-from functions_for_steering_controller import evaluate_Fx_2
+from functions_for_controllers import evaluate_Fx_2
 from scipy import optimize
 
 
-class longitudinal_controller_class:
+class leader_longitudinal_controller_class:
 	def __init__(self, car_number):
 		
 
@@ -74,7 +74,7 @@ if __name__ == '__main__':
 		rate = rospy.Rate(10) #Hz
 
 		#set up longitudinal controller
-		vehicle_controller = longitudinal_controller_class(car_number)
+		vehicle_controller = leader_longitudinal_controller_class(car_number)
 
 		while not rospy.is_shutdown():
 			#run longitudinal controller loop

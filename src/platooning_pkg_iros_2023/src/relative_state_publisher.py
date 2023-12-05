@@ -61,9 +61,9 @@ class relative_state_publisher:
 		self.v_leader = sensors[6]
 
 	def leader_path_progress_callback(self, msg):
-		self.leader_position = [msg.pose.x,msg.pose.y]
+		self.leader_position = [msg.pose.position.x,msg.pose.position.y]
 		
-		print(self.leader_position)
+		
 
 
 	def generate_track(self, track_choice):
@@ -136,6 +136,7 @@ class relative_state_publisher:
 		floatarray_msg = Float32MultiArray()
 		floatarray_msg.data = [rel_vel, distance]
 		self.relative_state_publisher.publish(floatarray_msg)
+		#print('relative state =', [rel_vel, distance])
 
 
 
@@ -161,7 +162,10 @@ if __name__ == '__main__':
 
 		while not rospy.is_shutdown():
 			#run evalaution in a loop
-			relative_state_publisher_obj.evaluate_relative_state()
+			try:
+				relative_state_publisher_obj.evaluate_relative_state()
+			except:
+				print('failed to evaluate relative position, problay problem with tf')
 
 
 

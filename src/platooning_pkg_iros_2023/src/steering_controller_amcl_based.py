@@ -44,7 +44,7 @@ class steering_controller_class:
 
 		# set up publisher
 		self.steering_publisher = rospy.Publisher('steering_' + str(car_number), Float32, queue_size=1)
-		self.throttle_publisher = rospy.Publisher('throttle_' + str(car_number), Float32, queue_size=1)
+		#self.throttle_publisher = rospy.Publisher('throttle_' + str(car_number), Float32, queue_size=1)
 		self.rviz_global_path_publisher = rospy.Publisher('rviz_global_path_' + str(self.car_number), MarkerArray, queue_size=10)
 		self.rviz_closest_point_on_path = rospy.Publisher('rviz_closest_point_on_path_' + str(self.car_number), Marker, queue_size=10)
 
@@ -169,7 +169,7 @@ class steering_controller_class:
 
 		#publish command
 		self.steering_publisher.publish(steering+0.03) ## super temporary fix because the map is flipped!
-		self.throttle_publisher.publish(0.135)
+		#self.throttle_publisher.publish(0.135)
 
 
 

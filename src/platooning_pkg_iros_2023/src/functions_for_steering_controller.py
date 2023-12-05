@@ -234,5 +234,67 @@ def produce_marker_rviz(x, y, rgba, marker_type, scale):
 
 
 
+def evaluate_Fx_2(vx, th):
+	#define parameters
 
+	# these are from using the full dataset
+	# v_friction = 1.3852415
+	# v_friction_static = 0.15652551
+	# v_friction_static_tanh_mult = 44.221073
+	# v_friction_quad = 0.093703546
+
+	# tau_offset = 0.19454427
+	# tau_offset_reverse = 0.26989207
+	# tau_steepness = 15.530939
+	# tau_steepness_reverse = 10.14599
+	# tau_sat_high = 2.3438272
+	# tau_sat_high_reverse = 1.4451292
+
+	#these use -1.5 < vx < 1.5 (so low velocity data)
+	# v_friction = 0.99375176
+	# v_friction_static = 0.36111164
+	# v_friction_static_tanh_mult = 39.313255
+	# v_friction_quad = 0.2397717
+
+	# tau_offset = 0.20514612
+	# tau_offset_reverse = 0.27404037
+	# tau_steepness = 13.486378
+	# tau_steepness_reverse = 11.863287
+	# tau_sat_high = 2.632069
+	# tau_sat_high_reverse = 1.4405308
+
+
+	#fitted from same data as GP for ICRA 2024
+	v_friction = 1.0683593
+	v_friction_static = 1.1530068
+	v_friction_static_tanh_mult = 23.637709
+	v_friction_quad = 0.09363517
+
+	tau_offset = 0.16150239
+	tau_offset_reverse = 0.16150239
+	tau_steepness = 10.7796755
+	tau_steepness_reverse = 90
+	tau_sat_high = 2.496312
+	tau_sat_high_reverse = 5.0
+
+
+
+
+	#friction model
+	static_friction = np.tanh(v_friction_static_tanh_mult  * vx) * v_friction_static
+	v_contribution = - static_friction - vx * v_friction - np.sign(vx) * vx ** 2 * v_friction_quad 
+
+	#for positive throttle
+	th_activation1 = (np.tanh((th - tau_offset) * tau_steepness) + 1) * tau_sat_high
+	#for negative throttle
+	th_activation2 = (np.tanh((th + tau_offset_reverse) * tau_steepness_reverse)-1) * tau_sat_high_reverse
+
+	throttle_contribution = (th_activation1 + th_activation2) 
+
+	# --------
+
+	Fx = throttle_contribution + v_contribution
+	Fx_r = Fx * 0.5
+	Fx_f = Fx * 0.5
+	return Fx_r + Fx_f
 

@@ -109,8 +109,14 @@ class steering_controller_class:
 	def compute_steering_control_action(self):
 
 		#get latest transform data for robot pose
-		#self.tf_listener.waitForTransform("/map", "/base_link_" + str(self.car_number), rospy.Time(), rospy.Duration(1.0))
-		(robot_position,robot_quaternion) = self.tf_listener.lookupTransform("/map",  "/base_link_" + str(self.car_number), rospy.Time(0))
+		try:
+			self.tf_listener.waitForTransform("/map", "/base_link_" + str(self.car_number), rospy.Time(), rospy.Duration(1.0))
+			(robot_position,robot_quaternion) = self.tf_listener.lookupTransform("/map",  "/base_link_" + str(self.car_number), rospy.Time(0))
+		except:
+			print('Failed to evaluate transform, trying again')
+			robot_theta = 0.0
+			robot_position = [0.0,0.0]
+
 		# transform from quaternion to euler angles
 		robot_euler = euler_from_quaternion(robot_quaternion)
 		robot_theta = robot_euler[2]
@@ -151,14 +157,14 @@ class steering_controller_class:
 		# evaluate lateral distance
 		lateral_distance = normal_right[0] * (robot_position[0]-x_closest_point) + normal_right[1] * (robot_position[1]-y_closest_point)
 		#evaluate relative orientation to path
-		path_theta = np.arctan(-y_closest_point+y_next_closest_point, -x_closest_point+x_next_closest_point)
+		path_theta = np.arctan2(-y_closest_point+y_next_closest_point, -x_closest_point+x_next_closest_point)
 		rel_theta = robot_theta - path_theta
 		#print('lateral distance =', lateral_distance[0], 'relative theta =', rel_theta[0], 'path theta', path_theta[0])
 
 
 
 		#evaluate control action
-		kp =0.15
+		kp =0.25 # 0.15
 		kp_err_lat_dot = 0.25/ (np.pi/4) 
 		# evaluating lateral error derivative
 		err_lat_dot = np.sin(rel_theta) * (self.v + 0.5)
@@ -168,7 +174,13 @@ class steering_controller_class:
 		steering = np.max([-1,steering])
 
 		#publish command
-		self.steering_publisher.publish(steering+0.03) ## super temporary fix because the map is flipped!
+		# steering offset
+		if car_number == '1':
+			steering_offset = 0.03
+		elif car_number == '2':
+			steering_offset = -0.075
+
+		self.steering_publisher.publish(steering+steering_offset) ## super temporary fix because the map is flipped!
 		#self.throttle_publisher.publish(0.135)
 
 
@@ -197,10 +209,9 @@ if __name__ == '__main__':
 		
 		while not rospy.is_shutdown():
 			#run steering control loop
-			try:
-				vehicle_controller.compute_steering_control_action()
-			except:
-				print('Failed to evaluate steering action, trying again')
+			
+			vehicle_controller.compute_steering_control_action()
+
 
 			# this is just to republish global path message every now and then
 			if counter > global_path_message_rate:

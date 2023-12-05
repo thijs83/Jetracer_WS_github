@@ -109,26 +109,24 @@ class steering_controller_class:
 	def compute_steering_control_action(self):
 
 		#get latest transform data for robot pose
-		self.tf_listener.waitForTransform("/map", "/base_link_" + str(self.car_number), rospy.Time(), rospy.Duration(1.0))
+		#self.tf_listener.waitForTransform("/map", "/base_link_" + str(self.car_number), rospy.Time(), rospy.Duration(1.0))
 		(robot_position,robot_quaternion) = self.tf_listener.lookupTransform("/map",  "/base_link_" + str(self.car_number), rospy.Time(0))
 		# transform from quaternion to euler angles
 		robot_euler = euler_from_quaternion(robot_quaternion)
 		robot_theta = robot_euler[2]
 
 		# adding delay compensation by projecting the position of the robot into the future
-		delay = 0.16 # [s]
+		delay = 0.0 # [s]  is about 0.16 s
 		robot_position[0] = robot_position[0] + np.cos(robot_theta) * self.v * delay
 		robot_position[1] = robot_position[1] + np.sin(robot_theta) * self.v * delay
 		robot_theta = robot_theta + self.w * delay
 
-		print('delay compensation delta =', np.cos(robot_theta) * self.v * delay, np.sin(robot_theta) * self.v * delay, self.w * delay)
+		#print('delay compensation delta =', np.cos(robot_theta) * self.v * delay, np.sin(robot_theta) * self.v * delay, self.w * delay)
 
 	
-		# measure the closest point on the global path, retturning the respective s parameter and its index
+		# measure the closest point on the global path, returning the respective s parameter and its index
 		estimated_ds = 1 # just a first guess for how far the robot has travelled along the path
-		s, self.current_path_index = find_s_of_closest_point_on_global_path(np.array([robot_position[0], robot_position[1]]), self.s_vals_global_path,
-		                                                          self.x_vals_global_path, self.y_vals_global_path,
-		                                                          self.previous_path_index, estimated_ds)
+		s, self.current_path_index = find_s_of_closest_point_on_global_path(np.array([robot_position[0], robot_position[1]]),self.s_vals_global_path,self.x_vals_global_path, self.y_vals_global_path,self.previous_path_index, estimated_ds)
 
 		
 		# update index along the path to know where to search in next iteration
@@ -196,10 +194,13 @@ if __name__ == '__main__':
 		vehicle_controller.generate_track('straight_line_my_house')
 		
 		counter = 0
-
+		
 		while not rospy.is_shutdown():
 			#run steering control loop
-			vehicle_controller.compute_steering_control_action()
+			try:
+				vehicle_controller.compute_steering_control_action()
+			except:
+				print('Failed to evaluate steering action, trying again')
 
 			# this is just to republish global path message every now and then
 			if counter > global_path_message_rate:

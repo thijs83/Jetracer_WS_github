@@ -109,7 +109,7 @@ if __name__ == '__main__':
 	# instantiate odometry publishing class
 	odom_pub_obj = odom_pub(car_number)
 	#publish odometry
-	rate = 50
+	rate = 20
 	odom_pub_obj.publish_odometry(rate)
 
 	rospy.spin()

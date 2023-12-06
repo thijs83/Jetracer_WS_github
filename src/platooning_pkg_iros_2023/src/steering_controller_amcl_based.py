@@ -124,7 +124,7 @@ class steering_controller_class:
 
 
 		# adding delay compensation by projecting the position of the robot into the future
-		delay = 0.0 # [s]  is about 0.16 s
+		delay = 0.3 # [s]
 		robot_position[0] = robot_position[0] + np.cos(robot_theta) * self.v * delay
 		robot_position[1] = robot_position[1] + np.sin(robot_theta) * self.v * delay
 		robot_theta = robot_theta + self.w * delay
@@ -190,7 +190,7 @@ class steering_controller_class:
 
 		elif self.controller_type == 'pursuit':
 			L = 0.175 # length of vehicle [m]
-			look_ahead_dist = 1 # look ahead distance on path [m]
+			look_ahead_dist = 1.0 # look ahead distance on path [m]
 			Px = np.interp(s+look_ahead_dist, self.s_vals_global_path, self.x_vals_global_path)
 			Py = np.interp(s+look_ahead_dist, self.s_vals_global_path, self.y_vals_global_path)
 			#Px = self.x_of_s(s+look_ahead_dist)
@@ -200,7 +200,7 @@ class steering_controller_class:
 			alpha = np.arctan2((Py-robot_position[1]),(Px-robot_position[0])) - robot_theta # putting -theta corrects for the robot orinetation
 			#print('Px =', Px, '   Py=',Py ,'x_robot=',robot_position[0],'y_robot=',robot_position[1],'robot theta',robot_theta)
 			delta =np.arctan2(2*L*np.sin(alpha),ld)
-			print('delta=',delta)
+			#print('delta=',delta)
 			# convert from steering angle to steering command
 			steering = steer_angle_2_command(delta)
 
@@ -217,7 +217,7 @@ if __name__ == '__main__':
 	try:
 		car_number = os.environ["car_number"]
 		rospy.init_node('steering_control_node_' + str(car_number), anonymous=False)
-		rate = rospy.Rate(10) #Hz
+		rate = rospy.Rate(20) #Hz
 		global_path_message_rate = 50 # publish 1 every 50 control loops
 
 		#set up steering controller

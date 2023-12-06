@@ -36,7 +36,7 @@ class PubSensors:
 
 		print("starting sensor data publishing")
 		# Run the while loop for the controller
-		rate = rospy.Rate(10)	#frequency !! note that the serial gives new measurements at 10 Hz so keep it like this, faster rates seem to bee too much for the battery sensor and the values stop being updated
+		rate = rospy.Rate(20)	#frequency !! note that the serial gives new measurements at 10 Hz so keep it like this, faster rates seem to bee too much for the battery sensor and the values stop being updated
 		start_clock_time = rospy.get_rostime()
 		while not rospy.is_shutdown():
 

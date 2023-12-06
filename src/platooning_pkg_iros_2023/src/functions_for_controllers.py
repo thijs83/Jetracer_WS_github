@@ -64,7 +64,7 @@ def produce_track(choice,n_checkpoints):
 
 	elif choice == 'straight_line_pme':
 		Checkpoints_x = np.linspace(-0.1, +30, n_checkpoints)
-		Checkpoints_y = np.linspace(+0.0, 0.0, n_checkpoints)
+		Checkpoints_y = np.linspace(+0.0, -0.5, n_checkpoints)
 	return Checkpoints_x, Checkpoints_y
 
 
@@ -304,9 +304,16 @@ def evaluate_Fx_2(vx, th):
 
 def steer_angle_2_command(steer_angle):
 	# taken on car n. 3! so curves could be different!
-	a = -1.2053807 # the minus sign is correct because if you want to go left you go anti-clockwise so positive steering angle
-	b = 0.38302866
-	c = 0.0 #0.08739186 # this is the offset
-	steer_command = c + 1/a*np.arctan(steer_angle/b)
+	# a = -1.2053807 # the minus sign is correct because if you want to go left you go anti-clockwise so positive steering angle
+	# b = 0.38302866
+	# c = 0.0 #0.08739186 # this is the offset
+	# steer_command = c + 1/a*np.arctan(steer_angle/b)
+
+	#taken on car 2 in hallway pme
+	b =  -0.29128888
+	c =  0.033821724
+	#steering_angle = self.b * steering_command - self.c
+	steer_command = (c + steer_angle)/b
+
 	return steer_command
 

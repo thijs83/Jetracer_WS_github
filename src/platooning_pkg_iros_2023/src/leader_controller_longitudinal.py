@@ -71,7 +71,7 @@ if __name__ == '__main__':
 	try:
 		car_number = os.environ["car_number"]
 		rospy.init_node('longitudinal_control_node_' + str(car_number), anonymous=False)
-		rate = rospy.Rate(10) #Hz
+		rate = rospy.Rate(20) #Hz
 
 		#set up longitudinal controller
 		vehicle_controller = leader_longitudinal_controller_class(car_number)

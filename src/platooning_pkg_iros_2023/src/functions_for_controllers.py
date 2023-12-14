@@ -310,8 +310,8 @@ def steer_angle_2_command(steer_angle):
 	# steer_command = c + 1/a*np.arctan(steer_angle/b)
 
 	#taken on car 2 in hallway pme
-	b =  -0.29128888
-	c =  0.033821724
+	b =  -0.3
+	c =  0.0
 	#steering_angle = self.b * steering_command - self.c
 	steer_command = (c + steer_angle)/b
 

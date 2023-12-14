@@ -124,7 +124,7 @@ class steering_controller_class:
 
 
 		# adding delay compensation by projecting the position of the robot into the future
-		delay = 0.3 # [s]
+		delay = 0.0 #0.3 # [s]
 		robot_position[0] = robot_position[0] + np.cos(robot_theta) * self.v * delay
 		robot_position[1] = robot_position[1] + np.sin(robot_theta) * self.v * delay
 		robot_theta = robot_theta + self.w * delay
@@ -190,7 +190,7 @@ class steering_controller_class:
 
 		elif self.controller_type == 'pursuit':
 			L = 0.175 # length of vehicle [m]
-			look_ahead_dist = 1.0 # look ahead distance on path [m]
+			look_ahead_dist = 0.5 # look ahead distance on path [m]
 			Px = np.interp(s+look_ahead_dist, self.s_vals_global_path, self.x_vals_global_path)
 			Py = np.interp(s+look_ahead_dist, self.s_vals_global_path, self.y_vals_global_path)
 			#Px = self.x_of_s(s+look_ahead_dist)

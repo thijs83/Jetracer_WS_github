@@ -19,10 +19,15 @@ def teleop_gamepad(car_number):
 
 	#Setup topics publishing and nodes
 	pub_steering = rospy.Publisher('steering_' + str(car_number), Float32, queue_size=8)
+	pub_v_ref = rospy.Publisher('v_ref_' + str(car_number), Float32, queue_size=8)
 	pub_safety_value = rospy.Publisher('safety_value', Float32, queue_size=8)
 
 	rospy.init_node('teleop_gamepad' + str(car_number), anonymous=True)
 	rate = rospy.Rate(10) # 10hz
+
+	# initialize v_ref
+	v_ref = 1.0 # [m/s]
+	incr = 0.1 # increase by this amount
 
 	while not rospy.is_shutdown():
 		pygame.event.pump()
@@ -42,6 +47,20 @@ def teleop_gamepad(car_number):
 			pub_safety_value.publish(1)
 		else:
 			pub_safety_value.publish(0)
+
+		# increase reference velocity by pressing the "Y" and "A" buttons
+		for event in pygame.event.get(): # User did something.
+			if event.type == pygame.JOYBUTTONDOWN: # button Y
+				if j.get_button(4) == 1:
+					v_ref = v_ref + incr
+					print('v_ref = ', v_ref)
+
+				if j.get_button(0) == 1: # button A
+					v_ref = v_ref - incr
+					print('v_ref = ', v_ref)
+
+		# publish v_ref
+		pub_v_ref.publish(v_ref)
 
 
 		rate.sleep()

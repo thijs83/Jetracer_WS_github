@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- set car number parameter to avoid having nodes with same name with multiple jetracers -->
+  <arg name="car_number_str_local" value="$(env car_number_str)"/>
+
+  <!-- run racecar -->
+  <node name="racecar_with_safety$(arg car_number_str_local)" pkg="cytron_jetracer" type="racecar_universal.py"
+    output="screen"/>
+
+  <!-- sensor publishing -->
+  <node name="sensor_publisher$(arg car_number_str_local)" pkg="cytron_jetracer" type="publish_sensors_universal.py" output="screen"/>
+
+  <!-- gamepad velocity reference and steering controller -->
+  <node name="v_ref_gamepad_node$(arg car_number_str_local)" pkg="cytron_jetracer" type="gamepad_steer_v_ref_universal.py"
+    output="screen"/>
+
+  <!-- longitudinal velocity controller-->
+  <node name="longitudinal_v_ref_controller$(arg car_number_str_local)" pkg="platooning_pkg_iros_2023" type="leader_controller_longitudinal.py"
+    output="screen"/>
+
+</launch>

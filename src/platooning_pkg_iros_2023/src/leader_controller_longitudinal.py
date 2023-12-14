@@ -34,21 +34,36 @@ class leader_longitudinal_controller_class:
 
 		#subscribers
 		self.v_encoder_subscriber = rospy.Subscriber('sensors_' + str(car_number), Float32MultiArray, self.sensors_callback)
+		self.v_ref_subscriber = rospy.Subscriber('v_ref_' + str(car_number), Float32, self.v_ref_callback)
 
-		# set up feed forward action (if the target velocity changes it needs to be recomputed)
-		func = lambda th : evaluate_Fx_2(self.v_ref, th)
-		self.tau_ff = optimize.fsolve (func, 0.14)[0]
-		print ('feed forward action =', self.tau_ff)
+		# set up feed forward action
+		self.evaluate_reference_throttle(self.v_ref)
+		
 
 
 	def sensors_callback(self, msg):
 		self.sensors = np.array(msg.data)
 		self.v = self.sensors[6]
 
+	def v_ref_callback(self, msg):
+		# re-evaluate ff action
+		if self.v_ref != msg.data:
+			self.evaluate_reference_throttle(self.v_ref)
+			print('------------')
+			self.v_ref = msg.data
+
+
+	def evaluate_reference_throttle(self,v_ref):
+		func = lambda th : evaluate_Fx_2(v_ref, th)
+		th_first_guess = 0.14
+		self.tau_ff = optimize.fsolve (func, th_first_guess)[0]
+		print ('feed forward action =', self.tau_ff)
+		
 
 	def compute_longitudinal_control_action(self):
 		# evaluate control action as a feed forward part plus a feed back part
 		tau_fb = - self.kp * (self.v-self.v_ref)
+
 		# apply saturation to feedbacck part
 		tau_fb = np.min([0.05,tau_fb])
 		tau_fb = np.max([-0.05,tau_fb])

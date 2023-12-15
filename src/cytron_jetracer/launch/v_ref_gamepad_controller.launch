@@ -8,7 +8,7 @@
     output="screen"/>
 
   <!-- sensor publishing -->
-  <node name="sensor_publisher$(arg car_number_str_local)" pkg="cytron_jetracer" type="publish_sensors_universal.py" output="screen"/>
+  <node name="publish_sensors_and_inputs_universal$(arg car_number_str_local)" pkg="cytron_jetracer" type="publish_sensors_and_inputs_universal.py" output="screen"/>
 
   <!-- gamepad velocity reference and steering controller -->
   <node name="v_ref_gamepad_node$(arg car_number_str_local)" pkg="cytron_jetracer" type="gamepad_steer_v_ref_universal.py"
@@ -16,6 +16,6 @@
 
   <!-- longitudinal velocity controller-->
   <node name="longitudinal_v_ref_controller$(arg car_number_str_local)" pkg="platooning_pkg_iros_2023" type="leader_controller_longitudinal.py"
-    output="screen"/>
+    output="screen"/> 
 
 </launch>

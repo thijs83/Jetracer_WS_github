@@ -80,7 +80,7 @@ class follower_longitudinal_controller_class:
 
 		#self.acc_leader_subscriber = rospy.Subscriber('acceleration_' + str(self.leader_number), Float32, self.acc_leader_callback)
 		# state subscribers
-		self.sensors_subscriber = rospy.Subscriber('sensors_' + str(car_number), Float32MultiArray, self.sensors_callback)
+		self.sensors_and_input_subscriber = rospy.Subscriber('sensors_and_input_' + str(car_number), Float32MultiArray, self.sensors_and_input_callback)
 		self.relative_state_subscriber = rospy.Subscriber('relative_state_' + str(car_number), Float32MultiArray, self.relative_state_callback)
 
 		#leader_encoder_topic = 'rel_theta' + str(self.leader_number)
@@ -120,9 +120,9 @@ class follower_longitudinal_controller_class:
 
 	# state callbacks
 
-	def sensors_callback(self, msg):
-		self.sensors = np.array(msg.data)
-		self.v = self.sensors[6]
+	def sensors_and_input_callback(self, msg):
+		self.sensors_and_input = np.array(msg.data)
+		self.v = self.sensors_and_input[6]
 
 	def relative_state_callback(self, msg):
 		# [rel_vel, distance]

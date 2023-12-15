@@ -33,7 +33,7 @@ class steering_controller_class:
 		self.state = [0, 0, 0]
 		self.t_prev = 0.0
 		self.previous_path_index = 0 # initial index for closest point in global path
-		self.sensors = [0.0, 0.0, 0.0, 0.0, 0.0, .0, 0.0]
+		self.sensors = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 		self.w = 0.0
 		self.v = 0.0
 
@@ -49,7 +49,7 @@ class steering_controller_class:
 
 		#subscribers
 		self.global_pose_subscriber = rospy.Subscriber('odom_' + str(car_number), Odometry, self.odometry_callback)
-		self.v_encoder_subscriber = rospy.Subscriber('sensors_' + str(car_number), Float32MultiArray, self.sensors_callback)
+		self.v_encoder_subscriber = rospy.Subscriber('sensors_and_input_' + str(car_number), Float32MultiArray, self.sensors_callback)
 		self.tf_listener = tf.TransformListener()
 
 	def odometry_callback(self,odometry_msg):
@@ -204,8 +204,11 @@ class steering_controller_class:
 			# convert from steering angle to steering command
 			steering = steer_angle_2_command(delta)
 
-			self.steering_publisher.publish(steering) ## super temporary fix because the map is flipped!
+			# saturate steering
+			steering = np.min([steering,1])
+			steering = np.max([stering, -1])
 
+			self.steering_publisher.publish(steering)
 
 
 

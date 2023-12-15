@@ -10,16 +10,23 @@ import serial
 import numpy as np
 
 
-class PubSensors:
+class Pubsensors_and_input:
 	
 	def __init__(self, car_number):
 		#Setup node and topics subscription
 		print("Sensor publisher setup ros topics and node")
 
 		#setup this node
-		rospy.init_node('publish_sensors_'+str(car_number), anonymous=True)
+		rospy.init_node('publish_sensors_and_input_'+str(car_number), anonymous=True)
 		#setup publisher handles
-		pub_sens = rospy.Publisher("sensors_" + str(car_number), Float32MultiArray, queue_size=1)
+		pub_sens_input = rospy.Publisher("sensors_and_input_" + str(car_number), Float32MultiArray, queue_size=1)
+		# subscribe to inputs
+		self.throttle = 0.0 
+		self.steering = 0.0
+		self.safety_value = 0.0
+		rospy.Subscriber('safety_value', Float32, self.callback_safety)
+		rospy.Subscriber('throttle_' + str(car_number), Float32, self.callback_throttle)
+		rospy.Subscriber('steering_' + str(car_number), Float32, self.callback_steering)
 
 		try:
 			print("Setting up USB connection")
@@ -67,18 +74,28 @@ class PubSensors:
 				#define messages to send
 				sensor_msg = Float32MultiArray()
 
-				# safety_value, current,voltage,IMU[0](acc x),IMU[1] (acc y),IMU[2] (omega rads),velocity
-				sensor_msg.data = [elapsed_time, current, voltage, acc_x,acc_y, omega_rad, vel]
+				#                  current,voltage,IMU[0](acc x),IMU[1] (acc y),IMU[2] (omega rads),velocity, safety, throttle, steering
+				sensor_msg.data = [elapsed_time, current, voltage, acc_x, acc_y, omega_rad, vel, self.safety_value,self.throttle,self.steering]
 
 				#publish messages
-				pub_sens.publish(sensor_msg)
+				pub_sens_input.publish(sensor_msg)
 			
 
 			# Sleep for the time set in the rate
 			rate.sleep()
 		
 		
+	#Safety callback function
+	def callback_safety(self, safety_val_incoming):
+		self.safety_value = safety_val_incoming.data
 
+	#Throttle callback function
+	def callback_throttle(self, throttle_data):
+		self.throttle = throttle_data.data
+
+	#Steering callback function
+	def callback_steering(self, steering_data):
+		self.steering = steering_data.data
 			
 		
 
@@ -86,6 +103,6 @@ if __name__ == '__main__':
 	print("Starting pid-controller for velocity")
 	try:	
 		car_number = os.environ["car_number"]
-		vel_publisher = PubSensors(car_number)
+		vel_publisher = Pubsensors_and_input(car_number)
 	except rospy.ROSInterruptException:
 		print('failed to lauch velocity publisher')

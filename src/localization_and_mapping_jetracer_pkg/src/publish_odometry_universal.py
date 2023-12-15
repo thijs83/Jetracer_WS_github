@@ -27,7 +27,7 @@ class odom_pub:
 		rospy.init_node('odometry_publisher_' + str(car_number), anonymous=True)
 		self.odom_pub = rospy.Publisher("odom_"+ str(car_number), Odometry, queue_size=50)
 		self.odom_broadcaster = tf.TransformBroadcaster()
-		rospy.Subscriber('sensors_' + str(car_number), Float32MultiArray, self.callback_sensors)
+		rospy.Subscriber('sensors_and_input_' + str(car_number), Float32MultiArray, self.callback_sensors_and_input)
 
 
 		# initialize absolute coordinates
@@ -45,10 +45,10 @@ class odom_pub:
 
 
 	#velocity callback function
-	def callback_sensors(self, sensors_data):
+	def callback_sensors_and_input(self, sensors_and_input_data):
 		#[elapsed_time, current, voltage, acc_x, acc_y,omega, vel]
-		self.w_IMU = sensors_data.data[5] # omega is in radians		
-		self.vx = sensors_data.data[6]
+		self.w_IMU = sensors_and_input_data.data[5] # omega is in radians		
+		self.vx = sensors_and_input_data.data[6]
 
 
 

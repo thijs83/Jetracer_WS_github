@@ -23,7 +23,7 @@ class leader_longitudinal_controller_class:
 		self.kp = 0.2
 
 		# initialize state variables
-		self.sensors = [0.0, 0.0, 0.0, 0.0, 0.0, .0, 0.0]
+		self.sensors_and_input = [0.0, 0.0, 0.0, 0.0, 0.0, .0, 0.0,0.0,0.0,0.0]
 		self.v = 0.0
 
 		# initiate steering variables
@@ -33,7 +33,7 @@ class leader_longitudinal_controller_class:
 		self.throttle_publisher = rospy.Publisher('throttle_' + str(car_number), Float32, queue_size=1)
 
 		#subscribers
-		self.v_encoder_subscriber = rospy.Subscriber('sensors_' + str(car_number), Float32MultiArray, self.sensors_callback)
+		self.v_encoder_subscriber = rospy.Subscriber('sensors_and_input_' + str(car_number), Float32MultiArray, self.sensors_and_input_callback)
 		self.v_ref_subscriber = rospy.Subscriber('v_ref_' + str(car_number), Float32, self.v_ref_callback)
 
 		# set up feed forward action
@@ -41,9 +41,10 @@ class leader_longitudinal_controller_class:
 		
 
 
-	def sensors_callback(self, msg):
-		self.sensors = np.array(msg.data)
-		self.v = self.sensors[6]
+	def sensors_and_input_callback(self, msg):
+		self.sensors_and_input = np.array(msg.data)
+		# [elapsed_time, current, voltage, acc_x, acc_y, omega_rad, vel, safety_value, throttle, steering]
+		self.v = self.sensors_and_input[6]
 
 	def v_ref_callback(self, msg):
 		# re-evaluate ff action

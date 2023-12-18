@@ -5,6 +5,7 @@ import pygame
 import time
 from std_msgs.msg import Float32
 import os
+import numpy as np
 
 #Initialize pygame and gamepad
 pygame.init()
@@ -29,6 +30,13 @@ def teleop_gamepad(car_number):
 	v_ref = 1.0 # [m/s]
 	incr = 0.1 # increase by this amount
 
+	#publish sinusoidal steering
+	freq = 1 #Hz
+	amp = 0.4
+	
+	start_clock_time = rospy.get_rostime()
+
+
 	while not rospy.is_shutdown():
 		pygame.event.pump()
 
@@ -38,15 +46,31 @@ def teleop_gamepad(car_number):
 		#print("Throttle_3:", throttle)
 		#print("Steering_3:", steering)
 
-		#Pubblish gamepad values
-		pub_steering.publish(steering)
+		stop_clock_time = rospy.get_rostime()
+		elapsed_time = stop_clock_time.secs - start_clock_time.secs + (stop_clock_time.nsecs - start_clock_time.nsecs)/1000000000
+		time_now = stop_clock_time.secs + (stop_clock_time.nsecs)/1000000000
 
-		#safety value publishing
+		#Pubblish gamepad values
+
+
+		#safety value publishingte
 		if j.get_button(7) == 1:
 			print('safety off')
 			pub_safety_value.publish(1)
+			#pub_steering.publish(steering)
+
+			#saturate steering
+			#steering = steering+amp*np.sin(time_now/freq * 2 * np.pi)
+			#steering = np.max([-amp,steering])
+			#steering = np.min([+amp,steering])
+			#pub_steering.publish(steering)
 		else:
 			pub_safety_value.publish(0)
+			#pub_steering.publish(steering)
+			pub_steering.publish(0.0)
+
+		pub_steering.publish(steering)
+
 
 		# increase reference velocity by pressing the "Y" and "A" buttons
 		for event in pygame.event.get(): # User did something.

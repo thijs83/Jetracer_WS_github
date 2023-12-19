@@ -85,17 +85,17 @@ if __name__ == '__main__':
 		print('setting steer gain and offset for car number 1')
 	elif float(car_number) == 2:
 		steering_gain = -0.5
-		steering_offset = -0.18*0.5
+		steering_offset = -0.09*2
 		print('setting steer gain and offset for car number 2')
 
 	elif float(car_number) == 3:
 		steering_gain = -0.5
-		steering_offset = 0.0
+		steering_offset = +0.26 * 0.5
 		print('setting steer gain and offset for car number 3')
 
 	else:
-		steering_gain = -0.4
-		steering_offset = 0.0008
+		steering_gain = -0.5
+		steering_offset = 0.0
 
 
 	throttle_gain = 1

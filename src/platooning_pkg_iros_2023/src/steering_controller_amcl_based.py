@@ -228,7 +228,8 @@ if __name__ == '__main__':
 		# straight_line
 		# savoiardo
 		# straight_line_my_house
-		vehicle_controller.generate_track('straight_line_pme')
+		#'straight_line_downstairs'
+		vehicle_controller.generate_track('straight_line_downstairs')
 		
 		counter = 0
 		

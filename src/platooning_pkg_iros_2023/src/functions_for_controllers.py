@@ -25,7 +25,7 @@ def produce_track(choice,n_checkpoints):
 	print('track choice = ' + choice)
 	if choice == 'savoiardo':
 
-		R = 0.8  # as a reference the max radius of curvature is  R = L/tan(delta) = 0.82
+		R = 0.8  
 		theta_init2 = np.pi * -0.5
 		theta_end2 = np.pi * 0.5
 		theta_vec2 = np.linspace(theta_init2, theta_end2, n_checkpoints)
@@ -57,6 +57,47 @@ def produce_track(choice,n_checkpoints):
 				 Checkpoints_y3[0:n_checkpoints - 1],
 				 Checkpoints_y4[0:n_checkpoints - 1],
 				 Checkpoints_y1[0:n_checkpoints - 1]), axis=0)
+
+	if choice == 'savoiardo_long':
+
+		x_shift = 1.0
+		y_shift = -0.25
+		y_sideways_shift = -1
+
+		R = 0.8  
+		theta_init2 = np.pi * -0.5
+		theta_end2 = np.pi * 0.5
+		theta_vec2 = np.linspace(theta_init2, theta_end2, n_checkpoints)
+		theta_init4 = np.pi * 0.5
+		theta_end4 = np.pi * 1.5
+		theta_vec4 = np.linspace(theta_init4, theta_end4, n_checkpoints)
+
+		Checkpoints_x1 = np.linspace(0, 20, n_checkpoints)
+		Checkpoints_y1 = np.linspace(0, y_sideways_shift, n_checkpoints) - R
+
+		Checkpoints_x2 = 20 + R * np.cos(theta_vec2)
+		Checkpoints_y2 = R * np.sin(theta_vec2) + y_sideways_shift
+
+		Checkpoints_x3 = np.linspace(20, 0, n_checkpoints)
+		Checkpoints_y3 = R * np.ones(n_checkpoints) + np.linspace(y_sideways_shift, 0, n_checkpoints)
+
+		Checkpoints_x4 = 0 + R * np.cos(theta_vec4)
+		Checkpoints_y4 = R * np.sin(theta_vec4)
+
+
+
+		Checkpoints_x = np.concatenate((Checkpoints_x2[0:n_checkpoints - 1],
+				 Checkpoints_x3[2:n_checkpoints - 1],
+				 Checkpoints_x4[0:n_checkpoints - 1],
+				 Checkpoints_x1[0:n_checkpoints - 1]), axis=0) + x_shift
+
+		Checkpoints_y = np.concatenate((Checkpoints_y2[0:n_checkpoints - 1],
+				 Checkpoints_y3[2:n_checkpoints - 1],
+				 Checkpoints_y4[0:n_checkpoints - 1],
+				 Checkpoints_y1[0:n_checkpoints - 1]), axis=0)+y_shift
+
+
+
 
 	elif choice == 'straight_line_my_house':
 		Checkpoints_x = np.linspace(-6, +30, n_checkpoints)

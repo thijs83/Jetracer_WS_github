@@ -193,7 +193,8 @@ class steering_controller_class:
 			Py = np.interp(s+look_ahead_dist, self.s_vals_global_path, self.y_vals_global_path)
 			#Px = self.x_of_s(s+look_ahead_dist)
 			#Py = self.y_of_s(s+look_ahead_dist)
-			ld = np.sqrt((Py-robot_position[1])**2+(Px-robot_position[0])+0.001)
+
+			ld = np.sqrt((Py-robot_position[1])**2+(Px-robot_position[0])**2+0.001)
 
 			alpha = np.arctan2((Py-robot_position[1]),(Px-robot_position[0])) - robot_theta # putting -theta corrects for the robot orinetation
 			#print('Px =', Px, '   Py=',Py ,'x_robot=',robot_position[0],'y_robot=',robot_position[1],'robot theta',robot_theta)
@@ -227,7 +228,8 @@ if __name__ == '__main__':
 		# savoiardo
 		# straight_line_my_house
 		#'straight_line_downstairs'
-		vehicle_controller.generate_track('straight_line_downstairs')
+		#savoiardo_long
+		vehicle_controller.generate_track('savoiardo_long')
 		
 		counter = 0
 		

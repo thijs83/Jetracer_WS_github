@@ -34,8 +34,8 @@ class relative_state_publisher:
 		self.state = [0, 0, 0]
 		self.leader_position = [0, 0]
 		self.previous_path_index = 0 # initial index for closest point in global path
-		self.sensors = [0.0, 0.0, 0.0, 0.0, 0.0, .0, 0.0]
-		self.v = 0.0
+		self.sensors = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+		self.v = 0.1
 		self.v_leader = 0.0
 
 
@@ -44,8 +44,8 @@ class relative_state_publisher:
 
 		#subscribers
 		#self.rviz_closest_point_on_path_leader = rospy.Subscriber('rviz_closest_point_on_path_' + str(self.leader_number), Marker, self.leader_path_progress_callback)
-		self.state_subscriber = rospy.Subscriber('sensors_' + str(self.car_number), Float32MultiArray, self.sensors_callback)
-		self.leader_state_subscriber = rospy.Subscriber('sensors_' + str(self.leader_number), Float32MultiArray, self.sensors_leader_callback)
+		self.state_subscriber = rospy.Subscriber('sensors_and_input_' + str(self.car_number), Float32MultiArray, self.sensors_callback)
+		self.leader_state_subscriber = rospy.Subscriber('sensors_and_input_' + str(self.leader_number), Float32MultiArray, self.sensors_leader_callback)
 
 		self.tf_listener = tf.TransformListener()
 
@@ -54,11 +54,13 @@ class relative_state_publisher:
 
 	def sensors_callback(self, msg):
 		sensors = np.array(msg.data)
-		self.v = sensors[6]
+		#current,voltage,IMU[0](acc x),IMU[1] (acc y),IMU[2] (omega rads),velocity, safety, throttle, steering
+		self.v = sensors[5]
 
 	def sensors_leader_callback(self, msg):
 		sensors = np.array(msg.data)
-		self.v_leader = sensors[6]
+		#current,voltage,IMU[0](acc x),IMU[1] (acc y),IMU[2] (omega rads),velocity, safety, throttle, steering
+		self.v_leader = sensors[5]
 
 	def leader_path_progress_callback(self, msg):
 		self.leader_position = [msg.pose.position.x,msg.pose.position.y]

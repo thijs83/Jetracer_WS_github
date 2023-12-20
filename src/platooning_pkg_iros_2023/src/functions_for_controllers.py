@@ -315,8 +315,8 @@ def steer_angle_2_command(steer_angle,car_number):
 		b =  -0.3
 		c =  0.0
 	elif car_number=='2':
-		b =  -0.3
-		c =  0.0
+		b =  -0.4306743
+		c =  -0.0011013203
 	elif car_number=='3':
 		b =  -0.4677383
 		c =  0.013598954

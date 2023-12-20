@@ -124,7 +124,7 @@ class steering_controller_class:
 
 		#evaluate this for longitudinal controller coordination
 		# adding delay compensation by projecting the position of the robot into the future
-		delay =  0 #0.175 # [s]
+		delay =  0.175 # [s]
 		robot_position[0] = robot_position[0] + np.cos(robot_theta) * self.v * delay
 		robot_position[1] = robot_position[1] + np.sin(robot_theta) * self.v * delay
 		robot_theta = robot_theta + self.w * delay
@@ -144,19 +144,6 @@ class steering_controller_class:
 		closest_point_message = produce_marker_rviz(x_closest_point, y_closest_point, rgba, marker_type, scale)
 		self.rviz_closest_point_on_path.publish(closest_point_message)
 
-		# now re-evaluate for controller
-		delay =  0.175 # [s]
-		robot_position[0] = robot_position[0] + np.cos(robot_theta) * self.v * delay
-		robot_position[1] = robot_position[1] + np.sin(robot_theta) * self.v * delay
-		robot_theta = robot_theta + self.w * delay
-		# measure the closest point on the global path, returning the respective s parameter and its index
-		estimated_ds = 1 # just a first guess for how far the robot has travelled along the path
-		s, self.current_path_index = find_s_of_closest_point_on_global_path(np.array([robot_position[0], robot_position[1]]),self.s_vals_global_path,self.x_vals_global_path, self.y_vals_global_path,self.previous_path_index, estimated_ds)
-
-		# update index along the path to know where to search in next iteration
-		self.previous_path_index = self.current_path_index
-		x_closest_point = self.x_vals_global_path[self.current_path_index]
-		y_closest_point = self.y_vals_global_path[self.current_path_index]
 
 
 

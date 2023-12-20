@@ -43,7 +43,7 @@ class relative_state_publisher:
 		self.relative_state_publisher = rospy.Publisher('relative_state_' + str(self.car_number), Float32MultiArray, queue_size=10)
 
 		#subscribers
-		self.rviz_closest_point_on_path_leader = rospy.Subscriber('rviz_closest_point_on_path_' + str(self.leader_number), Marker, self.leader_path_progress_callback)
+		#self.rviz_closest_point_on_path_leader = rospy.Subscriber('rviz_closest_point_on_path_' + str(self.leader_number), Marker, self.leader_path_progress_callback)
 		self.state_subscriber = rospy.Subscriber('sensors_' + str(self.car_number), Float32MultiArray, self.sensors_callback)
 		self.leader_state_subscriber = rospy.Subscriber('sensors_' + str(self.leader_number), Float32MultiArray, self.sensors_leader_callback)
 
@@ -108,26 +108,33 @@ class relative_state_publisher:
 		#get latest transform data for robot pose
 		self.tf_listener.waitForTransform("/map", "/base_link_" + str(self.car_number), rospy.Time(), rospy.Duration(1.0))
 		(robot_position,robot_quaternion) = self.tf_listener.lookupTransform("/map",  "/base_link_" + str(self.car_number), rospy.Time(0))
-		# transform from quaternion to euler angles
-		#robot_euler = euler_from_quaternion(robot_quaternion)
-		#robot_theta = robot_euler[2]
 
-		# measure the closest point on the global path, retturning the respective s parameter and its index
-		estimated_ds = 1 # just a first guess for how far the robot has travelled along the path
-		s, self.current_path_index = find_s_of_closest_point_on_global_path(np.array([robot_position[0], robot_position[1]]), self.s_vals_global_path,
-		                                                          self.x_vals_global_path, self.y_vals_global_path,
-		                                                          self.previous_path_index, estimated_ds)
+		# using actual distance between cars
+		#get latest transform data for leader
+		self.tf_listener.waitForTransform("/map", "/base_link_" + str(self.leader_number), rospy.Time(), rospy.Duration(1.0))
+		(leader_position,leader_quaternion) = self.tf_listener.lookupTransform("/map",  "/base_link_" + str(self.leader_number), rospy.Time(0))
+
+		# # # transform from quaternion to euler angles
+		# # #robot_euler = euler_from_quaternion(robot_quaternion)
+		# # #robot_theta = robot_euler[2]
+
+		# # # measure the closest point on the global path, retturning the respective s parameter and its index
+		# # estimated_ds = 1 # just a first guess for how far the robot has travelled along the path
+		# # s, self.current_path_index = find_s_of_closest_point_on_global_path(np.array([robot_position[0], robot_position[1]]), self.s_vals_global_path,
+		# #                                                           self.x_vals_global_path, self.y_vals_global_path,
+		# #                                                           self.previous_path_index, estimated_ds)
 
 		
-		# update index along the path to know where to search in next iteration
-		self.previous_path_index = self.current_path_index
-		x_closest_point = self.x_vals_global_path[self.current_path_index]
-		y_closest_point = self.y_vals_global_path[self.current_path_index]
+		# # # update index along the path to know where to search in next iteration
+		# # self.previous_path_index = self.current_path_index
+		# # x_closest_point = self.x_vals_global_path[self.current_path_index]
+		# # y_closest_point = self.y_vals_global_path[self.current_path_index]
 
 
 		# evaluate relative position between ego vehicle and leader
-		distance = np.sqrt((x_closest_point-self.leader_position[0])**2+(y_closest_point-self.leader_position[1])**2 + 0.001)
-		
+		#distance = np.sqrt((x_closest_point-self.leader_position[0])**2+(y_closest_point-self.leader_position[1])**2 + 0.001)
+		distance = np.sqrt((robot_position[0]-leader_position[0])**2+(robot_position[1]-leader_position[1])**2)
+
 		#evalaute relative velocity betwwen ego vehicle and leader
 		rel_vel = self.v-self.v_leader
 

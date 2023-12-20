@@ -59,12 +59,12 @@ def produce_track(choice,n_checkpoints):
 				 Checkpoints_y1[0:n_checkpoints - 1]), axis=0)
 
 	if choice == 'savoiardo_long':
-
+		length = 30
 		x_shift = 1.0
 		y_shift = -0.25
-		y_sideways_shift = -1
+		y_sideways_shift = -2
 
-		R = 0.8  
+		R = 0.4 
 		theta_init2 = np.pi * -0.5
 		theta_end2 = np.pi * 0.5
 		theta_vec2 = np.linspace(theta_init2, theta_end2, n_checkpoints)
@@ -72,13 +72,13 @@ def produce_track(choice,n_checkpoints):
 		theta_end4 = np.pi * 1.5
 		theta_vec4 = np.linspace(theta_init4, theta_end4, n_checkpoints)
 
-		Checkpoints_x1 = np.linspace(0, 20, n_checkpoints)
+		Checkpoints_x1 = np.linspace(0, length, n_checkpoints)
 		Checkpoints_y1 = np.linspace(0, y_sideways_shift, n_checkpoints) - R
 
-		Checkpoints_x2 = 20 + R * np.cos(theta_vec2)
+		Checkpoints_x2 = length + R * np.cos(theta_vec2)
 		Checkpoints_y2 = R * np.sin(theta_vec2) + y_sideways_shift
 
-		Checkpoints_x3 = np.linspace(20, 0, n_checkpoints)
+		Checkpoints_x3 = np.linspace(length, 0, n_checkpoints)
 		Checkpoints_y3 = R * np.ones(n_checkpoints) + np.linspace(y_sideways_shift, 0, n_checkpoints)
 
 		Checkpoints_x4 = 0 + R * np.cos(theta_vec4)

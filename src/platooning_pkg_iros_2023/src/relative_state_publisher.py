@@ -150,14 +150,15 @@ if __name__ == '__main__':
 	try:
 		car_number = os.environ["car_number"]
 		rospy.init_node('relative_state_publisher_node_' + str(car_number), anonymous=False)
-		rate = rospy.Rate(10) #Hz
+		rate = rospy.Rate(20) #Hz
 
 		#set up relative distance evaluator. Note that is measures the distance between the projections on the global path
 		relative_state_publisher_obj = relative_state_publisher(car_number)
 		# straight_line
 		# savoiardo
 		# straight_line_my_house
-		relative_state_publisher_obj.generate_track('straight_line_my_house')
+		# straight_line_downstairs
+		relative_state_publisher_obj.generate_track('straight_line_downstairs')
 		
 
 		while not rospy.is_shutdown():

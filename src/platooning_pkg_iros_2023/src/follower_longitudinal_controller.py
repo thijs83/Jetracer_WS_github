@@ -35,7 +35,7 @@ class follower_longitudinal_controller_class:
 		self.kp = -(self.acc_sat/(2*self.v_ref))
 		self.h = 2*self.kp
 		self.kd = -2.0*np.sqrt(-self.kp)
-		self.d_safety = -self.acc_sat/self.kp
+		self.d_safety = 1.0 #[m] #-self.acc_sat/self.kp
 		self.add_mpc = False
 
 		
@@ -215,7 +215,7 @@ class follower_longitudinal_controller_class:
 
 		# evaluate linear controller action
 		# [rel_vel, distance]
-		u_lin = self.kd * self.relative_state[0] + self.kp* self.relative_state[1] + self.h*(self.v - self.v_ref)
+		u_lin = self.kd * self.relative_state[0] + self.kp* (self.relative_state[1]+self.d_safety) + self.h*(self.v - self.v_ref)
 
 		
 		

@@ -63,7 +63,7 @@ def teleop_gamepad(car_number):
 			#steering = -0.25+steering+amp*np.sin(time_now*freq * 2 * np.pi)
 			#steering = np.max([-0.25-amp,steering])
 			#steering = np.min([-0.25+amp,steering])
-			pub_steering.publish(steering)
+			#pub_steering.publish(steering)
 		else:
 			pub_safety_value.publish(0)
 			#pub_steering.publish(steering)

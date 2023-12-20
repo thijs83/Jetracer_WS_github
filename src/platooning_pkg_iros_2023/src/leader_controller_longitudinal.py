@@ -19,7 +19,7 @@ class leader_longitudinal_controller_class:
 		self.car_number = car_number
 
 		# set controller gains
-		self.v_ref = 1 #[m/s]
+		self.v_ref = 1.75 #[m/s]
 		self.kp = 0.2
 
 		# initialize state variables

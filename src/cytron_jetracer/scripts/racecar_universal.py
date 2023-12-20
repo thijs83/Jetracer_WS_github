@@ -31,12 +31,14 @@ class racecar:
 		self.safety_value = 0
 
 		#set up ros nodes for this vehicle
-		print("setting ros topics and node")
+		
 		rospy.init_node('racecar_' + str(car_number), anonymous=True)
 		rospy.Subscriber('steering_' + str(car_number), Float32, self.callback_steering)
 		rospy.Subscriber('throttle_' + str(car_number), Float32, self.callback_throttle)
 		rospy.Subscriber('safety_value', Float32, self.callback_safety)
 		self.commands_timestamped = rospy.Publisher("commands_timestamped_car_" + str(car_number), Float64MultiArray, queue_size=1)
+		print("finished setting up racecar " + str(car_number))	
+		print('------------------------------')	
 		rospy.spin()
 
 	#Safety callback function
@@ -81,12 +83,16 @@ if __name__ == '__main__':
 	print('car_number = ', os.environ["car_number"])
 	if float(car_number) == 1:
 		steering_gain = -0.5
-		steering_offset = + 0.01 * 2   # a negative value means go more to the right
+		steering_offset = + 0.08   # a negative value means go more to the right
 		print('setting steer gain and offset for car number 1')
 
 	elif float(car_number) == 2:
 		steering_gain = -0.5
+<<<<<<< HEAD
 		steering_offset = -0.18 * 0.5
+=======
+		steering_offset = -0.09 * 2
+>>>>>>> 3378726514dd52ab6b5da4c5936cd332e2090a4a
 		print('setting steer gain and offset for car number 2')
 
 	elif float(car_number) == 3:

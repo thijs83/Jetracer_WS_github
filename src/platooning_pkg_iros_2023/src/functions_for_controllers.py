@@ -65,6 +65,11 @@ def produce_track(choice,n_checkpoints):
 	elif choice == 'straight_line_pme':
 		Checkpoints_x = np.linspace(-0.1, +30, n_checkpoints)
 		Checkpoints_y = np.linspace(+0.0, -0.5, n_checkpoints)
+
+	elif choice == 'straight_line_downstairs':
+		Checkpoints_x = np.linspace(-2, +50, n_checkpoints)
+		Checkpoints_y = np.linspace(+0.0, -2.5, n_checkpoints)
+		
 	return Checkpoints_x, Checkpoints_y
 
 

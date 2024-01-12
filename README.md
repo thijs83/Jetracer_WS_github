@@ -55,9 +55,11 @@ Where $x,y,\eta,v$ are respectively the x-y position,orientation and longitudina
 
 The mapping from the steering input $\sigma$ to the steering angle $\delta$ [rad] has been obtained experimentally and is specific for each Jetracer. For convenience the function *steer_angle_2_command(steer_angle,car_number)* in Jetracer_WS_github/src/lane_following_controller_pkg/src/functions_for_controllers.py maps the desired steering angle $\delta$ into the required steering input $\delta$ for each vehicle.
 
+![steering_curve](https://github.com/Lorenzo-Lyons/Jetracer_WS_github/assets/94372990/22f4077f-2ee2-4653-ace0-1a6e59f49850)
 
 
 The acceleration function $f(\tau,v)$ has also been estimated experimentally. It is detailed in the fuction *evaluate_Fx_2(vx, th)* in Jetracer_WS_github/src/lane_following_controller_pkg/src/functions_for_controllers.py
+
 
 
 

@@ -1,5 +1,0 @@
-optitrack_package_lyons
-/home/jetson/Jetracer_WS_github/devel/.private/optitrack_package_lyons/cmake.lock /home/jetson/Jetracer_WS_github/devel/./cmake.lock
-/home/jetson/Jetracer_WS_github/devel/.private/optitrack_package_lyons/lib/pkgconfig/optitrack_package_lyons.pc /home/jetson/Jetracer_WS_github/devel/lib/pkgconfig/optitrack_package_lyons.pc
-/home/jetson/Jetracer_WS_github/devel/.private/optitrack_package_lyons/share/optitrack_package_lyons/cmake/optitrack_package_lyonsConfig.cmake /home/jetson/Jetracer_WS_github/devel/share/optitrack_package_lyons/cmake/optitrack_package_lyonsConfig.cmake
-/home/jetson/Jetracer_WS_github/devel/.private/optitrack_package_lyons/share/optitrack_package_lyons/cmake/optitrack_package_lyonsConfig-version.cmake /home/jetson/Jetracer_WS_github/devel/share/optitrack_package_lyons/cmake/optitrack_package_lyonsConfig-version.cmake

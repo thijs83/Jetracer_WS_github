@@ -1,1 +1,0 @@
-/home/jetson/Jetracer_WS_github/devel/.private/apriltag_ros/include/apriltag_ros/AprilTagDetection.h

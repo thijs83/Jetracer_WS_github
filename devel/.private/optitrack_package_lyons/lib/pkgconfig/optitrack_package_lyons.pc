@@ -1,8 +1,0 @@
-prefix=/home/jetson/Jetracer_WS_github/devel/.private/optitrack_package_lyons
-
-Name: optitrack_package_lyons
-Description: Description of optitrack_package_lyons
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 

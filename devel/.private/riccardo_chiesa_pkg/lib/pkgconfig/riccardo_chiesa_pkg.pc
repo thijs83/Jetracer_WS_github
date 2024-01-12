@@ -1,8 +1,0 @@
-prefix=/home/jetson/Jetracer_WS_github/devel/.private/riccardo_chiesa_pkg
-
-Name: riccardo_chiesa_pkg
-Description: Description of riccardo_chiesa_pkg
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 

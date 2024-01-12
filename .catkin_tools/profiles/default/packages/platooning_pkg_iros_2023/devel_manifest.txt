@@ -1,5 +1,0 @@
-platooning_pkg_iros_2023
-/home/jetson/Jetracer_WS_github/devel/.private/platooning_pkg_iros_2023/cmake.lock /home/jetson/Jetracer_WS_github/devel/./cmake.lock
-/home/jetson/Jetracer_WS_github/devel/.private/platooning_pkg_iros_2023/lib/pkgconfig/platooning_pkg_iros_2023.pc /home/jetson/Jetracer_WS_github/devel/lib/pkgconfig/platooning_pkg_iros_2023.pc
-/home/jetson/Jetracer_WS_github/devel/.private/platooning_pkg_iros_2023/share/platooning_pkg_iros_2023/cmake/platooning_pkg_iros_2023Config-version.cmake /home/jetson/Jetracer_WS_github/devel/share/platooning_pkg_iros_2023/cmake/platooning_pkg_iros_2023Config-version.cmake
-/home/jetson/Jetracer_WS_github/devel/.private/platooning_pkg_iros_2023/share/platooning_pkg_iros_2023/cmake/platooning_pkg_iros_2023Config.cmake /home/jetson/Jetracer_WS_github/devel/share/platooning_pkg_iros_2023/cmake/platooning_pkg_iros_2023Config.cmake

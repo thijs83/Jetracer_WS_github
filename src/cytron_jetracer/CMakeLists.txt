@@ -161,10 +161,7 @@ include_directories(
 ## Mark executable scripts (Python etc.) for installation
 ## in contrast to setup.py, you can choose the destination
 catkin_install_python(PROGRAMS
-  scripts/racecar.py
-  scripts/teleop.py
-  scripts/camera.py
-  scripts/joint_state.py
+  src/racecar_universal.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 

@@ -1,1 +1,0 @@
-/home/jetson/Jetracer_WS_github/devel/.private/ydlidar_ros_driver/lib/pkgconfig/ydlidar_ros_driver.pc

@@ -1,1 +1,0 @@
-/home/jetson/Jetracer_WS_github/devel/.private/apriltag_ros/share/roseus/ros/apriltag_ros/srv/AnalyzeSingleImage.l

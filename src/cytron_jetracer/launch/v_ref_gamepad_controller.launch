@@ -15,7 +15,7 @@
     output="screen"/>
 
   <!-- longitudinal velocity controller-->
-  <node name="longitudinal_v_ref_controller$(arg car_number_str_local)" pkg="platooning_pkg_iros_2023" type="leader_controller_longitudinal.py"
+  <node name="longitudinal_v_ref_controller$(arg car_number_str_local)" pkg="lane_following_controller_pkg" type="longitudinal_controller.py"
     output="screen"/> 
 
 </launch>

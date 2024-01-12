@@ -1,1 +1,0 @@
-/home/jetson/Jetracer_WS_github/devel/.private/riccardo_chiesa_pkg/lib/pkgconfig/riccardo_chiesa_pkg.pc

@@ -7,8 +7,7 @@
 # new environment variables
 
 # modified environment variables
-export CMAKE_PREFIX_PATH="/home/jetson/Jetracer_WS_github/devel/.private/lidar_ros:$CMAKE_PREFIX_PATH"
-export PATH="/home/jetson/Jetracer_WS_github/devel/bin:$PATH"
-export PWD='/home/jetson/Jetracer_WS_github/build/lidar_ros'
-export ROSLISP_PACKAGE_DIRECTORIES="/home/jetson/Jetracer_WS_github/devel/.private/lidar_ros/share/common-lisp:$ROSLISP_PACKAGE_DIRECTORIES"
-export ROS_PACKAGE_PATH="/home/jetson/Jetracer_WS_github/src/lidar_ros:$ROS_PACKAGE_PATH"
+export CMAKE_PREFIX_PATH="/home/lorenzo/OneDrive/PhD/Code/Jetracer_WS_github/devel/.private/lidar_ros:$CMAKE_PREFIX_PATH"
+export PWD='/home/lorenzo/OneDrive/PhD/Code/Jetracer_WS_github/build/lidar_ros'
+export ROSLISP_PACKAGE_DIRECTORIES="/home/lorenzo/OneDrive/PhD/Code/Jetracer_WS_github/devel/.private/lidar_ros/share/common-lisp:$ROSLISP_PACKAGE_DIRECTORIES"
+export ROS_PACKAGE_PATH="/home/lorenzo/OneDrive/PhD/Code/Jetracer_WS_github/src/lidar_ros:$ROS_PACKAGE_PATH"

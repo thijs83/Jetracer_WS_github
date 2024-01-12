@@ -1,5 +1,8 @@
 # Jetracer_WS_github
 This repo contains basic code to run the jetracers for the hackathon.
+![4_jetracers_in_a_line_cropped](https://github.com/Lorenzo-Lyons/Jetracer_WS_github/assets/94372990/9bbfd133-cf4d-4b3f-9fe9-1517ebd933cb)
+
+
 
 ## Installation
 Clone this repo 

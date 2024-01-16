@@ -18,6 +18,7 @@ git branch -r
 Select the hacakthon branch by typing:
 ```
 git branch hackathon_18_Jan_2024
+git checkout hackathon_18_Jan_2024
 ```
 Check the outcome by viewing all local branches by typing:
 ```

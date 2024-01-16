@@ -41,6 +41,9 @@ source PATH_TO_GIT_REPO/Jetracer_WS_github/devel/setup.bash
 ```
 If needed check out the ROS setup tutorial: http://wiki.ros.org/ROS/Tutorials/InstallingandConfiguringROSEnvironment
 
+## Setup information
+Each vehicle is identified by a number set as an environment variable in the .bashrc file located in the home directory. Upon launching a new terminal the "car_number" will be displayed. Many scripts need this value to properly set up topic names. This is needed for running experiments with multiple robots.
+
 
 ## Kinematic bicycle Jetracer Model
 The Jetracers are controlled by providing them with throttle and steering inputs, respectively:
@@ -64,6 +67,48 @@ The mapping from the steering input $\sigma$ to the steering angle $\delta$ [rad
 The acceleration function $f(\tau,v)$ has also been estimated experimentally. It features a throttle dependent term and a velocity dependent friction term. It is detailed in the fuction *evaluate_Fx_2(vx, th)* in Jetracer_WS_github/src/lane_following_controller_pkg/src/functions_for_controllers.py
 
 ![acceleration_curve](https://github.com/Lorenzo-Lyons/Jetracer_WS_github/assets/94372990/b606e87b-93d3-41d6-b527-e71fcd877233)
+
+## Available low level controllers
+
+The package *lane_following_controller_pkg* cointains low level controllers that use the previously described kinematic bicycle model to control the robot. 
+
+**Velocity tracking controller.** This controller tracks a reference velocity. To do so simpy publish a reference velocity value to the topic *v_ref_<car_number>*.
+
+The controller works by means of a feedforward-feedback controller defined as:
+
+```math
+\begin{align*}
+\tau = - K(v-v_{ref}) + \tau^{ff}
+\end{align*}
+```
+Where $K$ is a gain and $\tau^{ff}$ is defined as:
+```math
+\begin{align*}
+\tau^{ff} =\tau\text{  s.t.  } f(\tau,v_{ref})=0
+\end{align*}
+```
+
+The current vehicle velocity $v$ is provided by an encoder. To start the sensor publishing:
+
+```
+rosrun cytron_jetracer publish_sensors_and_inputs_universal.py
+```
+To start the longitudinal velocity tracking controller run:
+```
+rosrun lane_following_controller_pkg longitudinal_controller.py
+```
+**Steering controller.** To send a desired steering angle to the robot simply use the function $\delta(\sigma)$ as described in the previous section. The publish to the topic *steering_<car_number>*
+
+## Available high level controllers
+**Gamepad control with velocity reference.** This controller allows the user to set a reference velocity and simultaneously steer the vehicle. The controller uses the gamepad provided by waveshare in the jetracer pro AI kit. First of all ensure that the gamepad is properly connected by plugging in the usb dongle and pressing the "home" button on the gamepad. A single red light should be visible on the gamepad. Then launch the controller by typing:
+
+```
+roslaunch cytron_jetracer v_ref_gamepad_controller.launch
+```
+To set the velocity reference press the "Y" and "A" keys.
+
+
+
 
 
 

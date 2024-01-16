@@ -61,7 +61,7 @@ The mapping from the steering input $\sigma$ to the steering angle $\delta$ [rad
 
 
 
-The acceleration function $f(\tau,v)$ has also been estimated experimentally. It features a throttle dependent term and a velocity dependent friction term. It is detailed in the fuction *evaluate_Fx_2* in [functions_for_controllers.py]([src/lane_following_controller_pkg/src/functions_for_controllers.py](https://github.com/Lorenzo-Lyons/Jetracer_WS_github/blob/hackathon_18_Jan_2024/src/lane_following_controller_pkg/src/functions_for_controllers.py)) .
+The acceleration function $f(\tau,v)$ has also been estimated experimentally. It features a throttle dependent term and a velocity dependent friction term. It is detailed in the fuction *evaluate_Fx_2* in [functions_for_controllers.py](https://github.com/Lorenzo-Lyons/Jetracer_WS_github/blob/hackathon_18_Jan_2024/src/lane_following_controller_pkg/src/functions_for_controllers.py).
 
 
 <p align="center">

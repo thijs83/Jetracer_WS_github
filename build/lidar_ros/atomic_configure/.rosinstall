@@ -1,2 +1,2 @@
 - setup-file:
-    local-name: /home/lorenzo/OneDrive/PhD/Code/Jetracer_WS_github/devel/.private/lidar_ros/setup.sh
+    local-name: /home/jetson/Jetracer_WS_github/devel/.private/lidar_ros/setup.sh

@@ -67,14 +67,14 @@ set(cytron_jetracer_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
 if("FALSE" STREQUAL "TRUE")
-  set(cytron_jetracer_SOURCE_PREFIX /home/lorenzo/OneDrive/PhD/Code/Jetracer_WS_github/src/cytron_jetracer)
-  set(cytron_jetracer_DEVEL_PREFIX /home/lorenzo/OneDrive/PhD/Code/Jetracer_WS_github/devel/.private/cytron_jetracer)
+  set(cytron_jetracer_SOURCE_PREFIX /home/jetson/Jetracer_WS_github/src/cytron_jetracer)
+  set(cytron_jetracer_DEVEL_PREFIX /home/jetson/Jetracer_WS_github/devel/.private/cytron_jetracer)
   set(cytron_jetracer_INSTALL_PREFIX "")
   set(cytron_jetracer_PREFIX ${cytron_jetracer_DEVEL_PREFIX})
 else()
   set(cytron_jetracer_SOURCE_PREFIX "")
   set(cytron_jetracer_DEVEL_PREFIX "")
-  set(cytron_jetracer_INSTALL_PREFIX /home/lorenzo/OneDrive/PhD/Code/Jetracer_WS_github/install)
+  set(cytron_jetracer_INSTALL_PREFIX /home/jetson/Jetracer_WS_github/install)
   set(cytron_jetracer_PREFIX ${cytron_jetracer_INSTALL_PREFIX})
 endif()
 
@@ -154,7 +154,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /home/lorenzo/OneDrive/PhD/Code/Jetracer_WS_github/install/lib;/home/lorenzo/OneDrive/PhD/Code/Jetracer_WS_github/devel/lib;/home/lorenzo/OneDrive/PhD/Code/GPs_for_macchinine/Codice_Lyons/GP_MPCC_ROS_workspace/devel/lib;/opt/ros/noetic/lib;/home/lorenzo/OneDrive/PhD/Code/Platooning_code/platooning_ws/devel/lib)
+    foreach(path /home/jetson/Jetracer_WS_github/install/lib;/home/jetson/Jetracer_WS_github/devel/lib;/opt/ros/melodic/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)
@@ -211,7 +211,7 @@ foreach(depend ${depends})
   _unpack_libraries_with_build_configuration(cytron_jetracer_LIBRARIES ${cytron_jetracer_LIBRARIES})
 
   _list_append_unique(cytron_jetracer_LIBRARY_DIRS ${${cytron_jetracer_dep}_LIBRARY_DIRS})
-  _list_append_deduplicate(cytron_jetracer_EXPORTED_TARGETS ${${cytron_jetracer_dep}_EXPORTED_TARGETS})
+  list(APPEND cytron_jetracer_EXPORTED_TARGETS ${${cytron_jetracer_dep}_EXPORTED_TARGETS})
 endforeach()
 
 set(pkg_cfg_extras "")

@@ -1,1 +1,1 @@
-/home/lorenzo/OneDrive/PhD/Code/Jetracer_WS_github/devel/.private/catkin_tools_prebuild/setup.zsh
+/home/jetson/Jetracer_WS_github/devel/.private/catkin_tools_prebuild/setup.zsh

@@ -7,7 +7,7 @@
 # new environment variables
 
 # modified environment variables
-export CMAKE_PREFIX_PATH="/home/lorenzo/OneDrive/PhD/Code/Jetracer_WS_github/devel/.private/localization_and_mapping_jetracer_pkg:$CMAKE_PREFIX_PATH"
-export PWD='/home/lorenzo/OneDrive/PhD/Code/Jetracer_WS_github/build/localization_and_mapping_jetracer_pkg'
-export ROSLISP_PACKAGE_DIRECTORIES="/home/lorenzo/OneDrive/PhD/Code/Jetracer_WS_github/devel/.private/localization_and_mapping_jetracer_pkg/share/common-lisp:$ROSLISP_PACKAGE_DIRECTORIES"
-export ROS_PACKAGE_PATH="/home/lorenzo/OneDrive/PhD/Code/Jetracer_WS_github/src/localization_and_mapping_jetracer_pkg:$ROS_PACKAGE_PATH"
+export CMAKE_PREFIX_PATH="/home/jetson/Jetracer_WS_github/devel/.private/localization_and_mapping_jetracer_pkg:$CMAKE_PREFIX_PATH"
+export PWD='/home/jetson/Jetracer_WS_github/build/localization_and_mapping_jetracer_pkg'
+export ROSLISP_PACKAGE_DIRECTORIES="/home/jetson/Jetracer_WS_github/devel/.private/localization_and_mapping_jetracer_pkg/share/common-lisp:$ROSLISP_PACKAGE_DIRECTORIES"
+export ROS_PACKAGE_PATH="/home/jetson/Jetracer_WS_github/src/localization_and_mapping_jetracer_pkg:$ROS_PACKAGE_PATH"

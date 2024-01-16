@@ -1,5 +1,3 @@
-Symlinking /home/lorenzo/OneDrive/PhD/Code/Jetracer_WS_github/devel/share/cytron_jetracer/cmake/cytron_jetracerConfig-version.cmake
-Symlinking /home/lorenzo/OneDrive/PhD/Code/Jetracer_WS_github/devel/share/cytron_jetracer/cmake/cytron_jetracerConfig.cmake
-Symlinking /home/lorenzo/OneDrive/PhD/Code/Jetracer_WS_github/devel/lib/pkgconfig/cytron_jetracer.pc
-Symlinking /home/lorenzo/OneDrive/PhD/Code/Jetracer_WS_github/devel/lib/cytron_jetracer/cmake.lock
-Symlinking /home/lorenzo/OneDrive/PhD/Code/Jetracer_WS_github/devel/lib/cytron_jetracer/racecar_universal.py
+Symlinking /home/jetson/Jetracer_WS_github/devel/lib/pkgconfig/cytron_jetracer.pc
+Symlinking /home/jetson/Jetracer_WS_github/devel/share/cytron_jetracer/cmake/cytron_jetracerConfig.cmake
+Symlinking /home/jetson/Jetracer_WS_github/devel/share/cytron_jetracer/cmake/cytron_jetracerConfig-version.cmake

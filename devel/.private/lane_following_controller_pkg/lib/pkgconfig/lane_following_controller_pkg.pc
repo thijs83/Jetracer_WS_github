@@ -1,4 +1,4 @@
-prefix=/home/lorenzo/OneDrive/PhD/Code/Jetracer_WS_github/devel/.private/lane_following_controller_pkg
+prefix=/home/jetson/Jetracer_WS_github/devel/.private/lane_following_controller_pkg
 
 Name: lane_following_controller_pkg
 Description: Description of lane_following_controller_pkg

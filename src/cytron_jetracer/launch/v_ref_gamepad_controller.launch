@@ -4,7 +4,7 @@
   <arg name="car_number_str_local" value="$(env car_number_str)"/>
 
   <!-- run racecar -->
-  <node name="racecar_with_safety$(arg car_number_str_local)" pkg="cytron_jetracer" type="racecar_universal.py"
+  <node name="racecar_$(arg car_number_str_local)" pkg="cytron_jetracer" type="racecar_universal.py"
     output="screen"/>
 
   <!-- sensor publishing -->

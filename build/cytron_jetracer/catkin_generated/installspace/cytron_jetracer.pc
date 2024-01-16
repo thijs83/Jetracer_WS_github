@@ -1,4 +1,4 @@
-prefix=/home/lorenzo/OneDrive/PhD/Code/Jetracer_WS_github/install
+prefix=/home/jetson/Jetracer_WS_github/install
 
 Name: cytron_jetracer
 Description: Description of cytron_jetracer

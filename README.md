@@ -106,22 +106,23 @@ rosrun lane_following_controller_pkg longitudinal_controller.py
 **Steering controller.** To send a desired steering angle to the robot simply use the function $\delta(\sigma)$ as described in the previous section. The publish to the topic *steering_<car_number>*
 
 ## Available high level controllers
-**Gamepad control with velocity reference.** This controller allows the user to set a reference velocity and simultaneously steer the vehicle. The controller uses the gamepad provided by waveshare in the jetracer pro AI kit. First of all ensure that the gamepad is properly connected by plugging in the usb dongle and pressing the "home" button on the gamepad. A single red light should be visible on the gamepad. Then launch the controller by typing:
+**Gamepad control with velocity reference.**
+<p align="center">
+  <img src="images_for_readme/gamepad_connected.jpeg" width="350" title="properly connected gamepad">
+</p>
+This controller allows the user to set a reference velocity and simultaneously steer the vehicle. The controller uses the gamepad provided by waveshare in the jetracer pro AI kit. First of all ensure that the gamepad is properly connected by plugging in the usb dongle and pressing the "home" button on the gamepad. A single red light should be visible on the gamepad. Then launch the controller by typing:
 
 ```
 roslaunch cytron_jetracer v_ref_gamepad_controller.launch
 ```
 To set the velocity reference press the "Y" and "A" keys.
 
-![gamepad_connected](https://github.com/Lorenzo-Lyons/Jetracer_WS_github/assets/94372990/f4a2d6b9-9da7-4681-9133-d195057158f2 | width=100)
+**Lane following controller.**
+
 
 <p align="center">
-  <img src="images_for_readme/gamepad_connected.jpeg" width="350" title="properly connected gamepad">
+  <iframe width="560" height="315" src="images_for_readme/lidar_based_lane_following.mp4" frameborder="0" allowfullscreen></iframe>
 </p>
-
-
-
-
 
 
 

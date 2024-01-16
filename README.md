@@ -56,7 +56,7 @@ The behaviour of the Jetracer can be modelled with a kinematic bicycle model, as
 ```
 Where $x,y,\eta,v$ are respectively the x-y position,orientation and longitudinal velocity. $l$ is the length of the Jetracer. 
 
-The mapping from the steering input $\sigma$ to the steering angle $\delta$ [rad] has been obtained experimentally and is specific for each Jetracer. For convenience the function [steer_angle_2_command](src/lane_following_controller_pkg/src/functions_for_controllers.py) maps the desired steering angle $\delta$ into the required steering input $\delta$ for each vehicle.
+The mapping from the steering input $\sigma$ to the steering angle $\delta$ [rad] has been obtained experimentally and is specific for each Jetracer. For convenience the function *steer_angle_2_command* in [functions_for_controllers.py](src/lane_following_controller_pkg/src/functions_for_controllers.py) maps the desired steering angle $\delta$ into the required steering input $\delta$ for each vehicle.
 
 
 <p align="center">
@@ -65,7 +65,7 @@ The mapping from the steering input $\sigma$ to the steering angle $\delta$ [rad
 
 
 
-The acceleration function $f(\tau,v)$ has also been estimated experimentally. It features a throttle dependent term and a velocity dependent friction term. It is detailed in the fuction *evaluate_Fx_2(vx, th)* in Jetracer_WS_github/src/lane_following_controller_pkg/src/functions_for_controllers.py
+The acceleration function $f(\tau,v)$ has also been estimated experimentally. It features a throttle dependent term and a velocity dependent friction term. It is detailed in the fuction *evaluate_Fx_2* in [functions_for_controllers.py](src/lane_following_controller_pkg/src/functions_for_controllers.py) .
 
 
 <p align="center">

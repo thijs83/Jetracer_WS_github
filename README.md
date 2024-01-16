@@ -71,7 +71,24 @@ The acceleration function $f(\tau,v)$ has also been estimated experimentally. It
 ## Available low level controllers
 
 The package *lane_following_controller_pkg* cointains low level controllers that use the previously described kinematic bicycle model to control the robot. 
-**longitudinal_controller:** This controller tracks a reference velocity by means of a feedforward-feedback controller. It relies on an encoder that provides the longitudinal velocity of the vehicle. To start the sensor publishing:
+
+**longitudinal_controller.** This controller tracks a reference velocity. To do so simpy publish a reference velocity value to the topic *v_ref_<car_number>*.
+
+The controller works by means of a feedforward-feedback controller defined as:
+
+```math
+\begin{align*}
+\tau = - K(v-v_{ref}) + \tau^{ff}
+\end{align*}
+```
+Where $K$ is a gain and $\tau^{ff}$ is defined as:
+```math
+\begin{align*}
+\tau^{ff} =\tau\text{  s.t.  } f(\tau,v_{ref})=0
+\end{align*}
+```
+
+The current vehicle velocity $v$ is provided by an encoder. To start the sensor publishing:
 
 ```
 rosrun cytron_jetracer publish_sensors_and_inputs_universal.py
@@ -80,5 +97,9 @@ To start the longitudinal velocity tracking controller run:
 ```
 rosrun lane_following_controller_pkg longitudinal_controller.py
 ```
+
+
+
+
 
 

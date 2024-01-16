@@ -58,12 +58,21 @@ Where $x,y,\eta,v$ are respectively the x-y position,orientation and longitudina
 
 The mapping from the steering input $\sigma$ to the steering angle $\delta$ [rad] has been obtained experimentally and is specific for each Jetracer. For convenience the function *steer_angle_2_command(steer_angle,car_number)* in Jetracer_WS_github/src/lane_following_controller_pkg/src/functions_for_controllers.py maps the desired steering angle $\delta$ into the required steering input $\delta$ for each vehicle.
 
-![steering_curve](https://github.com/Lorenzo-Lyons/Jetracer_WS_github/assets/94372990/22f4077f-2ee2-4653-ace0-1a6e59f49850)
+
+<p align="center">
+  <img src="https://github.com/Lorenzo-Lyons/Jetracer_WS_github/assets/94372990/22f4077f-2ee2-4653-ace0-1a6e59f49850" width="500" title="Steering curve">
+</p>
+
 
 
 The acceleration function $f(\tau,v)$ has also been estimated experimentally. It features a throttle dependent term and a velocity dependent friction term. It is detailed in the fuction *evaluate_Fx_2(vx, th)* in Jetracer_WS_github/src/lane_following_controller_pkg/src/functions_for_controllers.py
 
-![acceleration_curve](https://github.com/Lorenzo-Lyons/Jetracer_WS_github/assets/94372990/b606e87b-93d3-41d6-b527-e71fcd877233)
+
+<p align="center">
+  <img src="https://github.com/Lorenzo-Lyons/Jetracer_WS_github/assets/94372990/b606e87b-93d3-41d6-b527-e71fcd877233" width="500" title="Steering curve">
+</p>
+
+
 
 ## Running the robots
 Each vehicle is identified by a number set as an environment variable in the .bashrc file located in the home directory. Upon launching a new terminal the "car_number" will be displayed. Many scripts need this value to properly set up topic names. This is needed for running experiments with multiple robots.
@@ -118,11 +127,34 @@ roslaunch cytron_jetracer v_ref_gamepad_controller.launch
 To set the velocity reference press the "Y" and "A" keys.
 
 **Lane following controller.**
-![lidar_based_lane_following-ezgif com-cut](https://github.com/Lorenzo-Lyons/Jetracer_WS_github/assets/94372990/97e69d59-ac2f-4e4e-8bcd-0306837a3d66)
 
 
 <p align="center">
   <img src="https://github.com/Lorenzo-Lyons/Jetracer_WS_github/assets/94372990/97e69d59-ac2f-4e4e-8bcd-0306837a3d66" title="Lane following controller">
 </p>
+
+The lane following controller allows the vehicle to autonomously track a user-defined reference track (pink line in the video) at a certain reference velocity. It requires a previously built map of the environment.
+
+To build a map of the environment first launch the file:
+
+```
+roslaunch localization_and_mapping_jetracer_pkg slam_jetracer_universal.launch
+
+```
+
+To save the map type:
+```
+rosrun map_server map_saver -f map_name
+
+```
+To use the map in the lane following controller first make sure it is in the folder *saved_maps_from_slam* located in the localization_and_mapping_pkg package. Then edit the *map_file* parameter in *the map_server.launch* file to match the newly created map. Then launch the map server file.
+
+```
+roslaunch localization_and_mapping_jetracer_pkg map_server.launch
+
+```
+
+
+
 
 

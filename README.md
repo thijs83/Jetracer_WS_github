@@ -41,9 +41,6 @@ source PATH_TO_GIT_REPO/Jetracer_WS_github/devel/setup.bash
 ```
 If needed check out the ROS setup tutorial: http://wiki.ros.org/ROS/Tutorials/InstallingandConfiguringROSEnvironment
 
-## Setup information
-Each vehicle is identified by a number set as an environment variable in the .bashrc file located in the home directory. Upon launching a new terminal the "car_number" will be displayed. Many scripts need this value to properly set up topic names. This is needed for running experiments with multiple robots.
-
 
 ## Kinematic bicycle Jetracer Model
 The Jetracers are controlled by providing them with throttle and steering inputs, respectively:
@@ -67,6 +64,15 @@ The mapping from the steering input $\sigma$ to the steering angle $\delta$ [rad
 The acceleration function $f(\tau,v)$ has also been estimated experimentally. It features a throttle dependent term and a velocity dependent friction term. It is detailed in the fuction *evaluate_Fx_2(vx, th)* in Jetracer_WS_github/src/lane_following_controller_pkg/src/functions_for_controllers.py
 
 ![acceleration_curve](https://github.com/Lorenzo-Lyons/Jetracer_WS_github/assets/94372990/b606e87b-93d3-41d6-b527-e71fcd877233)
+
+## Running the robots
+Each vehicle is identified by a number set as an environment variable in the .bashrc file located in the home directory. Upon launching a new terminal the "car_number" will be displayed. Many scripts need this value to properly set up topic names. This is needed for running experiments with multiple robots.
+
+**Activate the robot.** Open a terminal and run a ros master:
+```
+roscore
+```
+
 
 ## Available low level controllers
 
@@ -107,6 +113,11 @@ roslaunch cytron_jetracer v_ref_gamepad_controller.launch
 ```
 To set the velocity reference press the "Y" and "A" keys.
 
+![gamepad_connected](https://github.com/Lorenzo-Lyons/Jetracer_WS_github/assets/94372990/f4a2d6b9-9da7-4681-9133-d195057158f2 | width=100)
+
+<p align="center">
+  <img src="images_for_readme/gamepad_connected.jpeg" width="350" title="properly connected gamepad">
+</p>
 
 
 

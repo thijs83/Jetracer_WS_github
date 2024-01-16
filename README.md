@@ -41,6 +41,9 @@ source PATH_TO_GIT_REPO/Jetracer_WS_github/devel/setup.bash
 ```
 If needed check out the ROS setup tutorial: http://wiki.ros.org/ROS/Tutorials/InstallingandConfiguringROSEnvironment
 
+## Setup information
+Each vehicle is identified by a number set as an environment variable in the .bashrc file located in the home directory. Upon launching a new terminal the "car_number" will be displayed. Many scripts need this value to properly set up topic names. This is needed for running experiments with multiple robots.
+
 
 ## Kinematic bicycle Jetracer Model
 The Jetracers are controlled by providing them with throttle and steering inputs, respectively:
@@ -65,7 +68,17 @@ The acceleration function $f(\tau,v)$ has also been estimated experimentally. It
 
 ![acceleration_curve](https://github.com/Lorenzo-Lyons/Jetracer_WS_github/assets/94372990/b606e87b-93d3-41d6-b527-e71fcd877233)
 
+## Available low level controllers
 
+The package *lane_following_controller_pkg* cointains low level controllers that use the previously described kinematic bicycle model to control the robot. 
+**longitudinal_controller:** This controller tracks a reference velocity by means of a feedforward-feedback controller. It relies on an encoder that provides the longitudinal velocity of the vehicle. To start the sensor publishing:
 
+```
+rosrun cytron_jetracer publish_sensors_and_inputs_universal.py
+```
+To start the longitudinal velocity tracking controller run:
+```
+rosrun lane_following_controller_pkg longitudinal_controller.py
+```
 
 

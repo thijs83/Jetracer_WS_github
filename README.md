@@ -148,7 +148,6 @@ To build a map of the environment first launch the file:
 
 ```
 roslaunch localization_and_mapping_jetracer_pkg slam_jetracer_universal.launch
-
 ```
 Note that the vehicle needs to navigate the environment in order to map it. A convenient way of doing so is to run the velocity tracking controller described in the previous section.
 
@@ -157,20 +156,17 @@ Note that the vehicle needs to navigate the environment in order to map it. A co
 To save the map type:
 ```
 rosrun map_server map_saver -f map_name
-
 ```
 
 To use the map in the lane following controller first make sure it is in the folder *saved_maps_from_slam* located in the localization_and_mapping_pkg package. Then edit the *map_file* parameter in *the map_server.launch* file to match the newly created map. Then launch the map server file.
 
 ```
 roslaunch localization_and_mapping_jetracer_pkg map_server.launch
-
 ```
 Now launch the lane following controller.
 
 ```
 roslaunch lane_following_controller_pkg lane_following_controller.launch
-
 ```
 To modify the reference path edit the function *produce_track* located in the file *functions_for_controllers.py*.
 

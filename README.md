@@ -15,18 +15,13 @@ First navigate the newly created Jetracer_WS_github folder and list available re
 ```
 git branch -r
 ```
-Select the hacakthon branch by typing:
+Create a new local branch with the initials of the group members, for example:
 ```
-git branch hackathon_18_Jan_2024
-git checkout hackathon_18_Jan_2024
+git checkout -b hackathon_18_Jan_2024_ABCD origin/hackathon_18_Jan_2024
 ```
 Check the outcome by viewing all local branches by typing:
 ```
 git branch
-```
-Finally create a new local branch with the initials of the group members, for example:
-```
-git checkout -b hackathon_18_Jan_2024_ABCD
 ```
 
 ### Build and source the catkin workspace

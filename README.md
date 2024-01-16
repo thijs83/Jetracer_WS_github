@@ -118,11 +118,11 @@ roslaunch cytron_jetracer v_ref_gamepad_controller.launch
 To set the velocity reference press the "Y" and "A" keys.
 
 **Lane following controller.**
+![lidar_based_lane_following-ezgif com-cut](https://github.com/Lorenzo-Lyons/Jetracer_WS_github/assets/94372990/97e69d59-ac2f-4e4e-8bcd-0306837a3d66)
 
 
 <p align="center">
-  <iframe width="560" height="315" src="images_for_readme/lidar_based_lane_following.mp4" frameborder="0" allowfullscreen></iframe>
+  <img src="https://github.com/Lorenzo-Lyons/Jetracer_WS_github/assets/94372990/97e69d59-ac2f-4e4e-8bcd-0306837a3d66" title="Lane following controller">
 </p>
-
 
 

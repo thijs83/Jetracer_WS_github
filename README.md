@@ -81,6 +81,15 @@ Each vehicle is identified by a number set as an environment variable in the .ba
 ```
 roscore
 ```
+In order for the robot to react to control inputs run the following file:
+
+```
+rosrun cytron_jetracer racecar_universal.py
+```
+> [!NOTE]
+> Many controller .launch files already run this script so this step may not be necessary in some cases.
+
+To control the vehicle just publish values between $[-1,1]$ to the topics *steering_<car_number>* and *throttle_<car_number>*. However it may be more practical to use some of the provided low-level or high-level controllers as detailed below.
 
 
 ## Available low level controllers

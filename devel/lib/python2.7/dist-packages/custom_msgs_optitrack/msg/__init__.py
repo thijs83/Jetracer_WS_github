@@ -1,1 +1,0 @@
-/home/jetson/Jetracer_WS_github/devel/.private/custom_msgs_optitrack/lib/python2.7/dist-packages/custom_msgs_optitrack/msg/__init__.py

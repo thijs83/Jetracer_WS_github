@@ -2,7 +2,7 @@
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/jetson/Jetracer_WS_github/install")
+  set(CMAKE_INSTALL_PREFIX "/home/thijs/hackathon/src/Jetracer_WS_github/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -39,7 +39,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/jetson/Jetracer_WS_github/build/custom_msgs_optitrack/gtest/googlemock/cmake_install.cmake")
+  include("/home/thijs/hackathon/src/Jetracer_WS_github/build/custom_msgs_optitrack/gtest/googlemock/cmake_install.cmake")
 
 endif()
 

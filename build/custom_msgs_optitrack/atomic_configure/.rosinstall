@@ -1,2 +1,2 @@
 - setup-file:
-    local-name: /home/jetson/Jetracer_WS_github/devel/.private/custom_msgs_optitrack/setup.sh
+    local-name: /home/thijs/hackathon/src/Jetracer_WS_github/devel/.private/custom_msgs_optitrack/setup.sh

@@ -1,4 +1,4 @@
-prefix=/home/jetson/Jetracer_WS_github/install
+prefix=/home/thijs/hackathon/src/Jetracer_WS_github/install
 
 Name: custom_msgs_optitrack
 Description: Description of custom_msgs_optitrack

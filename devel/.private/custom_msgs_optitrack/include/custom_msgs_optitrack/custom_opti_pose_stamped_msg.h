@@ -112,16 +112,6 @@ namespace message_traits
 
 
 template <class ContainerAllocator>
-struct IsFixedSize< ::custom_msgs_optitrack::custom_opti_pose_stamped_msg_<ContainerAllocator> >
-  : FalseType
-  { };
-
-template <class ContainerAllocator>
-struct IsFixedSize< ::custom_msgs_optitrack::custom_opti_pose_stamped_msg_<ContainerAllocator> const>
-  : FalseType
-  { };
-
-template <class ContainerAllocator>
 struct IsMessage< ::custom_msgs_optitrack::custom_opti_pose_stamped_msg_<ContainerAllocator> >
   : TrueType
   { };
@@ -129,6 +119,16 @@ struct IsMessage< ::custom_msgs_optitrack::custom_opti_pose_stamped_msg_<Contain
 template <class ContainerAllocator>
 struct IsMessage< ::custom_msgs_optitrack::custom_opti_pose_stamped_msg_<ContainerAllocator> const>
   : TrueType
+  { };
+
+template <class ContainerAllocator>
+struct IsFixedSize< ::custom_msgs_optitrack::custom_opti_pose_stamped_msg_<ContainerAllocator> >
+  : FalseType
+  { };
+
+template <class ContainerAllocator>
+struct IsFixedSize< ::custom_msgs_optitrack::custom_opti_pose_stamped_msg_<ContainerAllocator> const>
+  : FalseType
   { };
 
 template <class ContainerAllocator>

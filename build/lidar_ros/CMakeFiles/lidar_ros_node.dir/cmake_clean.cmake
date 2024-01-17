@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
+  "/home/thijs/hackathon/src/Jetracer_WS_github/devel/.private/lidar_ros/lib/lidar_ros/lidar_ros_node"
+  "/home/thijs/hackathon/src/Jetracer_WS_github/devel/.private/lidar_ros/lib/lidar_ros/lidar_ros_node.pdb"
   "CMakeFiles/lidar_ros_node.dir/src/ydlidar_ros_driver.cpp.o"
-  "/home/jetson/Jetracer_WS_github/devel/.private/lidar_ros/lib/lidar_ros/lidar_ros_node.pdb"
-  "/home/jetson/Jetracer_WS_github/devel/.private/lidar_ros/lib/lidar_ros/lidar_ros_node"
 )
 
 # Per-language clean rules from dependency scanning.

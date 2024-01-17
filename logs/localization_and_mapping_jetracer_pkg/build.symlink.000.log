@@ -1,3 +1,13 @@
-Symlinking /home/jetson/Jetracer_WS_github/devel/lib/pkgconfig/localization_and_mapping_jetracer_pkg.pc
-Symlinking /home/jetson/Jetracer_WS_github/devel/share/localization_and_mapping_jetracer_pkg/cmake/localization_and_mapping_jetracer_pkgConfig.cmake
-Symlinking /home/jetson/Jetracer_WS_github/devel/share/localization_and_mapping_jetracer_pkg/cmake/localization_and_mapping_jetracer_pkgConfig-version.cmake
+Symlinking /home/thijs/hackathon/src/Jetracer_WS_github/devel/share/localization_and_mapping_jetracer_pkg/cmake/localization_and_mapping_jetracer_pkgConfig.cmake
+Symlinking /home/thijs/hackathon/src/Jetracer_WS_github/devel/share/localization_and_mapping_jetracer_pkg/cmake/localization_and_mapping_jetracer_pkgConfig-version.cmake
+Symlinking /home/thijs/hackathon/src/Jetracer_WS_github/devel/lib/pkgconfig/localization_and_mapping_jetracer_pkg.pc
+Cleaning: (/home/jetson/Jetracer_WS_github/devel/.private/localization_and_mapping_jetracer_pkg/cmake.lock, /home/jetson/Jetracer_WS_github/devel/./cmake.lock)
+Cleaning: (/home/jetson/Jetracer_WS_github/devel/.private/localization_and_mapping_jetracer_pkg/lib/pkgconfig/localization_and_mapping_jetracer_pkg.pc, /home/jetson/Jetracer_WS_github/devel/lib/pkgconfig/localization_and_mapping_jetracer_pkg.pc)
+Cleaning: (/home/jetson/Jetracer_WS_github/devel/.private/localization_and_mapping_jetracer_pkg/share/localization_and_mapping_jetracer_pkg/cmake/localization_and_mapping_jetracer_pkgConfig.cmake, /home/jetson/Jetracer_WS_github/devel/share/localization_and_mapping_jetracer_pkg/cmake/localization_and_mapping_jetracer_pkgConfig.cmake)
+Cleaning: (/home/jetson/Jetracer_WS_github/devel/.private/localization_and_mapping_jetracer_pkg/share/localization_and_mapping_jetracer_pkg/cmake/localization_and_mapping_jetracer_pkgConfig-version.cmake, /home/jetson/Jetracer_WS_github/devel/share/localization_and_mapping_jetracer_pkg/cmake/localization_and_mapping_jetracer_pkgConfig-version.cmake)
+Unlinking: /home/jetson/Jetracer_WS_github/devel/lib/pkgconfig/localization_and_mapping_jetracer_pkg.pc
+Already unlinked: {}
+Unlinking: /home/jetson/Jetracer_WS_github/devel/share/localization_and_mapping_jetracer_pkg/cmake/localization_and_mapping_jetracer_pkgConfig.cmake
+Already unlinked: {}
+Unlinking: /home/jetson/Jetracer_WS_github/devel/share/localization_and_mapping_jetracer_pkg/cmake/localization_and_mapping_jetracer_pkgConfig-version.cmake
+Already unlinked: {}

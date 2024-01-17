@@ -1,8 +1,8 @@
-# Install script for directory: /home/jetson/Jetracer_WS_github/src/lidar_ros
+# Install script for directory: /home/thijs/hackathon/src/Jetracer_WS_github/src/lidar_ros
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/jetson/Jetracer_WS_github/install")
+  set(CMAKE_INSTALL_PREFIX "/home/thijs/hackathon/src/Jetracer_WS_github/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -49,98 +49,98 @@ endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/jetson/Jetracer_WS_github/install/_setup_util.py")
+   "/home/thijs/hackathon/src/Jetracer_WS_github/install/_setup_util.py")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/home/jetson/Jetracer_WS_github/install" TYPE PROGRAM FILES "/home/jetson/Jetracer_WS_github/build/lidar_ros/catkin_generated/installspace/_setup_util.py")
+file(INSTALL DESTINATION "/home/thijs/hackathon/src/Jetracer_WS_github/install" TYPE PROGRAM FILES "/home/thijs/hackathon/src/Jetracer_WS_github/build/lidar_ros/catkin_generated/installspace/_setup_util.py")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/jetson/Jetracer_WS_github/install/env.sh")
+   "/home/thijs/hackathon/src/Jetracer_WS_github/install/env.sh")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/home/jetson/Jetracer_WS_github/install" TYPE PROGRAM FILES "/home/jetson/Jetracer_WS_github/build/lidar_ros/catkin_generated/installspace/env.sh")
+file(INSTALL DESTINATION "/home/thijs/hackathon/src/Jetracer_WS_github/install" TYPE PROGRAM FILES "/home/thijs/hackathon/src/Jetracer_WS_github/build/lidar_ros/catkin_generated/installspace/env.sh")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/jetson/Jetracer_WS_github/install/setup.bash;/home/jetson/Jetracer_WS_github/install/local_setup.bash")
+   "/home/thijs/hackathon/src/Jetracer_WS_github/install/setup.bash;/home/thijs/hackathon/src/Jetracer_WS_github/install/local_setup.bash")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/home/jetson/Jetracer_WS_github/install" TYPE FILE FILES
-    "/home/jetson/Jetracer_WS_github/build/lidar_ros/catkin_generated/installspace/setup.bash"
-    "/home/jetson/Jetracer_WS_github/build/lidar_ros/catkin_generated/installspace/local_setup.bash"
+file(INSTALL DESTINATION "/home/thijs/hackathon/src/Jetracer_WS_github/install" TYPE FILE FILES
+    "/home/thijs/hackathon/src/Jetracer_WS_github/build/lidar_ros/catkin_generated/installspace/setup.bash"
+    "/home/thijs/hackathon/src/Jetracer_WS_github/build/lidar_ros/catkin_generated/installspace/local_setup.bash"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/jetson/Jetracer_WS_github/install/setup.sh;/home/jetson/Jetracer_WS_github/install/local_setup.sh")
+   "/home/thijs/hackathon/src/Jetracer_WS_github/install/setup.sh;/home/thijs/hackathon/src/Jetracer_WS_github/install/local_setup.sh")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/home/jetson/Jetracer_WS_github/install" TYPE FILE FILES
-    "/home/jetson/Jetracer_WS_github/build/lidar_ros/catkin_generated/installspace/setup.sh"
-    "/home/jetson/Jetracer_WS_github/build/lidar_ros/catkin_generated/installspace/local_setup.sh"
+file(INSTALL DESTINATION "/home/thijs/hackathon/src/Jetracer_WS_github/install" TYPE FILE FILES
+    "/home/thijs/hackathon/src/Jetracer_WS_github/build/lidar_ros/catkin_generated/installspace/setup.sh"
+    "/home/thijs/hackathon/src/Jetracer_WS_github/build/lidar_ros/catkin_generated/installspace/local_setup.sh"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/jetson/Jetracer_WS_github/install/setup.zsh;/home/jetson/Jetracer_WS_github/install/local_setup.zsh")
+   "/home/thijs/hackathon/src/Jetracer_WS_github/install/setup.zsh;/home/thijs/hackathon/src/Jetracer_WS_github/install/local_setup.zsh")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/home/jetson/Jetracer_WS_github/install" TYPE FILE FILES
-    "/home/jetson/Jetracer_WS_github/build/lidar_ros/catkin_generated/installspace/setup.zsh"
-    "/home/jetson/Jetracer_WS_github/build/lidar_ros/catkin_generated/installspace/local_setup.zsh"
+file(INSTALL DESTINATION "/home/thijs/hackathon/src/Jetracer_WS_github/install" TYPE FILE FILES
+    "/home/thijs/hackathon/src/Jetracer_WS_github/build/lidar_ros/catkin_generated/installspace/setup.zsh"
+    "/home/thijs/hackathon/src/Jetracer_WS_github/build/lidar_ros/catkin_generated/installspace/local_setup.zsh"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/jetson/Jetracer_WS_github/install/.rosinstall")
+   "/home/thijs/hackathon/src/Jetracer_WS_github/install/.rosinstall")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/home/jetson/Jetracer_WS_github/install" TYPE FILE FILES "/home/jetson/Jetracer_WS_github/build/lidar_ros/catkin_generated/installspace/.rosinstall")
+file(INSTALL DESTINATION "/home/thijs/hackathon/src/Jetracer_WS_github/install" TYPE FILE FILES "/home/thijs/hackathon/src/Jetracer_WS_github/build/lidar_ros/catkin_generated/installspace/.rosinstall")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/jetson/Jetracer_WS_github/build/lidar_ros/catkin_generated/installspace/lidar_ros.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/thijs/hackathon/src/Jetracer_WS_github/build/lidar_ros/catkin_generated/installspace/lidar_ros.pc")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/lidar_ros/cmake" TYPE FILE FILES
-    "/home/jetson/Jetracer_WS_github/build/lidar_ros/catkin_generated/installspace/lidar_rosConfig.cmake"
-    "/home/jetson/Jetracer_WS_github/build/lidar_ros/catkin_generated/installspace/lidar_rosConfig-version.cmake"
+    "/home/thijs/hackathon/src/Jetracer_WS_github/build/lidar_ros/catkin_generated/installspace/lidar_rosConfig.cmake"
+    "/home/thijs/hackathon/src/Jetracer_WS_github/build/lidar_ros/catkin_generated/installspace/lidar_rosConfig-version.cmake"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/lidar_ros" TYPE FILE FILES "/home/jetson/Jetracer_WS_github/src/lidar_ros/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/lidar_ros" TYPE FILE FILES "/home/thijs/hackathon/src/Jetracer_WS_github/src/lidar_ros/package.xml")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
@@ -150,12 +150,12 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/lidar_ros/lidar_ros_node"
          RPATH "")
   endif()
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/lidar_ros" TYPE EXECUTABLE FILES "/home/jetson/Jetracer_WS_github/devel/.private/lidar_ros/lib/lidar_ros/lidar_ros_node")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/lidar_ros" TYPE EXECUTABLE FILES "/home/thijs/hackathon/src/Jetracer_WS_github/devel/.private/lidar_ros/lib/lidar_ros/lidar_ros_node")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/lidar_ros/lidar_ros_node" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/lidar_ros/lidar_ros_node")
     file(RPATH_CHANGE
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/lidar_ros/lidar_ros_node"
-         OLD_RPATH "/opt/ros/melodic/lib:"
+         OLD_RPATH "/opt/ros/noetic/lib:"
          NEW_RPATH "")
     if(CMAKE_INSTALL_DO_STRIP)
       execute_process(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/lidar_ros/lidar_ros_node")
@@ -165,7 +165,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/jetson/Jetracer_WS_github/build/lidar_ros/gtest/cmake_install.cmake")
+  include("/home/thijs/hackathon/src/Jetracer_WS_github/build/lidar_ros/gtest/cmake_install.cmake")
 
 endif()
 
@@ -177,5 +177,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/jetson/Jetracer_WS_github/build/lidar_ros/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/thijs/hackathon/src/Jetracer_WS_github/build/lidar_ros/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

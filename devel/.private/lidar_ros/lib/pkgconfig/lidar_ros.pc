@@ -1,4 +1,4 @@
-prefix=/home/jetson/Jetracer_WS_github/devel/.private/lidar_ros
+prefix=/home/thijs/hackathon/src/Jetracer_WS_github/devel/.private/lidar_ros
 
 Name: lidar_ros
 Description: Description of lidar_ros

@@ -67,14 +67,14 @@ set(custom_msgs_optitrack_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
 if("FALSE" STREQUAL "TRUE")
-  set(custom_msgs_optitrack_SOURCE_PREFIX /home/jetson/Jetracer_WS_github/src/custom_msgs_optitrack)
-  set(custom_msgs_optitrack_DEVEL_PREFIX /home/jetson/Jetracer_WS_github/devel/.private/custom_msgs_optitrack)
+  set(custom_msgs_optitrack_SOURCE_PREFIX /home/thijs/hackathon/src/Jetracer_WS_github/src/custom_msgs_optitrack)
+  set(custom_msgs_optitrack_DEVEL_PREFIX /home/thijs/hackathon/src/Jetracer_WS_github/devel/.private/custom_msgs_optitrack)
   set(custom_msgs_optitrack_INSTALL_PREFIX "")
   set(custom_msgs_optitrack_PREFIX ${custom_msgs_optitrack_DEVEL_PREFIX})
 else()
   set(custom_msgs_optitrack_SOURCE_PREFIX "")
   set(custom_msgs_optitrack_DEVEL_PREFIX "")
-  set(custom_msgs_optitrack_INSTALL_PREFIX /home/jetson/Jetracer_WS_github/install)
+  set(custom_msgs_optitrack_INSTALL_PREFIX /home/thijs/hackathon/src/Jetracer_WS_github/install)
   set(custom_msgs_optitrack_PREFIX ${custom_msgs_optitrack_INSTALL_PREFIX})
 endif()
 
@@ -154,7 +154,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /home/jetson/Jetracer_WS_github/install/lib;/home/jetson/Jetracer_WS_github/devel/lib;/opt/ros/melodic/lib)
+    foreach(path /home/thijs/hackathon/src/Jetracer_WS_github/install/lib;/home/thijs/hackathon/src/Jetracer_WS_github/devel/lib;/home/thijs/github_drone/devel/lib;/opt/ros/noetic/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)
@@ -211,7 +211,7 @@ foreach(depend ${depends})
   _unpack_libraries_with_build_configuration(custom_msgs_optitrack_LIBRARIES ${custom_msgs_optitrack_LIBRARIES})
 
   _list_append_unique(custom_msgs_optitrack_LIBRARY_DIRS ${${custom_msgs_optitrack_dep}_LIBRARY_DIRS})
-  list(APPEND custom_msgs_optitrack_EXPORTED_TARGETS ${${custom_msgs_optitrack_dep}_EXPORTED_TARGETS})
+  _list_append_deduplicate(custom_msgs_optitrack_EXPORTED_TARGETS ${${custom_msgs_optitrack_dep}_EXPORTED_TARGETS})
 endforeach()
 
 set(pkg_cfg_extras "custom_msgs_optitrack-msg-extras.cmake")

@@ -1,4 +1,4 @@
-prefix=/home/jetson/Jetracer_WS_github/devel/.private/catkin_tools_prebuild
+prefix=/home/thijs/hackathon/src/Jetracer_WS_github/devel/.private/catkin_tools_prebuild
 
 Name: catkin_tools_prebuild
 Description: Description of catkin_tools_prebuild

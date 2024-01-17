@@ -7,7 +7,7 @@
 # new environment variables
 
 # modified environment variables
-export CMAKE_PREFIX_PATH="/home/jetson/Jetracer_WS_github/devel/.private/custom_msgs_optitrack:$CMAKE_PREFIX_PATH"
-export PWD='/home/jetson/Jetracer_WS_github/build/custom_msgs_optitrack'
-export ROSLISP_PACKAGE_DIRECTORIES="/home/jetson/Jetracer_WS_github/devel/.private/custom_msgs_optitrack/share/common-lisp:$ROSLISP_PACKAGE_DIRECTORIES"
-export ROS_PACKAGE_PATH="/home/jetson/Jetracer_WS_github/src/custom_msgs_optitrack:$ROS_PACKAGE_PATH"
+export CMAKE_PREFIX_PATH="/home/thijs/hackathon/src/Jetracer_WS_github/devel/.private/custom_msgs_optitrack:$CMAKE_PREFIX_PATH"
+export PWD='/home/thijs/hackathon/src/Jetracer_WS_github/build/custom_msgs_optitrack'
+export ROSLISP_PACKAGE_DIRECTORIES="/home/thijs/hackathon/src/Jetracer_WS_github/devel/.private/custom_msgs_optitrack/share/common-lisp:$ROSLISP_PACKAGE_DIRECTORIES"
+export ROS_PACKAGE_PATH="/home/thijs/hackathon/src/Jetracer_WS_github/src/custom_msgs_optitrack:$ROS_PACKAGE_PATH"

@@ -1,3 +1,15 @@
-Symlinking /home/jetson/Jetracer_WS_github/devel/lib/pkgconfig/cytron_jetracer.pc
-Symlinking /home/jetson/Jetracer_WS_github/devel/share/cytron_jetracer/cmake/cytron_jetracerConfig.cmake
-Symlinking /home/jetson/Jetracer_WS_github/devel/share/cytron_jetracer/cmake/cytron_jetracerConfig-version.cmake
+Symlinking /home/thijs/hackathon/src/Jetracer_WS_github/devel/share/cytron_jetracer/cmake/cytron_jetracerConfig-version.cmake
+Symlinking /home/thijs/hackathon/src/Jetracer_WS_github/devel/share/cytron_jetracer/cmake/cytron_jetracerConfig.cmake
+Symlinking /home/thijs/hackathon/src/Jetracer_WS_github/devel/lib/cytron_jetracer/racecar_universal.py
+Symlinking /home/thijs/hackathon/src/Jetracer_WS_github/devel/lib/cytron_jetracer/cmake.lock
+Symlinking /home/thijs/hackathon/src/Jetracer_WS_github/devel/lib/pkgconfig/cytron_jetracer.pc
+Cleaning: (/home/jetson/Jetracer_WS_github/devel/.private/cytron_jetracer/cmake.lock, /home/jetson/Jetracer_WS_github/devel/./cmake.lock)
+Cleaning: (/home/jetson/Jetracer_WS_github/devel/.private/cytron_jetracer/lib/pkgconfig/cytron_jetracer.pc, /home/jetson/Jetracer_WS_github/devel/lib/pkgconfig/cytron_jetracer.pc)
+Cleaning: (/home/jetson/Jetracer_WS_github/devel/.private/cytron_jetracer/share/cytron_jetracer/cmake/cytron_jetracerConfig.cmake, /home/jetson/Jetracer_WS_github/devel/share/cytron_jetracer/cmake/cytron_jetracerConfig.cmake)
+Cleaning: (/home/jetson/Jetracer_WS_github/devel/.private/cytron_jetracer/share/cytron_jetracer/cmake/cytron_jetracerConfig-version.cmake, /home/jetson/Jetracer_WS_github/devel/share/cytron_jetracer/cmake/cytron_jetracerConfig-version.cmake)
+Unlinking: /home/jetson/Jetracer_WS_github/devel/lib/pkgconfig/cytron_jetracer.pc
+Already unlinked: {}
+Unlinking: /home/jetson/Jetracer_WS_github/devel/share/cytron_jetracer/cmake/cytron_jetracerConfig.cmake
+Already unlinked: {}
+Unlinking: /home/jetson/Jetracer_WS_github/devel/share/cytron_jetracer/cmake/cytron_jetracerConfig-version.cmake
+Already unlinked: {}

@@ -1,3 +1,13 @@
-Symlinking /home/jetson/Jetracer_WS_github/devel/lib/pkgconfig/lane_following_controller_pkg.pc
-Symlinking /home/jetson/Jetracer_WS_github/devel/share/lane_following_controller_pkg/cmake/lane_following_controller_pkgConfig-version.cmake
-Symlinking /home/jetson/Jetracer_WS_github/devel/share/lane_following_controller_pkg/cmake/lane_following_controller_pkgConfig.cmake
+Symlinking /home/thijs/hackathon/src/Jetracer_WS_github/devel/share/lane_following_controller_pkg/cmake/lane_following_controller_pkgConfig.cmake
+Symlinking /home/thijs/hackathon/src/Jetracer_WS_github/devel/share/lane_following_controller_pkg/cmake/lane_following_controller_pkgConfig-version.cmake
+Symlinking /home/thijs/hackathon/src/Jetracer_WS_github/devel/lib/pkgconfig/lane_following_controller_pkg.pc
+Cleaning: (/home/jetson/Jetracer_WS_github/devel/.private/lane_following_controller_pkg/cmake.lock, /home/jetson/Jetracer_WS_github/devel/./cmake.lock)
+Cleaning: (/home/jetson/Jetracer_WS_github/devel/.private/lane_following_controller_pkg/lib/pkgconfig/lane_following_controller_pkg.pc, /home/jetson/Jetracer_WS_github/devel/lib/pkgconfig/lane_following_controller_pkg.pc)
+Cleaning: (/home/jetson/Jetracer_WS_github/devel/.private/lane_following_controller_pkg/share/lane_following_controller_pkg/cmake/lane_following_controller_pkgConfig-version.cmake, /home/jetson/Jetracer_WS_github/devel/share/lane_following_controller_pkg/cmake/lane_following_controller_pkgConfig-version.cmake)
+Cleaning: (/home/jetson/Jetracer_WS_github/devel/.private/lane_following_controller_pkg/share/lane_following_controller_pkg/cmake/lane_following_controller_pkgConfig.cmake, /home/jetson/Jetracer_WS_github/devel/share/lane_following_controller_pkg/cmake/lane_following_controller_pkgConfig.cmake)
+Unlinking: /home/jetson/Jetracer_WS_github/devel/lib/pkgconfig/lane_following_controller_pkg.pc
+Already unlinked: {}
+Unlinking: /home/jetson/Jetracer_WS_github/devel/share/lane_following_controller_pkg/cmake/lane_following_controller_pkgConfig-version.cmake
+Already unlinked: {}
+Unlinking: /home/jetson/Jetracer_WS_github/devel/share/lane_following_controller_pkg/cmake/lane_following_controller_pkgConfig.cmake
+Already unlinked: {}

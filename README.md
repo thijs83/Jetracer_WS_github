@@ -5,9 +5,9 @@ This repo contains basic code to run the jetracers for the hackathon.
 
 
 ## Installation
-Clone this repo 
+Clone the repo
 ```
-git clone https://github.com/Lorenzo-Lyons/Jetracer_WS_github.git
+git clone -b hackathon_18_Jan_2024_thijs_group https://github.com/thijs83/Jetracer_WS_github.git --recursive
 ```
 
 ### Create a new branch for your group 
@@ -23,6 +23,18 @@ Check the outcome by viewing all local branches by typing:
 ```
 git branch
 ```
+
+### Build YDLidar workspace
+
+Create and Go to the build folder of the driver and build the driver
+```
+mkdir src/YDLidar-SDK/build
+cd src/YDLidar-SDK/build
+cmake ..
+make
+sudo make install
+```
+
 
 ### Build and source the catkin workspace
 

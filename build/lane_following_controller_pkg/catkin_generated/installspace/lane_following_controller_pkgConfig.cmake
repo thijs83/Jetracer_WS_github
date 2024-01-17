@@ -67,14 +67,14 @@ set(lane_following_controller_pkg_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
 if("FALSE" STREQUAL "TRUE")
-  set(lane_following_controller_pkg_SOURCE_PREFIX /home/jetson/Jetracer_WS_github/src/lane_following_controller_pkg)
-  set(lane_following_controller_pkg_DEVEL_PREFIX /home/jetson/Jetracer_WS_github/devel/.private/lane_following_controller_pkg)
+  set(lane_following_controller_pkg_SOURCE_PREFIX /home/thijs/hackathon/src/Jetracer_WS_github/src/lane_following_controller_pkg)
+  set(lane_following_controller_pkg_DEVEL_PREFIX /home/thijs/hackathon/src/Jetracer_WS_github/devel/.private/lane_following_controller_pkg)
   set(lane_following_controller_pkg_INSTALL_PREFIX "")
   set(lane_following_controller_pkg_PREFIX ${lane_following_controller_pkg_DEVEL_PREFIX})
 else()
   set(lane_following_controller_pkg_SOURCE_PREFIX "")
   set(lane_following_controller_pkg_DEVEL_PREFIX "")
-  set(lane_following_controller_pkg_INSTALL_PREFIX /home/jetson/Jetracer_WS_github/install)
+  set(lane_following_controller_pkg_INSTALL_PREFIX /home/thijs/hackathon/src/Jetracer_WS_github/install)
   set(lane_following_controller_pkg_PREFIX ${lane_following_controller_pkg_INSTALL_PREFIX})
 endif()
 
@@ -154,7 +154,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /home/jetson/Jetracer_WS_github/install/lib;/home/jetson/Jetracer_WS_github/devel/lib;/opt/ros/melodic/lib)
+    foreach(path /home/thijs/hackathon/src/Jetracer_WS_github/install/lib;/home/thijs/hackathon/src/Jetracer_WS_github/devel/lib;/home/thijs/github_drone/devel/lib;/opt/ros/noetic/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)
@@ -211,7 +211,7 @@ foreach(depend ${depends})
   _unpack_libraries_with_build_configuration(lane_following_controller_pkg_LIBRARIES ${lane_following_controller_pkg_LIBRARIES})
 
   _list_append_unique(lane_following_controller_pkg_LIBRARY_DIRS ${${lane_following_controller_pkg_dep}_LIBRARY_DIRS})
-  list(APPEND lane_following_controller_pkg_EXPORTED_TARGETS ${${lane_following_controller_pkg_dep}_EXPORTED_TARGETS})
+  _list_append_deduplicate(lane_following_controller_pkg_EXPORTED_TARGETS ${${lane_following_controller_pkg_dep}_EXPORTED_TARGETS})
 endforeach()
 
 set(pkg_cfg_extras "")

@@ -1,1 +1,1 @@
-/home/jetson/Jetracer_WS_github/devel/.private/lidar_ros/lib/pkgconfig/lidar_ros.pc
+/home/thijs/hackathon/src/Jetracer_WS_github/devel/.private/lidar_ros/lib/pkgconfig/lidar_ros.pc

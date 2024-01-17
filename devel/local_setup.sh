@@ -1,1 +1,1 @@
-/home/jetson/Jetracer_WS_github/devel/.private/catkin_tools_prebuild/local_setup.sh
+/home/thijs/hackathon/src/Jetracer_WS_github/devel/.private/catkin_tools_prebuild/local_setup.sh

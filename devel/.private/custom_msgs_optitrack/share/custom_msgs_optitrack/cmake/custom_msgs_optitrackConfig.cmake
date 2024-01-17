@@ -67,14 +67,14 @@ set(custom_msgs_optitrack_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
 if("TRUE" STREQUAL "TRUE")
-  set(custom_msgs_optitrack_SOURCE_PREFIX /home/jetson/Jetracer_WS_github/src/custom_msgs_optitrack)
-  set(custom_msgs_optitrack_DEVEL_PREFIX /home/jetson/Jetracer_WS_github/devel/.private/custom_msgs_optitrack)
+  set(custom_msgs_optitrack_SOURCE_PREFIX /home/thijs/hackathon/src/Jetracer_WS_github/src/custom_msgs_optitrack)
+  set(custom_msgs_optitrack_DEVEL_PREFIX /home/thijs/hackathon/src/Jetracer_WS_github/devel/.private/custom_msgs_optitrack)
   set(custom_msgs_optitrack_INSTALL_PREFIX "")
   set(custom_msgs_optitrack_PREFIX ${custom_msgs_optitrack_DEVEL_PREFIX})
 else()
   set(custom_msgs_optitrack_SOURCE_PREFIX "")
   set(custom_msgs_optitrack_DEVEL_PREFIX "")
-  set(custom_msgs_optitrack_INSTALL_PREFIX /home/jetson/Jetracer_WS_github/install)
+  set(custom_msgs_optitrack_INSTALL_PREFIX /home/thijs/hackathon/src/Jetracer_WS_github/install)
   set(custom_msgs_optitrack_PREFIX ${custom_msgs_optitrack_INSTALL_PREFIX})
 endif()
 
@@ -91,9 +91,9 @@ endif()
 # flag project as catkin-based to distinguish if a find_package()-ed project is a catkin project
 set(custom_msgs_optitrack_FOUND_CATKIN_PROJECT TRUE)
 
-if(NOT "/home/jetson/Jetracer_WS_github/devel/.private/custom_msgs_optitrack/include " STREQUAL " ")
+if(NOT "/home/thijs/hackathon/src/Jetracer_WS_github/devel/.private/custom_msgs_optitrack/include " STREQUAL " ")
   set(custom_msgs_optitrack_INCLUDE_DIRS "")
-  set(_include_dirs "/home/jetson/Jetracer_WS_github/devel/.private/custom_msgs_optitrack/include")
+  set(_include_dirs "/home/thijs/hackathon/src/Jetracer_WS_github/devel/.private/custom_msgs_optitrack/include")
   if(NOT " " STREQUAL " ")
     set(_report "Check the issue tracker '' and consider creating a ticket if the problem has not been reported yet.")
   elseif(NOT " " STREQUAL " ")
@@ -110,7 +110,7 @@ if(NOT "/home/jetson/Jetracer_WS_github/devel/.private/custom_msgs_optitrack/inc
         message(FATAL_ERROR "Project 'custom_msgs_optitrack' specifies '${idir}' as an include dir, which is not found.  It does not exist in '${include}'.  ${_report}")
       endif()
     else()
-      message(FATAL_ERROR "Project 'custom_msgs_optitrack' specifies '${idir}' as an include dir, which is not found.  It does neither exist as an absolute directory nor in '/home/jetson/Jetracer_WS_github/src/custom_msgs_optitrack/${idir}'.  ${_report}")
+      message(FATAL_ERROR "Project 'custom_msgs_optitrack' specifies '${idir}' as an include dir, which is not found.  It does neither exist as an absolute directory nor in '/home/thijs/hackathon/src/Jetracer_WS_github/src/custom_msgs_optitrack/${idir}'.  ${_report}")
     endif()
     _list_append_unique(custom_msgs_optitrack_INCLUDE_DIRS ${include})
   endforeach()
@@ -154,7 +154,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /home/jetson/Jetracer_WS_github/devel/.private/custom_msgs_optitrack/lib;/home/jetson/Jetracer_WS_github/devel/lib;/opt/ros/melodic/lib)
+    foreach(path /home/thijs/hackathon/src/Jetracer_WS_github/devel/.private/custom_msgs_optitrack/lib;/home/thijs/hackathon/src/Jetracer_WS_github/devel/lib;/home/thijs/github_drone/devel/lib;/opt/ros/noetic/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)
@@ -211,7 +211,7 @@ foreach(depend ${depends})
   _unpack_libraries_with_build_configuration(custom_msgs_optitrack_LIBRARIES ${custom_msgs_optitrack_LIBRARIES})
 
   _list_append_unique(custom_msgs_optitrack_LIBRARY_DIRS ${${custom_msgs_optitrack_dep}_LIBRARY_DIRS})
-  list(APPEND custom_msgs_optitrack_EXPORTED_TARGETS ${${custom_msgs_optitrack_dep}_EXPORTED_TARGETS})
+  _list_append_deduplicate(custom_msgs_optitrack_EXPORTED_TARGETS ${${custom_msgs_optitrack_dep}_EXPORTED_TARGETS})
 endforeach()
 
 set(pkg_cfg_extras "custom_msgs_optitrack-msg-extras.cmake")

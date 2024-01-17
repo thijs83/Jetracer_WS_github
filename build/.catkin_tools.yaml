@@ -1,6 +1,6 @@
-devel_space: /home/jetson/Jetracer_WS_github/devel
+devel_space: /home/thijs/hackathon/src/Jetracer_WS_github/devel
 install: false
-install_space: /home/jetson/Jetracer_WS_github/install
+install_space: /home/thijs/hackathon/src/Jetracer_WS_github/install
 profile: default
-source_space: /home/jetson/Jetracer_WS_github/src
-workspace: /home/jetson/Jetracer_WS_github
+source_space: /home/thijs/hackathon/src/Jetracer_WS_github/src
+workspace: /home/thijs/hackathon/src/Jetracer_WS_github

@@ -2,7 +2,7 @@
 
 message(STATUS "custom_msgs_optitrack: 1 messages, 0 services")
 
-set(MSG_I_FLAGS "-Icustom_msgs_optitrack:/home/jetson/Jetracer_WS_github/src/custom_msgs_optitrack/msg;-Igeometry_msgs:/opt/ros/melodic/share/geometry_msgs/cmake/../msg;-Istd_msgs:/opt/ros/melodic/share/std_msgs/cmake/../msg")
+set(MSG_I_FLAGS "-Icustom_msgs_optitrack:/home/thijs/hackathon/src/Jetracer_WS_github/src/custom_msgs_optitrack/msg;-Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg;-Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg")
 
 # Find all generators
 find_package(gencpp REQUIRED)
@@ -17,9 +17,9 @@ add_custom_target(custom_msgs_optitrack_generate_messages ALL)
 
 
 
-get_filename_component(_filename "/home/jetson/Jetracer_WS_github/src/custom_msgs_optitrack/msg/custom_opti_pose_stamped_msg.msg" NAME_WE)
+get_filename_component(_filename "/home/thijs/hackathon/src/Jetracer_WS_github/src/custom_msgs_optitrack/msg/custom_opti_pose_stamped_msg.msg" NAME_WE)
 add_custom_target(_custom_msgs_optitrack_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "custom_msgs_optitrack" "/home/jetson/Jetracer_WS_github/src/custom_msgs_optitrack/msg/custom_opti_pose_stamped_msg.msg" "std_msgs/Header"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "custom_msgs_optitrack" "/home/thijs/hackathon/src/Jetracer_WS_github/src/custom_msgs_optitrack/msg/custom_opti_pose_stamped_msg.msg" "std_msgs/Header"
 )
 
 #
@@ -29,9 +29,9 @@ add_custom_target(_custom_msgs_optitrack_generate_messages_check_deps_${_filenam
 ### Section generating for lang: gencpp
 ### Generating Messages
 _generate_msg_cpp(custom_msgs_optitrack
-  "/home/jetson/Jetracer_WS_github/src/custom_msgs_optitrack/msg/custom_opti_pose_stamped_msg.msg"
+  "/home/thijs/hackathon/src/Jetracer_WS_github/src/custom_msgs_optitrack/msg/custom_opti_pose_stamped_msg.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/melodic/share/std_msgs/cmake/../msg/Header.msg"
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/custom_msgs_optitrack
 )
 
@@ -49,7 +49,7 @@ add_custom_target(custom_msgs_optitrack_generate_messages_cpp
 add_dependencies(custom_msgs_optitrack_generate_messages custom_msgs_optitrack_generate_messages_cpp)
 
 # add dependencies to all check dependencies targets
-get_filename_component(_filename "/home/jetson/Jetracer_WS_github/src/custom_msgs_optitrack/msg/custom_opti_pose_stamped_msg.msg" NAME_WE)
+get_filename_component(_filename "/home/thijs/hackathon/src/Jetracer_WS_github/src/custom_msgs_optitrack/msg/custom_opti_pose_stamped_msg.msg" NAME_WE)
 add_dependencies(custom_msgs_optitrack_generate_messages_cpp _custom_msgs_optitrack_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -62,9 +62,9 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS custom_msgs_optitrack_generate_mess
 ### Section generating for lang: geneus
 ### Generating Messages
 _generate_msg_eus(custom_msgs_optitrack
-  "/home/jetson/Jetracer_WS_github/src/custom_msgs_optitrack/msg/custom_opti_pose_stamped_msg.msg"
+  "/home/thijs/hackathon/src/Jetracer_WS_github/src/custom_msgs_optitrack/msg/custom_opti_pose_stamped_msg.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/melodic/share/std_msgs/cmake/../msg/Header.msg"
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/custom_msgs_optitrack
 )
 
@@ -82,7 +82,7 @@ add_custom_target(custom_msgs_optitrack_generate_messages_eus
 add_dependencies(custom_msgs_optitrack_generate_messages custom_msgs_optitrack_generate_messages_eus)
 
 # add dependencies to all check dependencies targets
-get_filename_component(_filename "/home/jetson/Jetracer_WS_github/src/custom_msgs_optitrack/msg/custom_opti_pose_stamped_msg.msg" NAME_WE)
+get_filename_component(_filename "/home/thijs/hackathon/src/Jetracer_WS_github/src/custom_msgs_optitrack/msg/custom_opti_pose_stamped_msg.msg" NAME_WE)
 add_dependencies(custom_msgs_optitrack_generate_messages_eus _custom_msgs_optitrack_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -95,9 +95,9 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS custom_msgs_optitrack_generate_mess
 ### Section generating for lang: genlisp
 ### Generating Messages
 _generate_msg_lisp(custom_msgs_optitrack
-  "/home/jetson/Jetracer_WS_github/src/custom_msgs_optitrack/msg/custom_opti_pose_stamped_msg.msg"
+  "/home/thijs/hackathon/src/Jetracer_WS_github/src/custom_msgs_optitrack/msg/custom_opti_pose_stamped_msg.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/melodic/share/std_msgs/cmake/../msg/Header.msg"
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/custom_msgs_optitrack
 )
 
@@ -115,7 +115,7 @@ add_custom_target(custom_msgs_optitrack_generate_messages_lisp
 add_dependencies(custom_msgs_optitrack_generate_messages custom_msgs_optitrack_generate_messages_lisp)
 
 # add dependencies to all check dependencies targets
-get_filename_component(_filename "/home/jetson/Jetracer_WS_github/src/custom_msgs_optitrack/msg/custom_opti_pose_stamped_msg.msg" NAME_WE)
+get_filename_component(_filename "/home/thijs/hackathon/src/Jetracer_WS_github/src/custom_msgs_optitrack/msg/custom_opti_pose_stamped_msg.msg" NAME_WE)
 add_dependencies(custom_msgs_optitrack_generate_messages_lisp _custom_msgs_optitrack_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -128,9 +128,9 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS custom_msgs_optitrack_generate_mess
 ### Section generating for lang: gennodejs
 ### Generating Messages
 _generate_msg_nodejs(custom_msgs_optitrack
-  "/home/jetson/Jetracer_WS_github/src/custom_msgs_optitrack/msg/custom_opti_pose_stamped_msg.msg"
+  "/home/thijs/hackathon/src/Jetracer_WS_github/src/custom_msgs_optitrack/msg/custom_opti_pose_stamped_msg.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/melodic/share/std_msgs/cmake/../msg/Header.msg"
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/custom_msgs_optitrack
 )
 
@@ -148,7 +148,7 @@ add_custom_target(custom_msgs_optitrack_generate_messages_nodejs
 add_dependencies(custom_msgs_optitrack_generate_messages custom_msgs_optitrack_generate_messages_nodejs)
 
 # add dependencies to all check dependencies targets
-get_filename_component(_filename "/home/jetson/Jetracer_WS_github/src/custom_msgs_optitrack/msg/custom_opti_pose_stamped_msg.msg" NAME_WE)
+get_filename_component(_filename "/home/thijs/hackathon/src/Jetracer_WS_github/src/custom_msgs_optitrack/msg/custom_opti_pose_stamped_msg.msg" NAME_WE)
 add_dependencies(custom_msgs_optitrack_generate_messages_nodejs _custom_msgs_optitrack_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -161,9 +161,9 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS custom_msgs_optitrack_generate_mess
 ### Section generating for lang: genpy
 ### Generating Messages
 _generate_msg_py(custom_msgs_optitrack
-  "/home/jetson/Jetracer_WS_github/src/custom_msgs_optitrack/msg/custom_opti_pose_stamped_msg.msg"
+  "/home/thijs/hackathon/src/Jetracer_WS_github/src/custom_msgs_optitrack/msg/custom_opti_pose_stamped_msg.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/melodic/share/std_msgs/cmake/../msg/Header.msg"
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/custom_msgs_optitrack
 )
 
@@ -181,7 +181,7 @@ add_custom_target(custom_msgs_optitrack_generate_messages_py
 add_dependencies(custom_msgs_optitrack_generate_messages custom_msgs_optitrack_generate_messages_py)
 
 # add dependencies to all check dependencies targets
-get_filename_component(_filename "/home/jetson/Jetracer_WS_github/src/custom_msgs_optitrack/msg/custom_opti_pose_stamped_msg.msg" NAME_WE)
+get_filename_component(_filename "/home/thijs/hackathon/src/Jetracer_WS_github/src/custom_msgs_optitrack/msg/custom_opti_pose_stamped_msg.msg" NAME_WE)
 add_dependencies(custom_msgs_optitrack_generate_messages_py _custom_msgs_optitrack_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -250,7 +250,7 @@ if(TARGET std_msgs_generate_messages_nodejs)
 endif()
 
 if(genpy_INSTALL_DIR AND EXISTS ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/custom_msgs_optitrack)
-  install(CODE "execute_process(COMMAND \"/usr/bin/python2\" -m compileall \"${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/custom_msgs_optitrack\")")
+  install(CODE "execute_process(COMMAND \"/usr/bin/python3\" -m compileall \"${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/custom_msgs_optitrack\")")
   # install generated code
   install(
     DIRECTORY ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/custom_msgs_optitrack

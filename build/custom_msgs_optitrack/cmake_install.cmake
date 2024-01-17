@@ -1,8 +1,8 @@
-# Install script for directory: /home/jetson/Jetracer_WS_github/src/custom_msgs_optitrack
+# Install script for directory: /home/thijs/hackathon/src/Jetracer_WS_github/src/custom_msgs_optitrack
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/jetson/Jetracer_WS_github/install")
+  set(CMAKE_INSTALL_PREFIX "/home/thijs/hackathon/src/Jetracer_WS_github/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -49,139 +49,139 @@ endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/jetson/Jetracer_WS_github/install/_setup_util.py")
+   "/home/thijs/hackathon/src/Jetracer_WS_github/install/_setup_util.py")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/home/jetson/Jetracer_WS_github/install" TYPE PROGRAM FILES "/home/jetson/Jetracer_WS_github/build/custom_msgs_optitrack/catkin_generated/installspace/_setup_util.py")
+file(INSTALL DESTINATION "/home/thijs/hackathon/src/Jetracer_WS_github/install" TYPE PROGRAM FILES "/home/thijs/hackathon/src/Jetracer_WS_github/build/custom_msgs_optitrack/catkin_generated/installspace/_setup_util.py")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/jetson/Jetracer_WS_github/install/env.sh")
+   "/home/thijs/hackathon/src/Jetracer_WS_github/install/env.sh")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/home/jetson/Jetracer_WS_github/install" TYPE PROGRAM FILES "/home/jetson/Jetracer_WS_github/build/custom_msgs_optitrack/catkin_generated/installspace/env.sh")
+file(INSTALL DESTINATION "/home/thijs/hackathon/src/Jetracer_WS_github/install" TYPE PROGRAM FILES "/home/thijs/hackathon/src/Jetracer_WS_github/build/custom_msgs_optitrack/catkin_generated/installspace/env.sh")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/jetson/Jetracer_WS_github/install/setup.bash;/home/jetson/Jetracer_WS_github/install/local_setup.bash")
+   "/home/thijs/hackathon/src/Jetracer_WS_github/install/setup.bash;/home/thijs/hackathon/src/Jetracer_WS_github/install/local_setup.bash")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/home/jetson/Jetracer_WS_github/install" TYPE FILE FILES
-    "/home/jetson/Jetracer_WS_github/build/custom_msgs_optitrack/catkin_generated/installspace/setup.bash"
-    "/home/jetson/Jetracer_WS_github/build/custom_msgs_optitrack/catkin_generated/installspace/local_setup.bash"
+file(INSTALL DESTINATION "/home/thijs/hackathon/src/Jetracer_WS_github/install" TYPE FILE FILES
+    "/home/thijs/hackathon/src/Jetracer_WS_github/build/custom_msgs_optitrack/catkin_generated/installspace/setup.bash"
+    "/home/thijs/hackathon/src/Jetracer_WS_github/build/custom_msgs_optitrack/catkin_generated/installspace/local_setup.bash"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/jetson/Jetracer_WS_github/install/setup.sh;/home/jetson/Jetracer_WS_github/install/local_setup.sh")
+   "/home/thijs/hackathon/src/Jetracer_WS_github/install/setup.sh;/home/thijs/hackathon/src/Jetracer_WS_github/install/local_setup.sh")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/home/jetson/Jetracer_WS_github/install" TYPE FILE FILES
-    "/home/jetson/Jetracer_WS_github/build/custom_msgs_optitrack/catkin_generated/installspace/setup.sh"
-    "/home/jetson/Jetracer_WS_github/build/custom_msgs_optitrack/catkin_generated/installspace/local_setup.sh"
+file(INSTALL DESTINATION "/home/thijs/hackathon/src/Jetracer_WS_github/install" TYPE FILE FILES
+    "/home/thijs/hackathon/src/Jetracer_WS_github/build/custom_msgs_optitrack/catkin_generated/installspace/setup.sh"
+    "/home/thijs/hackathon/src/Jetracer_WS_github/build/custom_msgs_optitrack/catkin_generated/installspace/local_setup.sh"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/jetson/Jetracer_WS_github/install/setup.zsh;/home/jetson/Jetracer_WS_github/install/local_setup.zsh")
+   "/home/thijs/hackathon/src/Jetracer_WS_github/install/setup.zsh;/home/thijs/hackathon/src/Jetracer_WS_github/install/local_setup.zsh")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/home/jetson/Jetracer_WS_github/install" TYPE FILE FILES
-    "/home/jetson/Jetracer_WS_github/build/custom_msgs_optitrack/catkin_generated/installspace/setup.zsh"
-    "/home/jetson/Jetracer_WS_github/build/custom_msgs_optitrack/catkin_generated/installspace/local_setup.zsh"
+file(INSTALL DESTINATION "/home/thijs/hackathon/src/Jetracer_WS_github/install" TYPE FILE FILES
+    "/home/thijs/hackathon/src/Jetracer_WS_github/build/custom_msgs_optitrack/catkin_generated/installspace/setup.zsh"
+    "/home/thijs/hackathon/src/Jetracer_WS_github/build/custom_msgs_optitrack/catkin_generated/installspace/local_setup.zsh"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/jetson/Jetracer_WS_github/install/.rosinstall")
+   "/home/thijs/hackathon/src/Jetracer_WS_github/install/.rosinstall")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/home/jetson/Jetracer_WS_github/install" TYPE FILE FILES "/home/jetson/Jetracer_WS_github/build/custom_msgs_optitrack/catkin_generated/installspace/.rosinstall")
+file(INSTALL DESTINATION "/home/thijs/hackathon/src/Jetracer_WS_github/install" TYPE FILE FILES "/home/thijs/hackathon/src/Jetracer_WS_github/build/custom_msgs_optitrack/catkin_generated/installspace/.rosinstall")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/custom_msgs_optitrack/msg" TYPE FILE FILES "/home/jetson/Jetracer_WS_github/src/custom_msgs_optitrack/msg/custom_opti_pose_stamped_msg.msg")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/custom_msgs_optitrack/msg" TYPE FILE FILES "/home/thijs/hackathon/src/Jetracer_WS_github/src/custom_msgs_optitrack/msg/custom_opti_pose_stamped_msg.msg")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/custom_msgs_optitrack/cmake" TYPE FILE FILES "/home/jetson/Jetracer_WS_github/build/custom_msgs_optitrack/catkin_generated/installspace/custom_msgs_optitrack-msg-paths.cmake")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/custom_msgs_optitrack/cmake" TYPE FILE FILES "/home/thijs/hackathon/src/Jetracer_WS_github/build/custom_msgs_optitrack/catkin_generated/installspace/custom_msgs_optitrack-msg-paths.cmake")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE DIRECTORY FILES "/home/jetson/Jetracer_WS_github/devel/.private/custom_msgs_optitrack/include/custom_msgs_optitrack")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE DIRECTORY FILES "/home/thijs/hackathon/src/Jetracer_WS_github/devel/.private/custom_msgs_optitrack/include/custom_msgs_optitrack")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/roseus/ros" TYPE DIRECTORY FILES "/home/jetson/Jetracer_WS_github/devel/.private/custom_msgs_optitrack/share/roseus/ros/custom_msgs_optitrack")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/roseus/ros" TYPE DIRECTORY FILES "/home/thijs/hackathon/src/Jetracer_WS_github/devel/.private/custom_msgs_optitrack/share/roseus/ros/custom_msgs_optitrack")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/common-lisp/ros" TYPE DIRECTORY FILES "/home/jetson/Jetracer_WS_github/devel/.private/custom_msgs_optitrack/share/common-lisp/ros/custom_msgs_optitrack")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/common-lisp/ros" TYPE DIRECTORY FILES "/home/thijs/hackathon/src/Jetracer_WS_github/devel/.private/custom_msgs_optitrack/share/common-lisp/ros/custom_msgs_optitrack")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/gennodejs/ros" TYPE DIRECTORY FILES "/home/jetson/Jetracer_WS_github/devel/.private/custom_msgs_optitrack/share/gennodejs/ros/custom_msgs_optitrack")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/gennodejs/ros" TYPE DIRECTORY FILES "/home/thijs/hackathon/src/Jetracer_WS_github/devel/.private/custom_msgs_optitrack/share/gennodejs/ros/custom_msgs_optitrack")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  execute_process(COMMAND "/usr/bin/python2" -m compileall "/home/jetson/Jetracer_WS_github/devel/.private/custom_msgs_optitrack/lib/python2.7/dist-packages/custom_msgs_optitrack")
+  execute_process(COMMAND "/usr/bin/python3" -m compileall "/home/thijs/hackathon/src/Jetracer_WS_github/devel/.private/custom_msgs_optitrack/lib/python3/dist-packages/custom_msgs_optitrack")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/python2.7/dist-packages" TYPE DIRECTORY FILES "/home/jetson/Jetracer_WS_github/devel/.private/custom_msgs_optitrack/lib/python2.7/dist-packages/custom_msgs_optitrack")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/python3/dist-packages" TYPE DIRECTORY FILES "/home/thijs/hackathon/src/Jetracer_WS_github/devel/.private/custom_msgs_optitrack/lib/python3/dist-packages/custom_msgs_optitrack")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/jetson/Jetracer_WS_github/build/custom_msgs_optitrack/catkin_generated/installspace/custom_msgs_optitrack.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/thijs/hackathon/src/Jetracer_WS_github/build/custom_msgs_optitrack/catkin_generated/installspace/custom_msgs_optitrack.pc")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/custom_msgs_optitrack/cmake" TYPE FILE FILES "/home/jetson/Jetracer_WS_github/build/custom_msgs_optitrack/catkin_generated/installspace/custom_msgs_optitrack-msg-extras.cmake")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/custom_msgs_optitrack/cmake" TYPE FILE FILES "/home/thijs/hackathon/src/Jetracer_WS_github/build/custom_msgs_optitrack/catkin_generated/installspace/custom_msgs_optitrack-msg-extras.cmake")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/custom_msgs_optitrack/cmake" TYPE FILE FILES
-    "/home/jetson/Jetracer_WS_github/build/custom_msgs_optitrack/catkin_generated/installspace/custom_msgs_optitrackConfig.cmake"
-    "/home/jetson/Jetracer_WS_github/build/custom_msgs_optitrack/catkin_generated/installspace/custom_msgs_optitrackConfig-version.cmake"
+    "/home/thijs/hackathon/src/Jetracer_WS_github/build/custom_msgs_optitrack/catkin_generated/installspace/custom_msgs_optitrackConfig.cmake"
+    "/home/thijs/hackathon/src/Jetracer_WS_github/build/custom_msgs_optitrack/catkin_generated/installspace/custom_msgs_optitrackConfig-version.cmake"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/custom_msgs_optitrack" TYPE FILE FILES "/home/jetson/Jetracer_WS_github/src/custom_msgs_optitrack/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/custom_msgs_optitrack" TYPE FILE FILES "/home/thijs/hackathon/src/Jetracer_WS_github/src/custom_msgs_optitrack/package.xml")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/jetson/Jetracer_WS_github/build/custom_msgs_optitrack/gtest/cmake_install.cmake")
+  include("/home/thijs/hackathon/src/Jetracer_WS_github/build/custom_msgs_optitrack/gtest/cmake_install.cmake")
 
 endif()
 
@@ -193,5 +193,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/jetson/Jetracer_WS_github/build/custom_msgs_optitrack/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/thijs/hackathon/src/Jetracer_WS_github/build/custom_msgs_optitrack/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

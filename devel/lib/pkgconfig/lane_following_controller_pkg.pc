@@ -1,1 +1,0 @@
-/home/thijs/hackathon/src/Jetracer_WS_github/devel/.private/lane_following_controller_pkg/lib/pkgconfig/lane_following_controller_pkg.pc

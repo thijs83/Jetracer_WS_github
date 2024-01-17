@@ -1,1 +1,0 @@
-/home/thijs/hackathon/src/Jetracer_WS_github/devel/.private/custom_msgs_optitrack/share/roseus/ros/custom_msgs_optitrack/manifest.l

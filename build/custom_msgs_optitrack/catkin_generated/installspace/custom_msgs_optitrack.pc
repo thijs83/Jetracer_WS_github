@@ -1,8 +1,0 @@
-prefix=/home/thijs/hackathon/src/Jetracer_WS_github/install
-
-Name: custom_msgs_optitrack
-Description: Description of custom_msgs_optitrack
-Version: 0.0.0
-Cflags: -I${prefix}/include
-Libs: -L${prefix}/lib 
-Requires: geometry_msgs message_generation message_runtime rospy std_msgs

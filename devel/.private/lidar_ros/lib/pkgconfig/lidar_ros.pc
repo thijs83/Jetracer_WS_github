@@ -1,8 +1,0 @@
-prefix=/home/thijs/hackathon/src/Jetracer_WS_github/devel/.private/lidar_ros
-
-Name: lidar_ros
-Description: Description of lidar_ros
-Version: 1.0.1
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: roscpp rospy sensor_msgs message_runtime

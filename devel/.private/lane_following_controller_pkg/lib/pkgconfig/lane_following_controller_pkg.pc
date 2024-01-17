@@ -1,8 +1,0 @@
-prefix=/home/thijs/hackathon/src/Jetracer_WS_github/devel/.private/lane_following_controller_pkg
-
-Name: lane_following_controller_pkg
-Description: Description of lane_following_controller_pkg
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 

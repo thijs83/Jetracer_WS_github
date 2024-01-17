@@ -1,8 +1,0 @@
-prefix=/home/thijs/hackathon/src/Jetracer_WS_github/devel/.private/cytron_jetracer
-
-Name: cytron_jetracer
-Description: Description of cytron_jetracer
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: rospy std_msgs
